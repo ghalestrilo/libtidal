@@ -1,0 +1,11 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    { "key": "ctrl+tab",		"command": "workbench.action.nextEditor" },
+    { "key": "ctrl+shift+tab",	"command": "workbench.action.previousEditor" },
+
+	{ "key": "ctrl+k ctrl+l",	"command": "editor.action.transformToLowercase" },
+	{ "key": "ctrl+k ctrl+u",	"command": "editor.action.transformToUppercase" }
+
+	// - editor.action.transformToLowercase
+	// - editor.action.transformToUppercase
+]

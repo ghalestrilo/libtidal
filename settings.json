@@ -1,0 +1,36 @@
+{
+    "window.zoomLevel": -1,
+    "window.menuBarVisibility": "toggle",
+
+    "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
+	"terminal.integrated.fontSize": 14,
+    
+	"workbench.statusBar.visible": false,
+	"workbench.activityBar.visible": true,
+
+    "workbench.colorTheme": "Mellow Contrast (rainglow)",
+    "editor.fontFamily": "DejaVu Sans",
+	// "editor.fontFamily": "Connection Regular",
+	// "editor.fontFamily": "Telegrama Raw",    
+    
+    // "editor.insertSpaces": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.detectIndentation": false,
+    "editor.renderIndentGuides": false,
+
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.o": true,
+		"**/CVS": true,
+		"**/.DS_Store": true
+	},
+
+	"haskell.hlint.executablePath": "C:\\Users\\Thales\\AppData\\Roaming\\cabal\\bin\\hlint.exe",
+	// "haskell.hlint.executablePath": "C:\\Users\\Thales\\AppData\\Roaming\\cabal\\x86_64-windows-ghc-8.2.1\\hlint-2.0.9"
+	"haskell.hlint.ignore": [
+		"Redundant bracket",
+		"Use fromMaybe"
+	]
+}
