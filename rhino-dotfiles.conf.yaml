@@ -12,7 +12,6 @@
     ~/.config/i3/config: data/temp/i3/config
     ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
     ~/.taskrc: data/.taskrc
-    ~/.vimrc: data/.vimrc
     ~/.zshrc: data/.zshrc
     ~/.config/kak/kakrc: data/kakrc
     ~/.config/init.vim: data/init.vim
