@@ -1,0 +1,66 @@
+# Preparing i3 config file
+- shell:
+  - cat /etc/i3/config > data/temp/i3/config
+  - cat data/i3/config >> data/temp/i3/config
+
+- clean: ['~']
+
+# Linking Dotfiles
+# FIXME: - the '..' is needed if this file is in the presets folder
+- link:
+    ~/mov: /run/media/lalis/storage/mov
+    ~/.config/i3/config: data/temp/i3/config
+    ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
+    ~/.taskrc: data/.taskrc
+    ~/.vimrc: data/.vimrc
+    ~/.zshrc: data/.zshrc
+    ~/.config/kak/kakrc: data/kakrc
+    ~/.config/init.vim: data/init.vim
+    ~/.config/MuseScore/MuseScore2.ini: data/MuseScore2.ini # FIXME: Musescore 3
+    ~/.config/SuperCollider/*:
+      glob: true
+      path: data/supercollider
+    # supercollider:
+    #   data: startup.scd # forward_osc.scd
+    #   from: data/supercollider
+    #   to: ~/.config/SuperCollider
+    # ~/show-pwd: .
+    #   create: true
+
+
+# FIXME: Don't apply i3 currently, because it's breaking
+# - clean: ['~/.config/i3']
+- shell:
+  - rm ~/.config/i3/config
+  - i3-msg reload
+
+# config:
+#   taskwarrior:
+#     data: .taskrc
+#   code:
+#     # data: ""
+#     # from: data
+#     to: ~/.config/
+#   zsh-theme:
+#     data: "lalis.zsh-theme"
+#     to: ~/.oh-my-zsh/themes
+#   musescore:
+#     data: MuseScore2.ini
+#     to: ~/.config/MuseScore
+#   nvim:
+#     to: ~/.config/nvim
+#   kakoune:
+#     data: kakrc
+#     to: ~/.config/kak
+#   kaklsp:
+#     data: kak-lsp.toml
+#     to: ~/.config/kak-lsp
+#   code:
+#     to: ~/.config/Code/User
+#   urxvt:
+#     data: .Xresources
+#     to:
+  # i3:
+    # data: config
+    # from: data/temp/i3
+    # to: ~/.config/i3
