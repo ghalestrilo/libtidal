@@ -19,6 +19,9 @@
     ~/.config/SuperCollider/*:
       glob: true
       path: data/supercollider
+    ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
+      glob: true
+      path: /run/media/lalis/storage/samples/tidal/*
     # supercollider:
     #   data: startup.scd # forward_osc.scd
     #   from: data/supercollider

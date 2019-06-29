@@ -28,6 +28,8 @@
     # - lolcat
     # - kazam # screencasting
     # - obs-studio # screencasting
+    # - asciinema
+    # - cloc
     # # --------------- Music
     # - musescore
     # - scide
