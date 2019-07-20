@@ -1,7 +1,12 @@
 # Preparing i3 config file
 - shell:
-  - cat /etc/i3/config > data/temp/i3/config
-  - cat data/i3/config >> data/temp/i3/config
+  - mkdir -p data/gen/i3
+  - cat /etc/i3/config > data/gen/i3/config
+  - cat data/i3/config >> data/gen/i3/config
+
+# Wallpaper
+- shell:
+  - wget -o data/gen/wallp.jpg https://images.wallpaperscraft.com/image/starry_sky_night_stars_115042_3840x2400.jpg
 
 - clean: ['~']
 
@@ -9,7 +14,7 @@
 # FIXME: - the '..' is needed if this file is in the presets folder
 - link:
     ~/mov: /run/media/lalis/storage/mov
-    ~/.config/i3/config: data/temp/i3/config
+    ~/.config/i3/config: data/gen/i3/config
     ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
     ~/.taskrc: data/.taskrc
     ~/.zshrc: data/.zshrc
@@ -64,5 +69,5 @@
 #     to:
   # i3:
     # data: config
-    # from: data/temp/i3
+    # from: data/gen/i3
     # to: ~/.config/i3

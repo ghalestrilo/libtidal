@@ -1,0 +1,55 @@
+# pacman:
+#   command: pacman -S --noconfirm
+#   targets:
+    # - yay
+
+yay:
+  title: Installing Programs
+  command: yay -S --noconfirm
+  targets:
+    - mpv
+    - cmus
+    - taskwarrior
+    - docker
+    - node
+    - npm
+    - gdb
+    - tig
+    - vscodium-bin
+    - zsh
+    - shellcheck
+    - thefuck
+    - lolcat
+    - cloc
+    - musescore
+    - supercollider
+    - scide
+    - ghcup-git
+    - stack
+
+# Install Pip Packages
+# pip:
+#   title: Install Pip Packages
+#   command: pip install
+#   targets:
+#     - dotbot
+
+# # Fetch dotfiles from github
+# fetch:
+#   title: Fetching user configuration
+#   command: git clone https://github.com/ghalestrilo/dotfiles data
+#   targets: # FIXME: Improve targets syntax
+#     - ''
+
+ghc:
+  command: ghcup install
+  targets:
+      - 8.3.6
+  # todo: check version
+  # https://llllllll.co/t/tidalcycles-on-archlinux/18131/4
+
+dotfiles:
+  title: Linking dotfiles
+  command: dotbot -v -d . -c 
+  targets:
+    - data/rhino-dotfiles.conf.yaml
