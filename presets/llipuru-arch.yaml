@@ -7,15 +7,28 @@ yay:
   title: Installing Programs
   command: yay -S --noconfirm
   targets:
+    # --------------- Media
     - mpv
     - cmus
-    - taskwarrior
+    - scide
+    # --------------- System
+    - qjackctl
+    - realtime-priviledges
+    # --------------- Organization
+    - nnn
+    # - taskwarrior
+    # --------------- Work
+    - basecamp
+    - googler
+    - fd
+    - buku
+    # --------------- Dev Tools
+    - vscodium-bin
     - docker
     - node
     - npm
     - gdb
     - tig
-    - vscodium-bin
     - zsh
     - shellcheck
     - thefuck
@@ -23,16 +36,32 @@ yay:
     - cloc
     - musescore
     - supercollider
-    - scide
-    - ghcup-git
+    - sc3-plugins
+    - ghc
     - stack
+    - zsnes
+    - hyperfine
+    - hasklig
+    - pandoc
+    - mononoki
 
 # Install Pip Packages
-# pip:
-#   title: Install Pip Packages
-#   command: pip install
-#   targets:
-#     - dotbot
+pip:
+  title: Install Pip Packages
+  command: pip install
+  targets:
+    - dotbot
+    - jrnl
+    - bat
+
+# Install npm packages
+npm:
+  title: Install npm packages
+  command: npm i -g
+  targets:
+    - dockly
+    - taskbook
+    - gitmoji
 
 # # Fetch dotfiles from github
 # fetch:
@@ -41,15 +70,26 @@ yay:
 #   targets: # FIXME: Improve targets syntax
 #     - ''
 
-ghc:
-  command: ghcup install
+# ghc:
+#   command: ghcup install
+#   targets:
+#       # - 8.3.6
+#       - latest
+#   # todo: check version
+#   # https://llllllll.co/t/tidalcycles-on-archlinux/18131/4
+
+stack:
+  command: stack install
   targets:
-      - 8.3.6
-  # todo: check version
-  # https://llllllll.co/t/tidalcycles-on-archlinux/18131/4
+    - tidal
+
+# cabal:
+#   command: cabal install
+#   targets:
+#     - tidal
 
 dotfiles:
   title: Linking dotfiles
   command: dotbot -v -d . -c 
   targets:
-    - data/rhino-dotfiles.conf.yaml
+    - data/llipuru--dotfiles.conf.yaml

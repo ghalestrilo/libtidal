@@ -105,3 +105,5 @@ alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval $(thefuck --alias)
+export PATH="/home/lalis/.ghcup/bin:$PATH"
+export PATH="/home/lalis/.ghcup/bin:/home/lalis/.ghcup/ghc/8.6.5/bin:$PATH"
