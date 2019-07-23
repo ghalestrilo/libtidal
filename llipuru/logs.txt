@@ -7,3 +7,7 @@ and correct/add it if necessary:
 After applying these changes, please re-login in order for them to take effect.
 You don't appear to have a sane system configuration. It is very likely that you
 encounter xruns. Please apply all the above mentioned changes and start jack again!
+
+
+
+2 - Installing the package realtime-privileges and adding the user to the realtime group, provides reasonable default values (e.g. relevant for Professional audio).

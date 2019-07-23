@@ -1,23 +1,27 @@
-# Preparing i3 config file
-- shell:
-  # Configure Oh-My_Zsh
-  - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  # Create Gen Folder
-  - mkdir -p data/gen/i3
-  - mkdir -p ~/.config/i3
-  # Prep i3 Config File
-  - cat /etc/i3/config > data/gen/i3/config
-  # - cat data/i3/config >> data/gen/i3/config
-  - cat data/i3/keyboard >> data/gen/i3/config
-  # Enable Docker
-  # - systemctl enable docker
-  # Update system
-  # - sudo pacman -Syu
-  # Change Shell to zsh
-  - sudo chsh -s $(which zsh) lalis
-  # Add lalis to pro audio groups
-  - sudo usermod -a -G audio lalis
-  - sudo usermod -a -G realtime lalis
+# # Preparing i3 config file
+# - shell:
+#   # Configure Oh-My_Zsh
+#   - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#   # Create Gen Folder
+#   - mkdir -p data/gen/i3
+#   - mkdir -p ~/.config/i3
+#   # Prep i3 Config File
+#   - cat /etc/i3/config > data/gen/i3/config
+#   # - cat data/i3/config >> data/gen/i3/config
+#   - cat data/i3/keyboard >> data/gen/i3/config
+#   # Enable Docker
+#   # - systemctl enable docker
+#   # Update system
+#   # - sudo pacman -Syu
+#   # Change Shell to zsh
+#   - sudo chsh -s $(which zsh) lalis
+#   # Add lalis to pro audio groups
+#   - sudo usermod -a -G audio lalis
+#   - sudo usermod -a -G realtime lalis
+#  # Set default web browser
+#  - sudo xdg-settings set default-web-browser firefox.desktop
+#  # Install basecamp
+#  - wget "https://github.com/arturock/basecamp-linux/releases/download/v0.1.2/basecamp-0.1.2-linux-x64.tar.xz"
 
 # Wallpaper
 # - shell:
@@ -30,7 +34,10 @@
 # Linking Dotfiles
 # FIXME: - the '..' is needed if this file is in the presets folder
 - link:
-    ~/.config/i3/config: data/gen/i3/config
+    ~/.profile:
+      force: true
+      path: data/llipuru/.profile
+    # ~/.config/i3/config: data/gen/i3/config
     ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
     ~/.taskrc: data/.taskrc
     ~/.zshrc:
@@ -43,9 +50,16 @@
       glob: true
       force: true
       path: data/supercollider/*
-    ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
+    # ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
+      # glob: true
+      # path: /run/media/lalis/storage/samples/tidal/*
+    ~/.config/VSCodium/User:
       glob: true
-      path: /run/media/lalis/storage/samples/tidal/*
+      force: true
+      path: data/code/*
+    /usr/bin/basecamp: /home/lalis/Downloads/basecamp-linux-x64/basecamp
+
+
 
 # FIXME: Don't apply i3 currently, because it's breaking
 # - clean: ['~/.config/i3']

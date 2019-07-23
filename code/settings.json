@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -2,
+  "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
 
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
@@ -8,7 +8,7 @@
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
 
-  "workbench.colorTheme": "ƒ - Darcula",
+  "workbench.colorTheme": "Stealth Contrast (rainglow)",
   // "editor.fontFamily": "Connection Regular",
   // "editor.fontFamily": "Telegrama Raw",    
   
@@ -42,6 +42,8 @@
   "editor.tabSize": 2,
   "explorer.confirmDragAndDrop": false,
   "breadcrumbs.enabled": true,
-  "editor.fontFamily": "'Hasklig'",
-  "editor.fontLigatures": true
+  "editor.fontFamily": "hasklig",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "workbench.panel.defaultLocation": "right"
 }
