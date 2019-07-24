@@ -1,31 +1,34 @@
-# # Preparing i3 config file
-# - shell:
-#   # Configure Oh-My_Zsh
-#   - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#   # Create Gen Folder
-#   - mkdir -p data/gen/i3
-#   - mkdir -p ~/.config/i3
-#   # Prep i3 Config File
-#   - cat /etc/i3/config > data/gen/i3/config
-#   # - cat data/i3/config >> data/gen/i3/config
-#   - cat data/i3/keyboard >> data/gen/i3/config
-#   # Enable Docker
-#   # - systemctl enable docker
-#   # Update system
-#   # - sudo pacman -Syu
-#   # Change Shell to zsh
-#   - sudo chsh -s $(which zsh) lalis
-#   # Add lalis to pro audio groups
-#   - sudo usermod -a -G audio lalis
-#   - sudo usermod -a -G realtime lalis
-#  # Set default web browser
-#  - sudo xdg-settings set default-web-browser firefox.desktop
-#  # Install basecamp
-#  - wget "https://github.com/arturock/basecamp-linux/releases/download/v0.1.2/basecamp-0.1.2-linux-x64.tar.xz"
+# Preparing i3 config file
+- shell:
+  # Configure Oh-My_Zsh
+  - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  # Create Gen Folder
+  - mkdir -p data/gen/i3
+  - mkdir -p ~/.config/i3
+  # Prep i3 Config File
+  - cat /etc/i3/config > data/gen/i3/config
+  # - cat data/i3/config >> data/gen/i3/config
+  - cat data/i3/keyboard >> data/gen/i3/config
+  # Enable Docker
+  # - systemctl enable docker
+  # Update system
+  # - sudo pacman -Syu
+  # Change Shell to zsh
+  - sudo chsh -s $(which zsh) lalis
+  # Add lalis to pro audio groups
+  - sudo usermod -a -G audio lalis
+  - sudo usermod -a -G realtime lalis
+ # Set default web browser
+ - sudo xdg-settings set default-web-browser firefox.desktop
+ # Install basecamp
+ - wget "https://github.com/arturock/basecamp-linux/releases/download/v0.1.2/basecamp-0.1.2-linux-x64.tar.xz"
+ # Set github account
+ - git config --global user.name "ghalestrilo"
+ - git config --global user.name "ghales.trilo@gmail.com"
 
-# Wallpaper
-# - shell:
-  # - wget -o data/gen/wallp.jpg https://images.wallpaperscraft.com/image/starry_sky_night_stars_115042_3840x2400.jpg
+Wallpaper
+- shell:
+  - wget -o data/gen/wallp.jpg https://images.wallpaperscraft.com/image/starry_sky_night_stars_115042_3840x2400.jpg
 
 
 
@@ -43,9 +46,12 @@
     ~/.zshrc:
       path: data/.zshrc
       force: true
-    ~/.config/kak/kakrc: data/kakrc
+    ~/.config/kak/kakrc:
+      path: data/kakrc
+      create: true
     ~/.config/init.vim: data/init.vim
     ~/.config/MuseScore/MuseScore2.ini: data/MuseScore2.ini # FIXME: Musescore 3
+    ~/.config/MuseScore/MuseScore3.ini: data/common/MuseScore3.ini
     ~/.config/SuperCollider:
       glob: true
       force: true

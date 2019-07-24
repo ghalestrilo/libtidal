@@ -1,0 +1,18 @@
+
+ghc:
+  command: ghcup install
+  targets:
+      # - 8.3.6
+      - latest
+  # todo: check version
+  # https://llllllll.co/t/tidalcycles-on-archlinux/18131/4
+
+stack:
+  command: stack install
+  targets:
+    - tidal
+
+cabal:
+  command: cabal install
+  targets:
+    - tidal
