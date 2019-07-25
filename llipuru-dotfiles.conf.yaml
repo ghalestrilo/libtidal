@@ -17,7 +17,7 @@
   - sudo chsh -s $(which zsh) lalis
   # Add lalis to pro audio groups
   - sudo usermod -a -G audio lalis
-  - sudo usermod -a -G realtime lalis
+  # - sudo usermod -a -G realtime lalis
  # Set default web browser
  - sudo xdg-settings set default-web-browser firefox.desktop
  # Install basecamp
@@ -35,13 +35,13 @@ Wallpaper
 - clean: ['~']
 
 # Linking Dotfiles
-# FIXME: - the '..' is needed if this file is in the presets folder
 - link:
     ~/.profile:
       force: true
       path: data/llipuru/.profile
     # ~/.config/i3/config: data/gen/i3/config
     ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
+    ~/.Xmodmap: data/common/.Xmodmap
     ~/.taskrc: data/.taskrc
     ~/.zshrc:
       path: data/.zshrc
@@ -50,7 +50,7 @@ Wallpaper
       path: data/kakrc
       create: true
     ~/.config/init.vim: data/init.vim
-    ~/.config/MuseScore/MuseScore2.ini: data/MuseScore2.ini # FIXME: Musescore 3
+    ~/.config/MuseScore/MuseScore2.ini: data/MuseScore2.ini
     ~/.config/MuseScore/MuseScore3.ini: data/common/MuseScore3.ini
     ~/.config/SuperCollider:
       glob: true
@@ -64,6 +64,7 @@ Wallpaper
       force: true
       path: data/code/*
     /usr/bin/basecamp: /home/lalis/Downloads/basecamp-linux-x64/basecamp
+    ~/.profile: data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
 
 
 

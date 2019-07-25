@@ -9,61 +9,38 @@
 # Linking Dotfiles
 # FIXME: - the '..' is needed if this file is in the presets folder
 - link:
-    # ~/mov: /run/media/lalis/storage/mov
-    ~/.config/i3/config: data/gen/i3/config
+    ~/.Xresources: data/common/.Xresources
     ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
     ~/.taskrc: data/.taskrc
     ~/.zshrc: data/.zshrc
     ~/.config/kak/kakrc: data/kakrc
     ~/.config/init.vim: data/init.vim
-    ~/.config/MuseScore/MuseScore2.ini: data/MuseScore2.ini # FIXME: Musescore 3
+    ~/.config/MuseScore/MuseScore2.ini:
+      path: data/MuseScore2.ini 
+      force: true
+    ~/.config/MuseScore/MuseScore3.ini:
+      path: data/common/MuseScore3.ini
+      force: true
     ~/.config/SuperCollider/*:
       glob: true
       path: data/supercollider
     ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
       glob: true
       path: /run/media/lalis/storage/samples/tidal/*
+    # Local folders
+    ~/mov: /run/media/lalis/storage/mov
+    ~/comp: /run/media/lalis/storage/comp
     # supercollider:
     #   data: startup.scd # forward_osc.scd
     #   from: data/supercollider
     #   to: ~/.config/SuperCollider
     # ~/show-pwd: .
     #   create: true
-
+    ~/.profile: ~/git/doer/data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
 
 # FIXME: Don't apply i3 currently, because it's breaking
 # - clean: ['~/.config/i3']
-- shell:
-  - rm ~/.config/i3/config
-  - i3-msg reload
 
-# config:
-#   taskwarrior:
-#     data: .taskrc
-#   code:
-#     # data: ""
-#     # from: data
-#     to: ~/.config/
-#   zsh-theme:
-#     data: "lalis.zsh-theme"
-#     to: ~/.oh-my-zsh/themes
-#   musescore:
-#     data: MuseScore2.ini
-#     to: ~/.config/MuseScore
-#   nvim:
-#     to: ~/.config/nvim
-#   kakoune:
-#     data: kakrc
-#     to: ~/.config/kak
-#   kaklsp:
-#     data: kak-lsp.toml
-#     to: ~/.config/kak-lsp
-#   code:
-#     to: ~/.config/Code/User
-#   urxvt:
-#     data: .Xresources
-#     to:
-  # i3:
-    # data: config
-    # from: data/gen/i3
-    # to: ~/.config/i3
+- shell:
+  # - rm ~/.config/i3/config
+  - i3-msg reload
