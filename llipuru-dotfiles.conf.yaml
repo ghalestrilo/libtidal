@@ -9,6 +9,10 @@
   - cat /etc/i3/config > data/gen/i3/config
   # - cat data/i3/config >> data/gen/i3/config
   - cat data/i3/keyboard >> data/gen/i3/config
+  # Generating .Xresources
+  - cat data/common/.Xresources > data/gen/.Xresources
+  - cat data/llipuru/xdpi >> data/gen/.Xresources
+  - cat data/llipuru/xfontsize >> data/gen/.Xresources
   # Enable Docker
   # - systemctl enable docker
   # Update system
@@ -18,17 +22,17 @@
   # Add lalis to pro audio groups
   - sudo usermod -a -G audio lalis
   # - sudo usermod -a -G realtime lalis
- # Set default web browser
- - sudo xdg-settings set default-web-browser firefox.desktop
- # Install basecamp
- - wget "https://github.com/arturock/basecamp-linux/releases/download/v0.1.2/basecamp-0.1.2-linux-x64.tar.xz"
- # Set github account
- - git config --global user.name "ghalestrilo"
- - git config --global user.name "ghales.trilo@gmail.com"
+  # Set default web browser
+  - sudo xdg-settings set default-web-browser brave.desktop
+  # Install basecamp
+  # - wget "https://github.com/arturock/basecamp-linux/releases/download/v0.1.2/basecamp-0.1.2-linux-x64.tar.xz"
+  # Set github account
+  - git config --global user.name "ghalestrilo"
+  - git config --global user.name "ghales.trilo@gmail.com"
 
-Wallpaper
-- shell:
-  - wget -o data/gen/wallp.jpg https://images.wallpaperscraft.com/image/starry_sky_night_stars_115042_3840x2400.jpg
+# Wallpaper
+# - shell:
+#   - wget -o data/gen/wallp.jpg https://images.wallpaperscraft.com/image/starry_sky_night_stars_115042_3840x2400.jpg
 
 
 
@@ -65,7 +69,9 @@ Wallpaper
       path: data/code/*
     /usr/bin/basecamp: /home/lalis/Downloads/basecamp-linux-x64/basecamp
     ~/.profile: data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
-
+    ~/.Xresources:
+      relink: true
+      path: data/gen/.Xresources
 
 
 # FIXME: Don't apply i3 currently, because it's breaking
