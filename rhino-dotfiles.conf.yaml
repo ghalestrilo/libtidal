@@ -36,7 +36,10 @@
     #   to: ~/.config/SuperCollider
     # ~/show-pwd: .
     #   create: true
-    ~/.profile: ~/git/doer/data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
+    ~/.profile: data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
+    ~/.config/tidal/boot.hs:
+      path: data/common/boot.hs
+      force: true
 
 # FIXME: Don't apply i3 currently, because it's breaking
 # - clean: ['~/.config/i3']
