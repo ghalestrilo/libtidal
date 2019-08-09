@@ -107,3 +107,6 @@ alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 eval $(thefuck --alias)
 export PATH="/home/lalis/.ghcup/bin:$PATH"
 export PATH="/home/lalis/.ghcup/bin:/home/lalis/.ghcup/ghc/8.6.5/bin:$PATH"
+
+export NVM_DIR="/home/lalis/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

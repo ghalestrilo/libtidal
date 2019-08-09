@@ -1,4 +1,4 @@
-Xft.dpi:       96
+Xft.dpi:       144
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
@@ -10,7 +10,7 @@ XTerm*background:        #222D31
 XTerm*foreground:        #d8d8d8
 XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
-XTerm*faceSize:          12
+XTerm*faceSize:          18
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
@@ -58,7 +58,6 @@ Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
 ! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-
 ! URxvt.font:                       xft:Terminus
 
 ! alternative font settings with 'terminus':
@@ -67,7 +66,7 @@ URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
 URxvt.transparent: true
-URxvt.shading:20
+URxvt.shading:30
 
 URxvt.depth:                      32
 URxvt.background:                 [100]#222D31
@@ -192,7 +191,7 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*secondaryScroll:            boolean
 ! URxvt*perl-lib:                   string
 ! URxvt*perl-eval:                  perl-eval
-! URxvt*perl-ext-common:            string,urxvt-resize-font-git
+! URxvt*perl-ext-common:            string
 ! URxvt*perl-ext:                   string
 ! URxvt*iso14755:                   boolean
 ! URxvt*iso14755_52:                boolean

@@ -1,7 +1,8 @@
-# # pacman:
-# #   command: pacman -S --noconfirm
-# #   targets:
-#     # - yay
+# pacman:
+#   command: pacman -S --noconfirm
+#   targets:
+#     - yay
+#     - bat
 
 # yay:
 #   title: Installing Programs
@@ -14,9 +15,10 @@
 #     - supercollider
 #     - sc3-plugins
 #     - scide
-#     # --------------- System
-#     - qjackctl
-#     # - realtime-priviledges
+#     - obs-studio # screencasting
+#     # --------------- System (deprecated)
+#     # - realtime-priviledges (deprecated)
+#     # - urxvt-resize-font-git
 #     # --------------- Organization
 #     - nnn
 #     # - taskwarrior
@@ -37,17 +39,32 @@
 #     - lolcat
 #     - cloc
 #     - ghc
+#     - gource
 #     - stack
 #     - zsnes
 #     - hyperfine
 #     - hasklig
 #     - pandoc
 #     - mononoki
+#     - asciinema
 #     # --------------- Ribon
 #     - discord
+#     - aws-eb-cli
+#     - reactotron
+#     - httpie
+#     # --------------- Misc
+#     - higan
+#     # --------------- Jack BS
+#     - jack2-dbus
+#     - a2jmidid
+#     - python2-dbus
+#     - qjackctl
 
 
-# # Install Pip Packages
+    
+
+
+# Install Pip Packages
 # pip:
 #   title: Install Pip Packages
 #   command: pip install
@@ -55,6 +72,13 @@
 #     - dotbot
 #     - jrnl
 #     - bat
+
+
+# pip3:
+#   title: Install Pip3 Packages
+#   command: pip3 install
+#   targets:
+#     - --ignore-installed awsebcli
 
 # # Install npm packages
 # npm:
@@ -70,12 +94,12 @@
 #     - gitmoji
 
 
-# # # Fetch dotfiles from github
-# # fetch:
-# #   title: Fetching user configuration
-# #   command: git clone https://github.com/ghalestrilo/dotfiles data
-# #   targets: # FIXME: Improve targets syntax
-# #     - ''
+# # Fetch dotfiles from github
+# fetch:
+#   title: Fetching user configuration
+#   command: git clone https://github.com/ghalestrilo/dotfiles data
+#   targets: # FIXME: Improve targets syntax
+#     - ''
 
 
 dotfiles:
