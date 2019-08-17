@@ -10,7 +10,7 @@ XTerm*background:        #222D31
 XTerm*foreground:        #d8d8d8
 XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
-XTerm*faceSize:          18
+XTerm*faceSize:          10
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
@@ -56,14 +56,6 @@ XTerm*selectToClipboard: true
 
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
-
-! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-! URxvt.font:                       xft:Terminus
-
-! alternative font settings with 'terminus':
-URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
-URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
-!! terminus names see end of file!
 
 URxvt.transparent: true
 URxvt.shading:30
@@ -236,3 +228,26 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! -xos4-terminus-bold-r-normal--24-240-72-72-c-120-iso10646-1
 ! -xos4-terminus-bold-r-normal--28-280-72-72-c-140-iso10646-1
 ! -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
+
+
+
+
+! ------------------------------------------------------------------- Font
+URxvt.font: xft:Hasklig:size=10,xft:Symbola,xft:Twitter Color Emoji:minspace=False,xft:Noto Emoji:minspace=False
+
+
+! URxvt.boldFont: xft:Hasklig Black:size=10,xft:Symbola,xft:Noto Emoji:minspace=False
+! URxvt.font:     xft:bitstream vera sans mono:size=10:antialias=true, xft:Twitter Color Emoji:pixelsize=10, xft:Symbola
+! URxvt.boldFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
+
+! Kinda weird
+! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
+
+! Pretty but very very small
+! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
+! URxvt.font:                       xft:Terminus
+
+! alternative font settings with 'terminus':
+! URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
+! URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
+!! terminus names see end of file!

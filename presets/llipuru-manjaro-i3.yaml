@@ -54,6 +54,7 @@
 #     - httpie
 #     # --------------- Misc
 #     - higan
+#     - emojify
 #     # --------------- Jack BS
 #     - jack2-dbus
 #     - a2jmidid
@@ -93,14 +94,12 @@
 #     - react-native-cli
 #     - gitmoji
 
-
 # # Fetch dotfiles from github
 # fetch:
 #   title: Fetching user configuration
 #   command: git clone https://github.com/ghalestrilo/dotfiles data
 #   targets: # FIXME: Improve targets syntax
 #     - ''
-
 
 dotfiles:
   title: Linking dotfiles

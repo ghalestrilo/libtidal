@@ -70,9 +70,9 @@
       glob: true
       force: true
       path: data/supercollider/*
-    # ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
-      # glob: true
-      # path: /run/media/lalis/storage/samples/tidal/*
+    ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
+      glob: true
+      path: ~/samples/*
     ~/.config/VSCodium/User:
       glob: true
       force: true
@@ -83,7 +83,9 @@
     ~/.Xresources:
       relink: true
       path: data/llipuru/.Xresources
-    ~/.config/tidal/boot.hs: data/common/boot.hs
+    ~/.config/tidal/boot.hs:
+      create: true
+      path: data/common/boot.hs
     ~/.config/fontconfig/conf.d/01-emoji.conf:
       create: true
       path: data/common/01-emoji.conf
