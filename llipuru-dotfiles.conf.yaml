@@ -83,9 +83,9 @@
     ~/.Xresources:
       relink: true
       path: data/llipuru/.Xresources
-    ~/.config/tidal/boot.hs:
+    ~/.config/tidal/boot.tidal:
       create: true
-      path: data/common/boot.hs
+      path: data/common/boot.tidal
     ~/.config/fontconfig/conf.d/01-emoji.conf:
       create: true
       path: data/common/01-emoji.conf

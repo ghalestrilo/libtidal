@@ -35,7 +35,7 @@
     "*.tidal": "haskell"
   },
 
-  "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.hs",
+  "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.tidal",
 
 
   "terminal.integrated.fontFamily": "monospace",

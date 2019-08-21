@@ -47,6 +47,7 @@
 #     - pandoc
 #     - mononoki
 #     - asciinema
+#     - taskell-bin
 #     # --------------- Ribon
 #     - discord
 #     - aws-eb-cli
