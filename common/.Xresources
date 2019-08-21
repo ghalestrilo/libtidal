@@ -62,7 +62,10 @@ Xcursor.size:                     0
 ! URxvt.font:                       xft:Terminus
 
 ! alternative font settings with 'terminus':
-URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
+URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1,\
+                 xft:FontAwesome:style=Regular
+
+
 URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 

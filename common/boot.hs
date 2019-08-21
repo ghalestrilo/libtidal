@@ -54,6 +54,7 @@ let d16 = p "16"
 
 -- | Long Patterns
 let measures n p ms = (n, p):ms
+
     loopend n p = measures n p []
     songLoop ms = seqPLoop $ structureSong 0 ms
     structureSong st [] = []
