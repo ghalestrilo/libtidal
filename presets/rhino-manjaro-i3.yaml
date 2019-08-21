@@ -28,8 +28,10 @@
     # - lolcat
     # - kazam # screencasting
     # - obs-studio # screencasting
+    # - hasklig
     # - asciinema
     # - cloc
+    # - taskell-bin
     # # --------------- Music
     # - musescore
     # - scide
@@ -37,6 +39,8 @@
     # - stack
     # --------------- System
     # - nvidia # remember to uninstall libre drivers
+    # --------------- Misc
+    # - higan
 
 # Install Pip Packages
 # pip:

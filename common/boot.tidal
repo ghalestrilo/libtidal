@@ -65,7 +65,19 @@ let songLoop ms = seqPLoop $ structureSong 0 ms
 -- [x | x <- [0..], x < depth]
 
 -- | TODO: normalize time (math.pi, cps math)
-let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) |+ 1) |+| gain ((slow time $ sine <~ 0.5) |/ 12)
+
+
+
+
+
+
+let cluster time depth = let voices = map (\x -> x / depth) [0, 1, 2, 3, 5, 6, 7, 8]
+                            --  fixGain = gain (1 |- (slow time $ (sine <~ (1/4))) |* length voices)
+                             fixGain = gain (1 |- (slow time (sine |*| sine)) <~ (1/4) |/ 8)
+                             modulation = slow time sine |* stack voices |+ 1
+                          in speed modulation # fixGain
+
+-- let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) |+ 1) |+| gain ((slow time $ sine <~ 0.5) |/ 12)
 -- let cluster time depth = speed (slow time sine
 --                           |* (stack $ map (\x -> x / depth) [0, 1, 2, 3])
 --                           -- |* (stack $ fmap (\x -> x / depth) [x | x <- [0..], x <= depth])

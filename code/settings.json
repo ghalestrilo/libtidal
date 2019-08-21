@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": 1,
+  "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
 
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
@@ -8,7 +8,7 @@
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
 
-  "workbench.colorTheme": "Stealth Contrast (rainglow)",
+  "workbench.colorTheme": "Slate Contrast (rainglow)",
   // "editor.fontFamily": "Connection Regular",
   // "editor.fontFamily": "Telegrama Raw",    
   
@@ -35,7 +35,7 @@
     "*.tidal": "haskell"
   },
 
-  "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.hs",
+  "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.tidal",
 
 
   "terminal.integrated.fontFamily": "monospace",

@@ -1,7 +1,7 @@
 # Preparing i3 config file
 - shell:
   # Configure Oh-My_Zsh
-  - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  # - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   # Create Gen Folder
   - mkdir -p data/gen/i3
   - mkdir -p ~/.config/i3
@@ -14,14 +14,14 @@
   - cat data/llipuru/xdpi >> data/gen/.Xresources
   - cat data/llipuru/xfontsize >> data/gen/.Xresources
   # Enable Docker
-  # - systemctl enable docker
+  - systemctl enable docker
   # Update system
   # - sudo pacman -Syu
   # Change Shell to zsh
   - sudo chsh -s $(which zsh) lalis
   # Add lalis to pro audio groups
   - sudo usermod -a -G audio lalis
-  # - sudo usermod -a -G realtime lalis
+  - sudo usermod -a -G realtime lalis
   # Set default web browser
   - sudo xdg-settings set default-web-browser brave.desktop
   # Install basecamp
@@ -29,6 +29,14 @@
   # Set github account
   - git config --global user.name "ghalestrilo"
   - git config --global user.name "ghales.trilo@gmail.com"
+  # Set timezone
+  - timedatectl set-timezone America/Sao_Paulo
+  # Run syncthing on background
+  - systemctl enable syncthing@lalis.service
+  # - systemctl enable syncthing@$(whoami).service # TODO: automatic username
+  # Copy asound.conf since it does not wish to link
+  - sudo cp data/common/asound.conf /etc
+
 
 # Wallpaper
 # - shell:
@@ -45,11 +53,13 @@
       path: data/llipuru/.profile
     # ~/.config/i3/config: data/gen/i3/config
     ~/.oh-my-zsh/themes/lalis.zsh-theme: data/lalis.zsh-theme
-    ~/.Xmodmap: data/common/.Xmodmap
     ~/.taskrc: data/.taskrc
     ~/.zshrc:
       path: data/.zshrc
       force: true
+    ~/.urxvt/ext/font-size:
+      create: true
+      path: data/common/font-size
     ~/.config/kak/kakrc:
       path: data/kakrc
       create: true
@@ -60,18 +70,28 @@
       glob: true
       force: true
       path: data/supercollider/*
-    # ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
-      # glob: true
-      # path: /run/media/lalis/storage/samples/tidal/*
+    ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples: # Tidal Samples
+      glob: true
+      path: ~/samples/*
     ~/.config/VSCodium/User:
       glob: true
       force: true
       path: data/code/*
     /usr/bin/basecamp: /home/lalis/Downloads/basecamp-linux-x64/basecamp
+    # ~/start_jack.sh: data/common/start_jack.sh
     ~/.profile: data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
     ~/.Xresources:
       relink: true
-      path: data/gen/.Xresources
+      path: data/llipuru/.Xresources
+    ~/.config/tidal/boot.tidal:
+      create: true
+      path: data/common/boot.tidal
+    ~/.config/fontconfig/conf.d/01-emoji.conf:
+      create: true
+      path: data/common/01-emoji.conf
+    # /etc/asound.conf:
+    #   path: data/common/asound.conf
+    #   force: true
 
 
 # FIXME: Don't apply i3 currently, because it's breaking
