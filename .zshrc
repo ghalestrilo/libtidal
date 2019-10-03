@@ -108,5 +108,14 @@ eval $(thefuck --alias)
 export PATH="/home/lalis/.ghcup/bin:$PATH"
 export PATH="/home/lalis/.ghcup/bin:/home/lalis/.ghcup/ghc/8.6.5/bin:$PATH"
 
+
+
+export SC_REC_DIR="/home/lalis/.local/share/SuperCollider/Recordings/"
+alias recs="cd $SC_REC_DIR"
+
 export NVM_DIR="/home/lalis/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# Record Screen (Video only)
+alias rec="ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 output.mp4"

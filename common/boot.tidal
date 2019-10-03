@@ -4,80 +4,123 @@
 
 import Sound.Tidal.Context
 
--- total latency = oLatency + cFrameTimespan
+-- SINGLE CONFIG
 tidal <- startTidal (superdirtTarget {oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20})
 
+
+-- MULTI-TIDAL CONFIG
+-- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
+
+:{
 let p = streamReplace tidal
-let hush = streamHush tidal
-let list = streamList tidal
-let mute = streamMute tidal
-let unmute = streamUnmute tidal
-let solo = streamSolo tidal
-let unsolo = streamUnsolo tidal
-let once = streamOnce tidal False
-let asap = streamOnce tidal True
-let nudgeAll = streamNudgeAll tidal
-let setcps = asap . cps
-let xfade = transition tidal (Sound.Tidal.Transition.xfadeIn 4)
-let xfadeIn t = transition tidal (Sound.Tidal.Transition.xfadeIn t)
-let histpan t = transition tidal (Sound.Tidal.Transition.histpan t)
-let wait t = transition tidal (Sound.Tidal.Transition.wait t)
-let waitT f t = transition tidal (Sound.Tidal.Transition.waitT f t)
-let jump = transition tidal (Sound.Tidal.Transition.jump)
-let jumpIn t = transition tidal (Sound.Tidal.Transition.jumpIn t)
-let jumpIn' t = transition tidal (Sound.Tidal.Transition.jumpIn' t)
-let jumpMod t = transition tidal (Sound.Tidal.Transition.jumpMod t)
-let mortal lifespan release = transition tidal (Sound.Tidal.Transition.mortal lifespan release)
-let interpolate = transition tidal (Sound.Tidal.Transition.interpolate)
-let interpolateIn t = transition tidal (Sound.Tidal.Transition.interpolateIn t)
-let clutch = transition tidal (Sound.Tidal.Transition.clutch)
-let clutchIn t = transition tidal (Sound.Tidal.Transition.clutchIn t)
-let anticipate = transition tidal (Sound.Tidal.Transition.anticipate)
-let anticipateIn t = transition tidal (Sound.Tidal.Transition.anticipateIn t)
-let d1 = p "1"
-let d2 = p "2"
-let d3 = p "3"
-let d4 = p "4"
-let d5 = p "5"
-let d6 = p "6"
-let d7 = p "7"
-let d8 = p "8"
-let d9 = p "9"
-let d10 = p "10"
-let d11 = p "11"
-let d12 = p "12"
-let d13 = p "13"
-let d14 = p "14"
-let d15 = p "15"
-let d16 = p "16"
+    hush = streamHush tidal
+    list = streamList tidal
+    mute = streamMute tidal
+    unmute = streamUnmute tidal
+    solo = streamSolo tidal
+    unsolo = streamUnsolo tidal
+    once = streamOnce tidal
+    asap = once
+    nudgeAll = streamNudgeAll tidal
+    all = streamAll tidal
+    resetCycles = streamResetCycles tidal
+    setcps = asap . cps
+    xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i
+    xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i
+    histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i
+    wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i
+    waitT i f t = transition tidal True (Sound.Tidal.Transition.waitT f t) i
+    jump i = transition tidal True (Sound.Tidal.Transition.jump) i
+    jumpIn i t = transition tidal True (Sound.Tidal.Transition.jumpIn t) i
+    jumpIn' i t = transition tidal True (Sound.Tidal.Transition.jumpIn' t) i
+    jumpMod i t = transition tidal True (Sound.Tidal.Transition.jumpMod t) i
+    mortal i lifespan release = transition tidal True (Sound.Tidal.Transition.mortal lifespan release) i
+    interpolate i = transition tidal True (Sound.Tidal.Transition.interpolate) i
+    interpolateIn i t = transition tidal True (Sound.Tidal.Transition.interpolateIn t) i
+    clutch i = transition tidal True (Sound.Tidal.Transition.clutch) i
+    clutchIn i t = transition tidal True (Sound.Tidal.Transition.clutchIn t) i
+    anticipate i = transition tidal True (Sound.Tidal.Transition.anticipate) i
+    anticipateIn i t = transition tidal True (Sound.Tidal.Transition.anticipateIn t) i
+    forId i t = transition tidal False (Sound.Tidal.Transition.mortalOverlay t) i
+    d1 = p 1 . (|< orbit 0) 
+    d2 = p 2 . (|< orbit 1) 
+    d3 = p 3 . (|< orbit 2) 
+    d4 = p 4 . (|< orbit 3) 
+    d5 = p 5 . (|< orbit 4) 
+    d6 = p 6 . (|< orbit 5) 
+    d7 = p 7 . (|< orbit 6) 
+    d8 = p 8 . (|< orbit 7) 
+    d9 = p 9 . (|< orbit 8)
+    d10 = p 10 . (|< orbit 9)
+    d11 = p 11 . (|< orbit 10)
+    d12 = p 12 . (|< orbit 11)
+    d13 = p 13
+    d14 = p 14
+    d15 = p 15
+    d16 = p 16
+:}
+
+:{
+let setI = streamSetI tidal
+    setF = streamSetF tidal
+    setS = streamSetS tidal
+    setR = streamSetI tidal
+    setB = streamSetB tidal
+:}
 
 
--- | FIXME: Song Structure
-let structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps )
-let structureSong st [] = []
-let structureSong _ _ = []
-let measures n p ms = (n, p):ms
-let loopend n p = measures n p []
-let songLoop ms = seqPLoop $ structureSong 0 ms
+
+
+
+
+
+
+:{
+
+  -- TODO: fix song method
+    -- normalize array before calling structureSong
+  -- FIXME: maybe put tonality in here?
+
+  -- Song Structure
+  let measures n p ms = (n, p):ms
+      loopend n p = measures n p []
+      structureSong st [] = []
+      structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps)
+      songLoop ms = seqPLoop $ structureSong 0 ms -- TODO: sloop?
+      song ms = seqP $ structureSong 0 ms
+
+
+
+  -- TODO: Finish Conv
+
+  -- Conv: Applies a list of notes over a  
+  let conv beats notes = "lcm of " ++ (show tagcount) ++ " vs " ++ (show $ length notes) ++ " is " ++ (show common) ++ ", so A will repeat " ++ (show repA) ++ " times and B will repeat " ++ (show repB) ++ " times"
+                          where
+                            tag x = x == 'x'
+                            tagcount = (length . filter tag) beats
+                            notecount = length notes
+                            common = lcm tagcount notecount
+                            step = tagcount - notecount
+                            repA = common `div` tagcount
+                            repB = common `div` notecount
+
+  let pat1 = "x ~ x ~ x"
+  let notes1 = [1, 2, 3, 4, 5, 6, 7]
+
+  conv pat1 notes1
+
+  -- | # no mutes a track
+  let no = # gain 0
+:}
+
 
 -- | FIXME: Cluster (maybe try a recursive implementation?)
 -- | TODO: recursive stack
 -- [x | x <- [0..], x < depth]
+-- TODO: Try fmap
 
 -- | TODO: normalize time (math.pi, cps math)
-
-
-
-
-
-
-let cluster time depth = let voices = map (\x -> x / depth) [0, 1, 2, 3, 5, 6, 7, 8]
-                            --  fixGain = gain (1 |- (slow time $ (sine <~ (1/4))) |* length voices)
-                             fixGain = gain (1 |- (slow time (sine |*| sine)) <~ (1/4) |/ 8)
-                             modulation = slow time sine |* stack voices |+ 1
-                          in speed modulation # fixGain
-
--- let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) |+ 1) |+| gain ((slow time $ sine <~ 0.5) |/ 12)
+let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) |+ 1) |+| gain ((slow time $ sine <~ 0.5) |/ 12)
 -- let cluster time depth = speed (slow time sine
 --                           |* (stack $ map (\x -> x / depth) [0, 1, 2, 3])
 --                           -- |* (stack $ fmap (\x -> x / depth) [x | x <- [0..], x <= depth])
@@ -92,3 +135,11 @@ let cluster time depth = let voices = map (\x -> x / depth) [0, 1, 2, 3, 5, 6, 7
 --   @receives: a phrase and a root
 --   @returns: a pattern made by the phrase offsetted by given root
 let tophrase phr r = n (r +| phr)
+
+
+
+-- FIXME: String-level equivalent to "x ~ x ~ x" <~> [1, 2, 3, 4] or "x ~ x ~ x" <~> "1 2 3 4"
+conv :: a -> a
+
+-- TODO: Play pattern on time signature using slow n where n is the number of beats
+on :: time_signature

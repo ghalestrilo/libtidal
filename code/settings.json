@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -1,
+  "window.zoomLevel": 0,
   "window.menuBarVisibility": "toggle",
 
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
@@ -8,7 +8,7 @@
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
 
-  "workbench.colorTheme": "Slate Contrast (rainglow)",
+  "workbench.colorTheme": "Monokai",
   // "editor.fontFamily": "Connection Regular",
   // "editor.fontFamily": "Telegrama Raw",    
   
@@ -45,5 +45,7 @@
   "editor.fontFamily": "hasklig",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
-  "workbench.panel.defaultLocation": "right"
+  "workbench.panel.defaultLocation": "right",
+  "editor.formatOnSave": true,
+  "gitlens.statusBar.enabled": false
 }
