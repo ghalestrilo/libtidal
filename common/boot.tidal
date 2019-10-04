@@ -91,28 +91,50 @@ let setI = streamSetI tidal
 
 
 
-  -- TODO: Finish Conv
+  {-- Conv: Applies a list of notes over a rhythmic pattern.
+    FIXME: a space at the end of the pat string breaks it
+  Logic:
+    - Split list 
+    - Cycle patterns
+    - Substitute
+    - Zip them back in place
+    --}
 
-  -- Conv: Applies a list of notes over a  
-  let conv beats notes = "lcm of " ++ (show tagcount) ++ " vs " ++ (show $ length notes) ++ " is " ++ (show common) ++ ", so A will repeat " ++ (show repA) ++ " times and B will repeat " ++ (show repB) ++ " times"
+  -- 
+  let conv beats notes = subst beats notes
                           where
-                            tag x = x == 'x'
-                            tagcount = (length . filter tag) beats
+                            tag = 'x'
+                            tags = length . filter (== tag)
+                            tagcount = tags beats
                             notecount = length notes
                             common = lcm tagcount notecount
                             step = tagcount - notecount
                             repA = common `div` tagcount
                             repB = common `div` notecount
+                            split = foldr (\x ~(y2,y1) -> (x:y1, y2)) ([],[])
+                            rotate n xs
+                              | xs == [] = []
+                              | otherwise = zipWith const (drop n (cycle xs)) xs
+                            merge xs ys 
+                              | xs == [] = ys
+                              | ys == [] = xs
+                              | otherwise = (head xs) : (head ys) : merge (tail xs) (tail ys)
+                            splitBy delimiter = foldr f [[]] 
+                                  where f c l@(x:xs) | c == delimiter = []:l
+                                                    | otherwise = (c:x):xs
+                            subst pat@(x:rst) notes = merged >>= id
+                                where
+                                  xs = filter (/= "") $ (take repA . repeat $ splitBy tag pat) >>= id
+                                  ys = (take repB . repeat $ map show notes) >>= id
+                                  merged = merge xs ys
+  --     pat1 = "         x ~ x ~ ~ x"
+  --     notes1 = [1, 2, 3, 4]
+  -- in conv pat1 notes1
 
-  let pat1 = "x ~ x ~ x"
-  let notes1 = [1, 2, 3, 4, 5, 6, 7]
-
-  conv pat1 notes1
 
   -- | # no mutes a track
   let no = # gain 0
 :}
-
 
 -- | FIXME: Cluster (maybe try a recursive implementation?)
 -- | TODO: recursive stack
@@ -127,7 +149,6 @@ let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth)
 --                           |+ 1)
 --                           |+| gain ((slow time $ sine <~ 0.5) |+ 0.5)
 
--- :set prompt "\n>>= "
 :set prompt "\n lalis | "
 
 

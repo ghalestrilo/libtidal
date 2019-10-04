@@ -72,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export REACT_EDITOR="code"
+export REACT_EDITOR="codium"
 
 
 # You may need to manually set your language environment
@@ -98,10 +98,6 @@ export REACT_EDITOR="code"
 #
 # Example aliases
 alias zshconfig="kak ~/.zshrc"
-alias zc="kak ~/.zshrc"
-alias refresh="source ~/.zshrc"
-
-alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval $(thefuck --alias)
@@ -110,12 +106,22 @@ export PATH="/home/lalis/.ghcup/bin:/home/lalis/.ghcup/ghc/8.6.5/bin:$PATH"
 
 
 
-export SC_REC_DIR="/home/lalis/.local/share/SuperCollider/Recordings/"
-alias recs="cd $SC_REC_DIR"
+
 
 export NVM_DIR="/home/lalis/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
+
+# Custom Exports
+export SC_REC_DIR="/home/lalis/.local/share/SuperCollider/Recordings/"
+
 # Record Screen (Video only)
 alias rec="ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 output.mp4"
+
+alias recs="cd $SC_REC_DIR"
+alias zc="kak ~/.zshrc"
+alias refresh="source ~/.zshrc"
+alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
+
+alias config="codium ~/git/doer/data"

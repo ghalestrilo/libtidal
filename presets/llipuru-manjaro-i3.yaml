@@ -17,6 +17,7 @@
 #     - scide
 #     - cava
 #     - obs-studio # screencasting
+#     - peek # screen recording
 #     # --------------- Organization
 #     - nnn
 #     # - taskwarrior
@@ -52,8 +53,8 @@
 #     - reactotron
 #     - httpie
 #     # --------------- Misc
-#     - higan
-#     - emojify
+#     - higan # emulator
+#     - emojify # emojis
 #     # --------------- Jack BS
 #     - jack2-dbus
 #     - a2jmidid
