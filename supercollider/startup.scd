@@ -1,7 +1,8 @@
 Quarks.update("SuperDirt");
 
-//Quarks.install("FoxDot");
-// FoxDot.start;
+Quarks.install("FoxDot");
+
+FoxDot.start;
 
 include("SuperDirt");
 

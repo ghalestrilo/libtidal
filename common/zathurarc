@@ -1,0 +1,17 @@
+set adjust-open                 "width"
+set selection-clipboard         "clipboard"
+set font                        "PxPlus IBM EGA8 12"
+set synctex                     true
+
+set statusbar-bg                "#222D31"
+set statusbar-fg                "#1ABB9B"
+set completion-hightlight-bg    "#1ABB9B"
+set inputbar-fg                 "#dedacf"
+set default-bg                  "#222D31"
+set recolor-darkcolor           "#dedacf"
+set recolor-lightcolor          "#171717"
+set recolor                     true
+
+map [ scroll full-down
+map ] scroll full-up
+map <C-i> recolor

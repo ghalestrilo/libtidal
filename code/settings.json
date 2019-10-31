@@ -1,22 +1,17 @@
 {
   "window.zoomLevel": 0,
   "window.menuBarVisibility": "toggle",
-
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
   "terminal.integrated.fontSize": 14,
-    
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
-
-  "workbench.colorTheme": "Monokai",
+  "workbench.colorTheme": "Pandju",
   // "editor.fontFamily": "Connection Regular",
   // "editor.fontFamily": "Telegrama Raw",    
-  
   // "editor.insertSpaces": false,
   "editor.renderWhitespace": "boundary",
   "editor.detectIndentation": false,
   "editor.renderIndentGuides": false,
-
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -25,19 +20,15 @@
     "**/CVS": true,
     "**/.DS_Store": true
   },
-
   "haskell.hlint.ignore": [
     "Redundant bracket",
     "Use fromMaybe"
   ],
-
   "files.associations": {
-    "*.tidal": "haskell"
+    "*.tidal": "haskell",
+    "*.krb": "python"
   },
-
   "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.tidal",
-
-
   "terminal.integrated.fontFamily": "monospace",
   "editor.tabSize": 2,
   "explorer.confirmDragAndDrop": false,
@@ -45,7 +36,6 @@
   "editor.fontFamily": "hasklig",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
-  "workbench.panel.defaultLocation": "right",
   "editor.formatOnSave": true,
   "gitlens.statusBar.enabled": false
 }

@@ -91,48 +91,49 @@ let setI = streamSetI tidal
 
 
 
-  {-- Conv: Applies a list of notes over a rhythmic pattern.
+  {-- conv: Applies a list of notes over a rhythmic pattern.
     FIXME: a space at the end of the pat string breaks it
   Logic:
-    - Split list 
-    - Cycle patterns
-    - Substitute
-    - Zip them back in place
+    - Cycle patterns based on lcm
+    - Split list into two: detected tags and patterns in between tags
+    - Substitute symbols into first list
+    - Zip them back into one
     --}
 
   -- 
-  let conv beats notes = subst beats notes
+  let conv beats notes = pure $ subst beats notes
                           where
-                            tag = 'x'
-                            tags = length . filter (== tag)
-                            tagcount = tags beats
-                            notecount = length notes
-                            common = lcm tagcount notecount
-                            step = tagcount - notecount
-                            repA = common `div` tagcount
-                            repB = common `div` notecount
+                            flatten = (>>= id)
                             split = foldr (\x ~(y2,y1) -> (x:y1, y2)) ([],[])
-                            rotate n xs
-                              | xs == [] = []
-                              | otherwise = zipWith const (drop n (cycle xs)) xs
-                            merge xs ys 
-                              | xs == [] = ys
-                              | ys == [] = xs
-                              | otherwise = (head xs) : (head ys) : merge (tail xs) (tail ys)
+                            rotate n xs | xs == [] = []
+                                        | otherwise = zipWith const (drop n (cycle xs)) xs
+                            merge xs ys | xs == [] = ys
+                                        | ys == [] = xs
+                                        | otherwise = (head xs) : (head ys) : merge (tail xs) (tail ys)
                             splitBy delimiter = foldr f [[]] 
                                   where f c l@(x:xs) | c == delimiter = []:l
-                                                    | otherwise = (c:x):xs
-                            subst pat@(x:rst) notes = merged >>= id
+                                                     | otherwise = (c:x):xs
+                            subst pat@(x:rst) notes = flatten merged 
                                 where
-                                  xs = filter (/= "") $ (take repA . repeat $ splitBy tag pat) >>= id
-                                  ys = (take repB . repeat $ map show notes) >>= id
+                                  tag = 'x'
+                                  tags = length . filter (== tag)
+                                  tagcount = tags beats
+                                  notecount = length notes
+                                  step = tagcount - notecount
+                                  common = lcm tagcount notecount
+                                  repA = common `div` tagcount
+                                  repB = common `div` notecount
+                                  xs = filter (/= "") . splitBy tag . flatten . take repA . repeat $ pat
+                                  ys = flatten . take repB . repeat $ notes -- remember to map show notes for non-string values
                                   merged = merge xs ys
-  --     pat1 = "         x ~ x ~ ~ x"
-  --     notes1 = [1, 2, 3, 4]
-  -- in conv pat1 notes1
+      pat1 = " x ~ x ~ ~ x"
+      -- notes1 = [1, 2, 3, 4, 7]
+      notes1 = ["bd", "hh"]
+  in conv pat1 notes1
+  -- in d1 $ sound (conv pat1 notes1)
 
 
-  -- | # no mutes a track
+  {-| no: mutes a track -}
   let no = # gain 0
 :}
 
@@ -164,3 +165,9 @@ conv :: a -> a
 
 -- TODO: Play pattern on time signature using slow n where n is the number of beats
 on :: time_signature
+
+
+
+
+
+scale "minor" "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14"

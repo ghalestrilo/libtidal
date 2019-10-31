@@ -1,46 +1,46 @@
-# pacman:
-#   command: pacman -S --noconfirm
-#   targets:
-    # - yay
-# yay:
-#   command: yay -S --noconfirm
-#   targets:
+pacman:
+  command: pacman -S --noconfirm
+  targets:
+    - yay
+yay:
+  command: yay -S --noconfirm
+  targets:
     # --------------- Daily
-    # - mpv
-    # - cmus
-    # - steam
-    # - taskwarrior
-    # # --------------- Development
-    # - docker
-    # - node
-    # - npm
-    # - gdb
-    # - tig
-    # # --------------- Editors
-    # - micro
-    # - neovim
-    # - atom # hydra
-    # - vscodium-bin
-    # # --------------- Tools
-    # - zsh
-    # - shellcheck
-    # - thefuck
-    # - lolcat
-    # - kazam # screencasting
-    # - obs-studio # screencasting
-    # - hasklig
-    # - asciinema
-    # - cloc
-    # - taskell-bin
-    # # --------------- Music
-    # - musescore
-    # - scide
-    # - ghc
-    # - stack
+    - mpv
+    - cmus
+    - steam
+    - taskwarrior
+    # --------------- Development
+    - docker
+    - node
+    - npm
+    - gdb
+    - tig
+    # --------------- Editors
+    - micro
+    - neovim
+    - atom # hydra
+    - vscodium-bin
+    # --------------- Tools
+    - zsh
+    - shellcheck
+    - thefuck
+    - lolcat
+    - kazam # screencasting
+    - obs-studio # screencasting
+    - hasklig
+    - asciinema
+    - cloc
+    - taskell-bin
+    # --------------- Music
+    - musescore
+    - scide
+    - ghc
+    - stack
     # --------------- System
-    # - nvidia # remember to uninstall libre drivers
+    - nvidia # remember to uninstall libre drivers
     # --------------- Misc
-    # - higan
+    - higan
 
 # Install Pip Packages
 # pip:

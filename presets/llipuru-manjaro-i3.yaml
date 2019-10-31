@@ -52,14 +52,19 @@
 #     - aws-eb-cli
 #     - reactotron
 #     - httpie
+#     - insomnia
 #     # --------------- Misc
 #     - higan # emulator
 #     - emojify # emojis
+#     - googler
+#     - zathura
+#     - zathura-pdf-poppler
 #     # --------------- Jack BS
 #     - jack2-dbus
 #     - a2jmidid
 #     - python2-dbus
 #     - qjackctl
+#     - bluez-alsa-git
 
 
     

@@ -176,3 +176,7 @@ bindsym Return mode "default"
 bindsym Escape mode "default"
 }
 bindsym $mod+shift+Z mode "$keyboard_layout"
+
+for_window [class="peek"] floating enable
+for_window [class="emulator"] floating enable
+for_window [window_role="pop-up"] floating enable

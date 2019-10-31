@@ -40,6 +40,7 @@
     ~/.config/tidal/boot.hs:
       path: data/common/boot.hs
       force: true
+    ~/.config/zathura/zathurarc: data/common/zathurarc
 
 # FIXME: Don't apply i3 currently, because it's breaking
 # - clean: ['~/.config/i3']

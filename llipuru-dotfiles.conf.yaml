@@ -83,7 +83,7 @@
     # ~/start_jack.sh: data/common/start_jack.sh
     ~/.profile: data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
     ~/.Xresources:
-      relink: true
+      relink:
       path: data/llipuru/.Xresources
     ~/.config/tidal/boot.tidal:
       create: true
@@ -91,6 +91,9 @@
     ~/.config/fontconfig/conf.d/01-emoji.conf:
       create: true
       path: data/common/01-emoji.conf
+    ~/.config/zathura/zathurarc:
+      create: true
+      path: data/common/zathurarc
     # /etc/asound.conf:
     #   path: data/common/asound.conf
     #   force: true
