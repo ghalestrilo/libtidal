@@ -26,7 +26,9 @@
   ],
   "files.associations": {
     "*.tidal": "haskell",
-    "*.krb": "python"
+    "*.krb": "python",
+    "**/.i3/config": "i3",
+    "**/i3/config": "i3",
   },
   "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.tidal",
   "terminal.integrated.fontFamily": "monospace",
@@ -36,6 +38,5 @@
   "editor.fontFamily": "hasklig",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
-  "editor.formatOnSave": true,
   "gitlens.statusBar.enabled": false
 }
