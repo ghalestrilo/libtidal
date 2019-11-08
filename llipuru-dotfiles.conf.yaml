@@ -1,7 +1,5 @@
 # # Preparing i3 config file
 # - shell:
-#   # Configure Oh-My_Zsh
-#   # - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 #   # Create Gen Folder
 #   - mkdir -p data/gen/i3
 #   - mkdir -p ~/.config/i3
@@ -17,32 +15,54 @@
 #   - systemctl enable docker
 #   # Update system
 #   # - sudo pacman -Syu
-#   # Change Shell to zsh
-#   - sudo chsh -s $(which zsh) lalis
-#   # Add lalis to pro audio groups
-#   - sudo usermod -a -G audio lalis
-#   - sudo usermod -a -G realtime lalis
 #   # Set default web browser
 #   - sudo xdg-settings set default-web-browser brave.desktop
 #   # Install basecamp
 #   # - wget "https://github.com/arturock/basecamp-linux/releases/download/v0.1.2/basecamp-0.1.2-linux-x64.tar.xz"
-#   # Set github account
-#   - git config --global user.name "ghalestrilo"
-#   - git config --global user.name "ghales.trilo@gmail.com"
 #   # Set timezone
 #   - timedatectl set-timezone America/Sao_Paulo
-#   # Run syncthing on background
+
+
+# common: Configure zsh
+# - shell:
+#   # Configure Oh-My_Zsh
+#   # - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#   # Change Shell to zsh
+#   - sudo chsh -s $(which zsh) lalis
+
+# common: Run syncthing on background
+# - shell:
 #   - systemctl enable syncthing@lalis.service
 #   # - systemctl enable syncthing@$(whoami).service # TODO: automatic username
+
+# common: Set github account
+# - shell:
+#   - git config --global user.name "ghalestrilo"
+#   - git config --global user.name "ghales.trilo@gmail.com"
+
+# llipuru: Graphics Card Stuff
+# - shell:
+#   # - systemctl stop bumblebeed
+#   # - systemctl disable bumblebeed
+#   # - systemctl enable optimus-manager
+#   # - systemctl start optimus-manager
+#   # - optimus-manager --switch nvidia --no-confirm
+#   # - optimus-manager --set-startup nvidia --no-confirm
+
+# common: Audio configuration
+# - shell:
+#   # Pipe Alsa through Jack
+#   # Add lalis to pro audio groups
+#   - sudo usermod -a -G audio lalis
+#   - sudo usermod -a -G realtime lalis
 #   # Copy asound.conf since it does not wish to link
 #   - sudo cp data/common/asound.conf /etc
+
 
 
 # Wallpaper
 # - shell:
 #   - wget -o data/gen/wallp.jpg https://images.wallpaperscraft.com/image/starry_sky_night_stars_115042_3840x2400.jpg
-
-
 
 - clean: ['~']
 

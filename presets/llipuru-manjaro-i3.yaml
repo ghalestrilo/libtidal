@@ -65,8 +65,8 @@
 #     - python2-dbus
 #     - qjackctl
 #     - bluez-alsa-git
-
-
+#     # --------------- System
+#     - optimus-manager
     
 
 
