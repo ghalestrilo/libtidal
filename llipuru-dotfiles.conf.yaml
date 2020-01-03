@@ -114,6 +114,7 @@
     ~/.config/zathura/zathurarc:
       create: true
       path: data/common/zathurarc
+    ~/.gradle/gradle.properties: data/common/ribon.gradle.properties
     # /etc/asound.conf:
     #   path: data/common/asound.conf
     #   force: true
