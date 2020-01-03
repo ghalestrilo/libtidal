@@ -1,0 +1,1 @@
+exec --no-startup-id optimus-manager --switch nvidia --no-confirm;
