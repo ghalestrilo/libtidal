@@ -82,6 +82,9 @@
     ~/.urxvt/ext/font-size:
       create: true
       path: data/common/font-size
+    ~/.config/alacritty/alacritty.yml:
+      create: true
+      path: data/common/alacritty.yml
     ~/.config/kak/kakrc:
       path: data/kakrc
       create: true
