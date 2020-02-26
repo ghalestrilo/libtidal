@@ -1,0 +1,107 @@
+- clean: ['~']
+- clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
+
+# TODO: Shell - add ppas
+
+# yay:
+#   title: Installing Programs
+#   command: yay -S --noconfirm
+#   targets:
+#     # --------------- Media
+#     - mpv
+#     - cmus
+#     - musescore
+#     - supercollider
+#     - sc3-plugins
+#     - scide
+#     - cava
+#     - obs-studio # screencasting
+#     - peek # screen recording
+#     # --------------- Organization
+#     - nnn
+#     # - taskwarrior
+#     # --------------- Work
+#     - googler
+#     - fd
+#     - buku
+#     # --------------- Dev Tools
+#     - vscodium-bin
+#     - alacritty
+#     - docker
+#     - node
+#     - npm
+#     - gdb
+#     - tig
+#     - zsh
+#     - shellcheck
+#     - thefuck
+#     - lolcat
+#     - cloc
+#     - ghc
+#     - gource
+#     - stack
+#     - zsnes
+#     - hyperfine
+#     - hasklig
+#     - pandoc
+#     - mononoki
+#     - asciinema
+#     - taskell-bin
+#     # --------------- Ribon
+#     - discord
+#     - aws-eb-cli
+#     - reactotron
+#     - httpie
+#     - insomnia
+#     # --------------- Misc
+#     - higan # emulator
+#     - emojify # emojis
+#     - googler
+#     - zathura
+#     - zathura-pdf-poppler
+
+# Adding PPAS
+- shell:
+  - [echo Adding PPAs]
+  - [add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
+
+- shell:
+  - [sudo apt-get install -y obs-studio, Installing obs-studio]
+  - [sudo apt-get install -y zsh, Installing zsh]
+  - [chsh -s $(which zsh), Making zsh default shell]
+  - [sudo apt-get install -y alacritty, Installing alacritty]
+  - [sudo apt-get install -y thefuck, Installing thefuck]
+  - command: [gsettings set org.gnome.desktop.default-applications.terminal exec alacritty, Making Alacritty the default terminal]
+    if: '[ command -v alacritty ]'
+
+# Installing shit through scripts
+- shell:
+  - command: [sh hasklig.sh, Installing Hasklig]
+    if: '[ !-d /usr/share/fonts/opentype/hasklig ]'
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
+
+
+
+# Linking Dotfiles
+- link:
+    ~/.profile:
+      force: true
+      path: llipuru/.profile-regolith
+    ~/.oh-my-zsh/themes/lalis.zsh-theme: lalis.zsh-theme
+    ~/.taskrc: .taskrc
+    ~/.zshrc:
+      path: .zshrc
+      force: true
+    ~/.config/alacritty/alacritty.yml:
+      create: true
+      path: common/alacritty.yml
+    ~/.config/kak/kakrc:
+      path: kakrc
+      create: true
+    ~/.config/init.vim: init.vim
+    ~/.config/MuseScore/MuseScore2.ini: MuseScore2.ini
+    ~/.config/MuseScore/MuseScore3.ini: common/MuseScore3.ini
+    ~/.config/SuperCollider:
+      glob: true
+      force: true
+      path: supercollider/*
