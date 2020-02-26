@@ -88,10 +88,13 @@
 - shell:
   - [echo Installing Dev Tools]
   - [sudo apt-get install -y docker.io, Installing Docker]
+  - [sudo systemctl start docker, Starting docker engine]
+  - [sudo systemctl enable docker, Enabling docker module]
+  - [sudo apt-get install -y docker-compose, Installing docker-compose]
 
 # Multimedia Stuff
 - shell:
-	- [Setting up Tidal]
+  - [Setting up Tidal]
   - [sudo apt-get install -y obs-studio, Installing obs-studio]
   - [sudo apt-get install -y supercollider, Installing supercollider]
   - [sudo apt-get install -y sc3-plugins, Installing sc3-plugins]
