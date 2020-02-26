@@ -105,6 +105,13 @@
     ~/.profile:
       force: true
       path: llipuru/.profile-regolith
+    ~/.config/regolith/i3/config:
+      force: true
+      create: true
+      path: regolith/i3config
+    ~/.Xresources-regolith:
+      force: true
+      path: regolith/Xresources-regolith
     ~/.oh-my-zsh/themes/lalis.zsh-theme: lalis.zsh-theme
     ~/.taskrc: .taskrc
     ~/.zshrc:
