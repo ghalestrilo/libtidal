@@ -90,6 +90,7 @@
   - [sudo apt-get install -y docker.io, Installing Docker]
   - [sudo systemctl start docker, Starting docker engine]
   - [sudo systemctl enable docker, Enabling docker module]
+  - [sudo usermod -aG docker $(whoami), Adding self to docker group]
   - [sudo apt-get install -y docker-compose, Installing docker-compose]
 
 # Multimedia Stuff
