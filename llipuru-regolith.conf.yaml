@@ -8,18 +8,11 @@
 #   command: yay -S --noconfirm
 #   targets:
 #     # --------------- Media
-#     - mpv
-#     - cmus
-#     - musescore
-#     - supercollider
-#     - sc3-plugins
-#     - scide
 #     - cava
 #     - obs-studio # screencasting
 #     - peek # screen recording
 #     # --------------- Organization
 #     - nnn
-#     # - taskwarrior
 #     # --------------- Work
 #     - googler
 #     - fd
@@ -63,14 +56,19 @@
 # Adding PPAS
 - shell:
   - [echo Adding PPAs]
-  - [sudo add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
-  - [sudo add-apt-repository -y ppa:webupd8team/atom, Adding Atom PPA]
+  - command: [sudo add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
+    if: '[ ! command -v alacritty ]'
+  - command: [sudo add-apt-repository -y ppa:webupd8team/atom, Adding Atom PPA]
+    if: '[ ! command -v atom ]'
+  - command: [sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable, Adding Alacritty PPA]
+    if: '[ ! command -v musescore ]'
 
 # Installing Terminal Tools
 - shell:
   - [sudo apt-get install -y zsh, Installing zsh]
   - [chsh -s $(which zsh), Making zsh default shell]
-  - [sudo apt-get install -y alacritty, Installing alacritty]
+  - command: [sudo apt-get install -y alacritty, Installing alacritty]
+    if: '[ ! command -v alacritty ]'
   - command: [gsettings set org.gnome.desktop.default-applications.terminal exec alacritty, Making Alacritty the default terminal]
     if: '[ command -v alacritty ]'
   - [sudo apt-get install -y thefuck, Installing thefuck]
@@ -95,11 +93,28 @@
 
 # Multimedia Stuff
 - shell:
-  - [Setting up Tidal]
-  - [sudo apt-get install -y obs-studio, Installing obs-studio]
-  - [sudo apt-get install -y supercollider, Installing supercollider]
-  - [sudo apt-get install -y sc3-plugins, Installing sc3-plugins]
-  - [sudo apt-get install -y haskell-platform, Installing haskell-platform]
+  - [echo Setting up Tidal]
+  - [sudo apt-get install -y supercollider, Installing Supercollider]
+  - [sudo apt-get install -y sc3-plugins, Installing SC3 Plugins]
+  - [sudo apt-get install -y haskell-platform, Installing Haskell (ghc, ghci)]
+  - [sudo apt-get install -y cabal, Installing Cabal]
+  - [cabal update, Updating Cabal]
+  - [cabal install tidal, Installing Tidal]
+
+# Media Tools
+- shell:
+  - [echo Installing Media Tools]
+  - [sudo apt-get install -y obs-studio, Installing OBS]
+  - [sudo apt-get install -y musescore3, Installing Musescore]
+  - [sudo apt-get install -y cmus, Installing cmus]
+  # - [sudo apt-get install -y cava, Installing cava]
+
+
+- shell:
+  - [echo Installing File Tools]
+  - [sudo apt-get install -y syncthing, Installing Syncthing]
+  - [sudo apt-get install -y nnn, Installing nnn]
+  - [brew install broot, Installing broot]
 
 # Linking Dotfiles
 - link:

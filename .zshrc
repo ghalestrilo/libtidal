@@ -124,4 +124,6 @@ alias zc="kak ~/.zshrc"
 alias refresh="source ~/.zshrc"
 alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 
+# TODO: Change this to atom on ubuntu regolith, create .zshrc for ubuntu
 alias config="codium ~/git/doer/data"
+source /home/lalis/.config/broot/launcher/bash/br
