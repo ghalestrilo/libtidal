@@ -1,0 +1,3 @@
+- shell:
+  - command: curl wttr.in
+    if: '[ ! command -v alacritty ]'

@@ -109,12 +109,13 @@
   - [sudo apt-get install -y cmus, Installing cmus]
   # - [sudo apt-get install -y cava, Installing cava]
 
-
+# Office and Misc Tools
 - shell:
   - [echo Installing File Tools]
   - [sudo apt-get install -y syncthing, Installing Syncthing]
   - [sudo apt-get install -y nnn, Installing nnn]
   - [brew install broot, Installing broot]
+  - [sudo apt-get install -y zathura, Installing zathura]
 
 # Linking Dotfiles
 - link:
@@ -140,9 +141,17 @@
       path: kakrc
       create: true
     ~/.config/init.vim: init.vim
-    ~/.config/MuseScore/MuseScore2.ini: MuseScore2.ini
-    ~/.config/MuseScore/MuseScore3.ini: common/MuseScore3.ini
+    ~/.config/MuseScore/MuseScore2.ini:
+      path: MuseScore2.ini
+      force: true
+    ~/.config/MuseScore/MuseScore3.ini:
+      path: common/MuseScore3.ini
+      force: true
+    ~/.config/zathura/zathurarc: common/zathurarc
     ~/.config/SuperCollider:
       glob: true
       force: true
       path: supercollider/*
+    # Folder Shortcuts
+    ~/screcs: ~/.local/share/SuperCollider/Recordings
+    ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples

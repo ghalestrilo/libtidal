@@ -1,13 +1,20 @@
 Quarks.update("SuperDirt");
-
-Quarks.install("FoxDot");
-
-// FoxDot.start;
-
 include("SuperDirt");
 
-// s.options.device_("JackRouter");
-SuperDirt.start();
+// Quarks.install("FoxDot");
+// FoxDot.start;
+
+// SuperDirt.start();
+
+
+s.options.device_("JackRouter");
+
+s.options.numBuffers = 1024 * 16;
+s.options.memSize = 8192 * 16;
+s.options.maxNodes = 1024 * 64;
+
+s.options.numOutputBusChannels = 2;
+s.options.numInputBusChannels = 0;
 
 OSCdef(\forward_signal_to_blender, {
   arg msg;
@@ -16,13 +23,27 @@ OSCdef(\forward_signal_to_blender, {
 }, '/play2', n);
 
 
-MIDIClient.init;
+OSCdef(\controltidal, {
+  arg msg;
+  NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.new("192.168.25.131", 8080));
 
-~midiOut = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
+s.waitForBoot {
+	~dirt = SuperDirt();
+	~dirt.loadSoundFiles("~/samples/*");
+	~dirt.loadSoundFiles("~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples/*");
 
-~midiOut.latency = 0;
+	s.sync;
+	~dirt.start(57120);
 
+	MIDIClient.init;
 
+	~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
+	~reface.latency = 0;
+	~dirt.soundLibrary.addMIDI(\reface, ~reface);
+/*
+	~onyx = MIDIOut.newByName("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
+	~onyx.latency = 0;
+	~dirt.soundLibrary.addMIDI(\onyx, ~onyx);*/
+};
 
-// Run this manually once ~dirt finishes booting
-~dirt.soundLibrary.addMIDI(\midi, ~midiOut);
+s.latency = 0

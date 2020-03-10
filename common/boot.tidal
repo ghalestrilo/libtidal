@@ -5,8 +5,7 @@
 import Sound.Tidal.Context
 
 -- SINGLE CONFIG
-tidal <- startTidal (superdirtTarget {oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20})
-
+tidal <- startTidal (superdirtTarget {oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20, cCtrlAddr = "0.0.0.0", cCtrlPort = 6060
 
 -- MULTI-TIDAL CONFIG
 -- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
@@ -42,14 +41,14 @@ let p = streamReplace tidal
     anticipate i = transition tidal True (Sound.Tidal.Transition.anticipate) i
     anticipateIn i t = transition tidal True (Sound.Tidal.Transition.anticipateIn t) i
     forId i t = transition tidal False (Sound.Tidal.Transition.mortalOverlay t) i
-    d1 = p 1 . (|< orbit 0) 
-    d2 = p 2 . (|< orbit 1) 
-    d3 = p 3 . (|< orbit 2) 
-    d4 = p 4 . (|< orbit 3) 
-    d5 = p 5 . (|< orbit 4) 
-    d6 = p 6 . (|< orbit 5) 
-    d7 = p 7 . (|< orbit 6) 
-    d8 = p 8 . (|< orbit 7) 
+    d1 = p 1 . (|< orbit 0)
+    d2 = p 2 . (|< orbit 1)
+    d3 = p 3 . (|< orbit 2)
+    d4 = p 4 . (|< orbit 3)
+    d5 = p 5 . (|< orbit 4)
+    d6 = p 6 . (|< orbit 5)
+    d7 = p 7 . (|< orbit 6)
+    d8 = p 8 . (|< orbit 7)
     d9 = p 9 . (|< orbit 8)
     d10 = p 10 . (|< orbit 9)
     d11 = p 11 . (|< orbit 10)
@@ -100,7 +99,7 @@ let setI = streamSetI tidal
     - Zip them back into one
     --}
 
-  -- 
+  --
   let conv beats notes = pure $ subst beats notes
                           where
                             flatten = (>>= id)
@@ -110,10 +109,10 @@ let setI = streamSetI tidal
                             merge xs ys | xs == [] = ys
                                         | ys == [] = xs
                                         | otherwise = (head xs) : (head ys) : merge (tail xs) (tail ys)
-                            splitBy delimiter = foldr f [[]] 
+                            splitBy delimiter = foldr f [[]]
                                   where f c l@(x:xs) | c == delimiter = []:l
                                                      | otherwise = (c:x):xs
-                            subst pat@(x:rst) notes = flatten merged 
+                            subst pat@(x:rst) notes = flatten merged
                                 where
                                   tag = 'x'
                                   tags = length . filter (== tag)

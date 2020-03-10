@@ -16,7 +16,7 @@
     ~/.config/kak/kakrc: data/kakrc
     ~/.config/init.vim: data/init.vim
     ~/.config/MuseScore/MuseScore2.ini:
-      path: data/MuseScore2.ini 
+      path: data/MuseScore2.ini
       force: true
     ~/.config/MuseScore/MuseScore3.ini:
       path: data/common/MuseScore3.ini
@@ -41,6 +41,7 @@
       path: data/common/boot.hs
       force: true
     ~/.config/zathura/zathurarc: data/common/zathurarc
+    ~/screcs: .local/share/SuperCollider/Recordings
 
 # FIXME: Don't apply i3 currently, because it's breaking
 # - clean: ['~/.config/i3']
