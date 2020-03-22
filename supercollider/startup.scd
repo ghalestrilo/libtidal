@@ -4,11 +4,8 @@ include("SuperDirt");
 // Quarks.install("FoxDot");
 // FoxDot.start;
 
-// SuperDirt.start();
-
 
 s.options.device_("JackRouter");
-
 s.options.numBuffers = 1024 * 16;
 s.options.memSize = 8192 * 16;
 s.options.maxNodes = 1024 * 64;
@@ -16,16 +13,16 @@ s.options.maxNodes = 1024 * 64;
 s.options.numOutputBusChannels = 2;
 s.options.numInputBusChannels = 0;
 
-OSCdef(\forward_signal_to_blender, {
+/*OSCdef(\forward_signal_to_blender, {
   arg msg;
   NetAddr.new("localhost", 9001).sendMsg("/blender", *msg); // blender
   NetAddr.new("localhost", 3333).sendMsg("/blender", *msg); // debug
-}, '/play2', n);
+}, '/play2', n);*/
 
 
-OSCdef(\controltidal, {
-  arg msg;
-  NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.new("192.168.25.131", 8080));
+// OSCdef(\controltidal, {
+// 	arg msg;
+// NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.new("192.168.25.131", 8080));
 
 s.waitForBoot {
 	~dirt = SuperDirt();
@@ -38,8 +35,8 @@ s.waitForBoot {
 	MIDIClient.init;
 
 	~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
-	~reface.latency = 0;
 	~dirt.soundLibrary.addMIDI(\reface, ~reface);
+	~reface.latency = 0;
 /*
 	~onyx = MIDIOut.newByName("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
 	~onyx.latency = 0;
