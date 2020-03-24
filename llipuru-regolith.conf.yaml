@@ -1,144 +1,108 @@
 - clean: ['~']
 - clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
 
-# TODO: Shell - add ppas
+# Adding PPAS
+- shell:
+  - [echo Adding PPAs]
+  # Alacritty PPA
+  - command: [sudo add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
+    if: '[ ! command -v alacritty ]'
+  # Atom PPA
+  - command: [sudo add-apt-repository -y ppa:webupd8team/atom, Adding Atom PPA]
+    if: '[ ! command -v atom ]'
+  # Atom PPA
+  - command: [sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable, Adding Musescore PPA]
+    if: '[ ! command -v musescore ]'
+  - command: [curl -s https://syncthing.net/release-key.txt | sudo apt-key add -, syncthing | Add the release PGP keys]
+    if: '[ ! command -v syncthing ]'
+  - command: [echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list, syncthing | Add the "stable" channel to your APT sources]
+    if: '[ ! command -v syncthing ]'
+  - [curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -, Adding Yarn PPA]
+  - [echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list, Adding Yarn PPA]
+  # VS Codium PPA
+  - command: [ttps://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -, vscodium | Add the GPG key of the repository]
+    if: '[ ! command -v vscodium ]'
+  - command: [echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list, vscodium | Add the repository:]
 
-# yay:
-#   title: Installing Programs
-#   command: yay -S --noconfirm
-#   targets:
-#     # --------------- Media
-#     - cava
-#     - obs-studio # screencasting
-#     - peek # screen recording
-#     # --------------- Organization
-#     - nnn
-#     # --------------- Work
-#     - googler
-#     - fd
-#     - buku
-#     # --------------- Dev Tools
-#     - vscodium-bin
-#     - alacritty
-#     - docker
-#     - gdb
-#     - tig
-#     - zsh
-#     - shellcheck
-#     - thefuck
-#     - lolcat
-#     - cloc
-#     - ghc
-#     - gource
-#     - stack
-#     - zsnes
-#     - hyperfine
-#     - hasklig
-#     - pandoc
-#     - mononoki
-#     - asciinema
-#     - taskell-bin
-#     # --------------- Ribon
-#     - discord
-#     - aws-eb-cli
-#     - reactotron
-#     - httpie
-#     - insomnia
-#     # --------------- Misc
-#     - higan # emulator
-#     - emojify # emojis
-#     - googler
-#     - zathura
-#     - zathura-pdf-poppler
-#
-# # Adding PPAS
-# - shell:
-#   - [echo Adding PPAs]
-#   - command: [sudo add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
-#     if: '[ ! command -v alacritty ]'
-#   - command: [sudo add-apt-repository -y ppa:webupd8team/atom, Adding Atom PPA]
-#     if: '[ ! command -v atom ]'
-#   - command: [sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable, Adding Musescore PPA]
-#     if: '[ ! command -v musescore ]'
-#   - command: [curl -s https://syncthing.net/release-key.txt | sudo apt-key add -, syncthing | Add the release PGP keys]
-#     if: '[ ! command -v musescore ]'
-#   - command: [echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list, syncthing | Add the "stable" channel to your APT sources]
-#     if: '[ ! command -v musescore ]'
-#   - [curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -, Adding Yarn PPA]
-#   - [echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list, Adding Yarn PPA]
-#   - command: [sudo apt-get update, Updating Apt Repositories]
-#
-#
-# # Installing shit through scripts
-# - shell:
-#   - command: [sh hasklig.sh, Installing Hasklig]
-#     if: '[ !-d /usr/share/fonts/opentype/hasklig ]'
-#   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
-#
-#
-# # Installing Terminal Tools
-# - shell:
-#   - [sudo apt-get install -y zsh, Installing zsh]
-#   - [chsh -s $(which zsh), Making zsh default shell]
-#   - command: [sudo apt-get install -y alacritty, Installing alacritty]
-#     if: '[ ! command -v alacritty ]'
-#   - command: [gsettings set org.gnome.desktop.default-applications.terminal exec alacritty, Making Alacritty the default terminal]
-#     if: '[ command -v alacritty ]'
-#   - [sudo apt-get install -y thefuck, Installing thefuck]
-#   - [sudo apt-get install -y tldr, Installing tldr]
-#
-# # Dev Tools
-# - shell:
-#   - [echo Installing Dev Tools]
-#   - [sudo apt-get install -y docker.io, Installing Docker]
-#   - [sudo systemctl start docker, Starting docker engine]
-#   - [sudo systemctl enable docker, Enabling docker module]
-#   - [sudo usermod -aG docker $(whoami), Adding self to docker group]
-#   - [sudo apt-get install -y docker-compose, Installing docker-compose]
-#
-# # Node Stuff
-# - shell:
-#   - [echo Installing Node and Tools]
-#   - [sudo apt-get install -y nodejs, Installing NodeJS]
-#   - [sudo apt-get install -y npm, Installing npm]
-#   - [sudo apt-get install -y yarnpkg, Installing yarn]
-#   - [sudo sudo npm i -g -y gatsby-cli, Installing Gatsby]
-#   - [sudo sudo npm i -g -y dockly, Installing Dockly]
-#   - [sudo sudo npm i -g -y expo-cli, Installing Expo CLI]
-#   - [sudo sudo npm i -g -y react-native-cli, Installing React Native CLI]
-#
-#
-# # Multimedia Stuff
-# - shell:
-#   - [echo Setting up Tidal]
-#   - [sudo apt-get install -y supercollider, Installing Supercollider]
-#   - [sudo apt-get install -y sc3-plugins, Installing SC3 Plugins]
-#   - [sudo apt-get install -y haskell-platform, Installing Haskell (ghc, ghci)]
-#   - [sudo apt-get install -y cabal, Installing Cabal]
-#   - [cabal update, Updating Cabal]
-#   - [cabal install tidal, Installing Tidal]
-#
-# # Gaming
-# - shell:
-#   - [echo Setting up gaming stuff]
-#   - [sudo apt-get install -y wine, Installing Wine]
-#   - [sudo apt-get install -y steam, Installing Steam]
-#
-# # Media Tools
-# - shell:
-#   - [echo Installing Media Tools]
-#   - [sudo apt-get install -y obs-studio, Installing OBS]
-#   - [sudo apt-get install -y musescore3, Installing Musescore]
-#   - [sudo apt-get install -y cmus, Installing cmus]
-#   # - [sudo apt-get install -y cava, Installing cava]
-#
-# # Office and Misc Tools
-# - shell:
-#   - [echo Installing File Tools]
-#   - [sudo apt-get install -y syncthing, Installing Syncthing]
-#   - [sudo apt-get install -y nnn, Installing nnn]
-#   - [brew install broot, Installing broot]
-#   - [sudo apt-get install -y zathura, Installing zathura]
+- shell:
+  - [sudo apt-get update, Updating Apt Repositories]
+
+# Installing shit through scripts
+- shell:
+  - command: [sh hasklig.sh, Installing Hasklig]
+    if: '[ !-d /usr/share/fonts/opentype/hasklig ]'
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
+
+
+# Installing Terminal Tools
+- shell:
+  - command: [sudo apt-get install -y alacritty, Installing alacritty]
+    if: '[ ! command -v alacritty ]'
+  - command: [gsettings set org.gnome.desktop.default-applications.terminal exec alacritty, Making Alacritty the default terminal]
+    if: '[ command -v alacritty ]'
+  - [sudo apt-get install -y zsh, Installing zsh]
+  - [chsh -s $(which zsh), Making zsh default shell]
+  - [sudo apt-get install -y thefuck, Installing thefuck]
+  - [sudo apt-get install -y tldr, Installing tldr]
+  - [sudo apt-get install -y tig, Installing tig]
+
+# Dev Tools
+- shell:
+  - [echo Installing Dev Tools]
+  - [sudo apt-get install -y docker.io, Installing Docker]
+  - [sudo systemctl start docker, Starting docker engine]
+  - [sudo systemctl enable docker, Enabling docker module]
+  - [sudo usermod -aG docker $(whoami), Adding self to docker group]
+  - [sudo apt-get install -y docker-compose, Installing docker-compose]
+  - [sudo apt-get install -y httpie, Installing HTTPie]
+  - [sudo apt-get install -y cloc, Installing CLOC]
+  - [snap install insomnia, Installing Insomnia]
+  - [brew install scc, Installing SCC]
+
+# Node Stuff
+- shell:
+  - [echo Installing Node and Tools]
+  - [sudo apt-get install -y nodejs, Installing NodeJS]
+  - [sudo apt-get install -y npm, Installing npm]
+  - [sudo apt-get install -y yarnpkg, Installing yarn]
+  - [sudo sudo npm i -g -y gatsby-cli, Installing Gatsby]
+  - [sudo sudo npm i -g -y dockly, Installing Dockly]
+  - [sudo sudo npm i -g -y expo-cli, Installing Expo CLI]
+  - [sudo sudo npm i -g -y react-native-cli, Installing React Native CLI]
+
+
+# Multimedia Stuff
+- shell:
+  - [echo Setting up Tidal]
+  - [sudo apt-get install -y supercollider, Installing Supercollider]
+  - [sudo apt-get install -y sc3-plugins, Installing SC3 Plugins]
+  - [sudo apt-get install -y haskell-platform, Installing Haskell (ghc, ghci)]
+  - [sudo apt-get install -y cabal, Installing Cabal]
+  - [cabal update, Updating Cabal]
+  - [cabal install tidal, Installing Tidal]
+
+# Gaming
+- shell:
+  - [echo Setting up gaming stuff]
+  - [sudo apt-get install -y wine, Installing Wine]
+  - [sudo apt-get install -y steam, Installing Steam]
+  - [sudo apt-get install -y higan, Installing Wine]
+
+# Media Tools
+- shell:
+  - [echo Installing Media Tools]
+  - [sudo apt-get install -y obs-studio, Installing OBS]
+  - [sudo apt-get install -y musescore3, Installing Musescore]
+  - [sudo apt-get install -y cmus, Installing cmus]
+  # - [sudo apt-get install -y cava, Installing cava]
+
+# Office and Misc Tools
+- shell:
+  - [echo Installing File Tools]
+  - [sudo apt-get install -y syncthing, Installing Syncthing]
+  - [sudo apt-get install -y nnn, Installing nnn]
+  - [brew install broot, Installing broot]
+  - [sudo apt-get install -y zathura, Installing zathura]
 
 # Linking Dotfiles
 - link:
@@ -152,7 +116,9 @@
     ~/.Xresources-regolith:
       force: true
       path: regolith/Xresources-regolith
-    ~/.oh-my-zsh/themes/lalis.zsh-theme: lalis.zsh-theme
+    ~/.oh-my-zsh/themes/lalis.zsh-theme:
+      path: common/lalis.zsh-theme
+      force: true
     ~/.taskrc: .taskrc
     ~/.zshrc:
       path: .zshrc
@@ -184,8 +150,7 @@
     ~/screcs: ~/.local/share/SuperCollider/Recordings
     ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples
 
-
-# Steam Stuff
+# Steam Stuff (https://steamcommunity.com/app/221410/discussions/0/1693795812304458372/)
 - shell:
   - sudo chmod 666 /dev/uinput
   - sudo apt-get install python3-autopilot

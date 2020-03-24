@@ -13,6 +13,8 @@ s.options.maxNodes = 1024 * 64;
 s.options.numOutputBusChannels = 2;
 s.options.numInputBusChannels = 0;
 
+OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.localAddr );
+
 /*OSCdef(\forward_signal_to_blender, {
   arg msg;
   NetAddr.new("localhost", 9001).sendMsg("/blender", *msg); // blender
@@ -20,9 +22,9 @@ s.options.numInputBusChannels = 0;
 }, '/play2', n);*/
 
 
-// OSCdef(\controltidal, {
-// 	arg msg;
-// NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.new("192.168.25.131", 8080));
+// To Control Tidal
+// Remember: msg is an array, containing fields
+// OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl", /* cF name (hello) */, /* float value (0.1) */); }, '/ctrl', NetAddr.new("localhost", 8080));
 
 s.waitForBoot {
 	~dirt = SuperDirt();
