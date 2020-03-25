@@ -1,6 +1,7 @@
 - clean: ['~']
 - clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
 
+
 # Adding PPAS
 - shell:
   - [echo Adding PPAs]
@@ -62,13 +63,15 @@
 # Node Stuff
 - shell:
   - [echo Installing Node and Tools]
-  - [sudo apt-get install -y nodejs, Installing NodeJS]
-  - [sudo apt-get install -y npm, Installing npm]
-  - [sudo apt-get install -y yarnpkg, Installing yarn]
-  - [sudo sudo npm i -g -y gatsby-cli, Installing Gatsby]
-  - [sudo sudo npm i -g -y dockly, Installing Dockly]
-  - [sudo sudo npm i -g -y expo-cli, Installing Expo CLI]
-  - [sudo sudo npm i -g -y react-native-cli, Installing React Native CLI]
+  - [curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash, Installing NVM]
+  - [nvm install node, Installing Node]
+  # - [sudo apt-get install -y nodejs, Installing NodeJS]
+  # - [sudo apt-get install -y npm, Installing npm]
+  # - [sudo apt-get install -y yarnpkg, Installing yarn]
+  - [npm i -g -y gatsby-cli, Installing Gatsby]
+  - [npm i -g -y dockly, Installing Dockly]
+  - [npm i -g -y expo-cli, Installing Expo CLI]
+  - [npm i -g -y react-native-cli, Installing React Native CLI]
 
 
 # Multimedia Stuff
@@ -104,6 +107,7 @@
   - [brew install broot, Installing broot]
   - [sudo apt-get install -y zathura, Installing zathura]
 
+
 # Linking Dotfiles
 - link:
     ~/.profile:
@@ -136,6 +140,11 @@
     ~/.config/MuseScore/MuseScore3.ini:
       path: common/MuseScore3.ini
       force: true
+    # VSCodium
+    ~/.config/VSCodium/User:
+      glob: true
+      force: true
+      path: code/*
     ~/.config/zathura/zathurarc: common/zathurarc
     # Gaming Stuff
     /lib/udev/rules.d/99-steam-controller-perms.rules:
