@@ -30,7 +30,7 @@
 
 # Installing shit through scripts
 - shell:
-  - command: [sh hasklig.sh, Installing Hasklig]
+  - command: [sh common/hasklig.sh, Installing Hasklig]
     if: '[ !-d /usr/share/fonts/opentype/hasklig ]'
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
 
@@ -53,7 +53,7 @@
   - [sudo apt-get install -y docker.io, Installing Docker]
   - [sudo systemctl start docker, Starting docker engine]
   - [sudo systemctl enable docker, Enabling docker module]
-  - [sudo usermod -aG docker $(whoami), Adding self to docker group]
+  - [sudo usermod -aG docker \$(whoami), Adding self to docker group]
   - [sudo apt-get install -y docker-compose, Installing docker-compose]
   - [sudo apt-get install -y httpie, Installing HTTPie]
   - [sudo apt-get install -y cloc, Installing CLOC]
@@ -64,7 +64,7 @@
 - shell:
   - [echo Installing Node and Tools]
   - [curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash, Installing NVM]
-  - [nvm install node, Installing Node]
+  - [nvm install node, Installing NodeJS]
   # - [sudo apt-get install -y nodejs, Installing NodeJS]
   # - [sudo apt-get install -y npm, Installing npm]
   # - [sudo apt-get install -y yarnpkg, Installing yarn]
