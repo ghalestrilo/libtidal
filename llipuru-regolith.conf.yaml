@@ -3,31 +3,8 @@
 
 
 
-# Adding PPAS
 - shell:
-  - [echo Adding PPAs]
-  # Alacritty PPA
-  - command: [sudo add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
-    if: '[ ! command -v alacritty ]'
-  # Atom PPA
-  - command: [sudo add-apt-repository -y ppa:webupd8team/atom, Adding Atom PPA]
-    if: '[ ! command -v atom ]'
-  # Atom PPA
-  - command: [sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable, Adding Musescore PPA]
-    if: '[ ! command -v musescore ]'
-  - command: [curl -s https://syncthing.net/release-key.txt | sudo apt-key add -, syncthing | Add the release PGP keys]
-    if: '[ ! command -v syncthing ]'
-  - command: [echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list, syncthing | Add the "stable" channel to your APT sources]
-    if: '[ ! command -v syncthing ]'
-  - [curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -, Adding Yarn PPA]
-  - [echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list, Adding Yarn PPA]
-  # VS Codium PPA
-  - command: [ttps://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -, vscodium | Add the GPG key of the repository]
-    if: '[ ! command -v vscodium ]'
-  - command: [echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list, vscodium | Add the repository:]
-
-- shell:
-  - [sudo apt-get update, Updating Apt Repositories]
+  - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
 
 # Installing shit through scripts
 - shell:
@@ -36,8 +13,11 @@
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
 
 
+
 # Installing Terminal Tools
 - shell:
+  - command: '[/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Installing Homebrew]'
+    if: '[ ! command -v brew ]'
   - command: [sudo apt-get install -y alacritty, Installing alacritty]
     if: '[ ! command -v alacritty ]'
   - command: [gsettings set org.gnome.desktop.default-applications.terminal exec alacritty, Making Alacritty the default terminal]
@@ -47,6 +27,14 @@
   - [sudo apt-get install -y thefuck, Installing thefuck]
   - [sudo apt-get install -y tldr, Installing tldr]
   - [sudo apt-get install -y tig, Installing tig]
+  - [sudo apt-get install -y httpie, Installing HTTPie]
+  - [sudo apt-get install -y cloc, Installing CLOC]
+  - [brew install scc, Installing SCC]
+
+# Installing YTT
+- shell:
+  - [brew tap k14s/tap, Adding ytt to taps]
+  - [brew install ytt kbld kapp imgpkg kwt vendir, Installing ytt]
 
 # Dev Tools
 - shell:
@@ -56,10 +44,7 @@
   - [sudo systemctl enable docker, Enabling docker module]
   - [sudo usermod -aG docker \$(whoami), Adding self to docker group]
   - [sudo apt-get install -y docker-compose, Installing docker-compose]
-  - [sudo apt-get install -y httpie, Installing HTTPie]
-  - [sudo apt-get install -y cloc, Installing CLOC]
   - [snap install insomnia, Installing Insomnia]
-  - [brew install scc, Installing SCC]
 
 # Node Stuff
 - shell:

@@ -1,0 +1,30 @@
+
+# Adding PPAS
+- shell:
+  - [echo Adding PPAs]
+  # Alacritty PPA
+  - command: [sudo add-apt-repository -y ppa:mmstick76/alacritty, Adding Alacritty PPA]
+    if: '[ ! command -v alacritty ]'
+  # Atom PPA
+  - command: [sudo add-apt-repository -y ppa:webupd8team/atom, Adding Atom PPA]
+    if: '[ ! command -v atom ]'
+  # Atom PPA
+  - command: [sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable, Adding Musescore PPA]
+    if: '[ ! command -v musescore ]'
+  # SyncThing
+  - command: [curl -s https://syncthing.net/release-key.txt | sudo apt-key add -, syncthing | Add the release PGP keys]
+    if: '[ ! command -v syncthing ]'
+  - command: [echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list, syncthing | Add the "stable" channel to your APT sources]
+    if: '[ ! command -v syncthing ]'
+  # Yarn
+  - command: [curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -, Adding Yarn PPA]
+    if: '[ ! command -v yarn ]'
+  - command: [echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list, Adding Yarn PPA]
+    if: '[ ! command -v yarn ]'
+  # VS Codium PPA
+  - command: [ttps://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -, vscodium | Add the GPG key of the repository]
+    if: '[ ! command -v vscodium ]'
+  - command: [echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list, vscodium | Add the repository:]
+
+- shell:
+  - [sudo apt-get update, Updating Apt Repositories]
