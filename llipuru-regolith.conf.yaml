@@ -2,6 +2,7 @@
 - clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
 
 
+
 # Adding PPAS
 - shell:
   - [echo Adding PPAs]
@@ -108,11 +109,12 @@
   - [sudo apt-get install -y zathura, Installing zathura]
 
 
+
 # Linking Dotfiles
 - link:
     ~/.profile:
       force: true
-      path: llipuru/.profile-regolith
+      path: regolith/.profile
     ~/.config/regolith/i3/config:
       force: true
       create: true
@@ -131,20 +133,23 @@
       create: true
       path: common/alacritty.yml
     ~/.config/kak/kakrc:
-      path: kakrc
+      path: common/kakrc
       create: true
-    ~/.config/init.vim: init.vim
+      force: true
+    ~/.config/init.vim:
+      path: common/init.vim
+      force: true
     ~/.config/MuseScore/MuseScore2.ini:
-      path: MuseScore2.ini
+      path: common/MuseScore2.ini
       force: true
     ~/.config/MuseScore/MuseScore3.ini:
       path: common/MuseScore3.ini
       force: true
     # VSCodium
     ~/.config/VSCodium/User:
+      path: common/code/*
       glob: true
       force: true
-      path: code/*
     ~/.config/zathura/zathurarc: common/zathurarc
     # Gaming Stuff
     /lib/udev/rules.d/99-steam-controller-perms.rules:
@@ -152,9 +157,9 @@
         force: true
         path: regolith/steam-controller-config
     ~/.config/SuperCollider:
+      path: common/supercollider/*
       glob: true
       force: true
-      path: supercollider/*
     # Folder Shortcuts
     ~/screcs: ~/.local/share/SuperCollider/Recordings
     ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples
