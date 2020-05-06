@@ -13,7 +13,6 @@
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
 
 
-
 # Installing Terminal Tools
 - shell:
   - command: '[/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Installing Homebrew]'
@@ -44,7 +43,9 @@
   - [sudo systemctl enable docker, Enabling docker module]
   - [sudo usermod -aG docker \$(whoami), Adding self to docker group]
   - [sudo apt-get install -y docker-compose, Installing docker-compose]
+  - [sudo apt-get install -y leiningen, Installing leiningen]
   - [snap install insomnia, Installing Insomnia]
+  
 
 # Node Stuff
 - shell:
@@ -148,6 +149,10 @@
     # Folder Shortcuts
     ~/screcs: ~/.local/share/SuperCollider/Recordings
     ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples
+
+# Link local.properties to Android Projects
+- link:
+    ~/git/Rocket.Chat.ReactNative/android/local.properties: common/local.properties
 
 # Steam Stuff (https://steamcommunity.com/app/221410/discussions/0/1693795812304458372/)
 - shell:

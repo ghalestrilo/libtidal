@@ -1,11 +1,11 @@
 {
-  "window.zoomLevel": -2,
+  "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
   "terminal.integrated.fontSize": 14,
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Subliminal Next",
+  "workbench.colorTheme": "Quiet Light",
   // "editor.fontFamily": "Connection Regular",
   // "editor.fontFamily": "Telegrama Raw",    
   // "editor.insertSpaces": false,
@@ -37,8 +37,16 @@
   "editor.fontFamily": "hasklig",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
-  "gitlens.statusBar.enabled": false,
   "terminal.integrated.rendererType": "dom",
   "python.dataScience.askForKernelRestart": false,
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.statusBar.enabled": false,
+  "eslint.format.enable": true,
+  /*
+  "bracket-pair-colorizer-2.colors": [
+    "#222233"
+  ],
+  "bracket-pair-colorizer-2.hightlightActiveScope": true
+  */
 }

@@ -129,6 +129,7 @@ alias config="codium ~/git/doer/data"
 
 # lol
 alias killdiablo='wine "C:/Games/Diablo II/Diablo II.exe"'
+alias cheatdiablo='wine "C:/Games/Diablo II/Diablo II.exe" -nosave'
 
 source /home/lalis/.config/broot/launcher/bash/br
 

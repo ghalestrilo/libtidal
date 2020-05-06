@@ -1,9 +1,8 @@
+~useonyx = false;
+~usereface = false;
+
 Quarks.update("SuperDirt");
 include("SuperDirt");
-
-// Quarks.install("FoxDot");
-// FoxDot.start;
-
 
 s.options.device_("JackRouter");
 s.options.numBuffers = 1024 * 16;
@@ -18,8 +17,9 @@ OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl",
 /*OSCdef(\forward_signal_to_blender, {
   arg msg;
   NetAddr.new("localhost", 9001).sendMsg("/blender", *msg); // blender
-  NetAddr.new("localhost", 3333).sendMsg("/blender", *msg); // debug
 }, '/play2', n);*/
+
+
 
 
 // To Control Tidal
@@ -36,13 +36,17 @@ s.waitForBoot {
 
 	MIDIClient.init;
 
-	~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
-	~dirt.soundLibrary.addMIDI(\reface, ~reface);
-	~reface.latency = 0;
-/*
-	~onyx = MIDIOut.newByName("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
-	~onyx.latency = 0;
-	~dirt.soundLibrary.addMIDI(\onyx, ~onyx);*/
+	if (~usereface == true, {
+		~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
+		~dirt.soundLibrary.addMIDI(\reface, ~reface);
+		~reface.latency = 0;
+	});
+
+	if (~useonyx == true, {
+		~onyx = MIDIOut.newByName("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
+		~onyx.latency = 0;
+		~dirt.soundLibrary.addMIDI(\onyx, ~onyx);
+	});
 };
 
 s.latency = 0

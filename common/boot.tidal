@@ -5,12 +5,19 @@
 import Sound.Tidal.Context
 
 -- SINGLE CONFIG
-tidal <- startTidal (superdirtTarget {oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20, cCtrlAddr = "0.0.0.0", cCtrlPort = 6060
+tidal <- startTidal (superdirtTarget { oLatency = 0.1
+                                     , oAddress = "127.0.0.1"
+                                     , oPort = 57120
+                                     })
+                    (defaultConfig { cFrameTimespan = 1/20
+                                   , cCtrlAddr = "0.0.0.0"
+                                   , cCtrlPort = 6060
+                                   })
 
 -- MULTI-TIDAL CONFIG
 -- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
 
-:{
+:{ -------------------------------------------------------------------- Basic boot.hs
 let p = streamReplace tidal
     hush = streamHush tidal
     list = streamList tidal
@@ -50,13 +57,6 @@ let p = streamReplace tidal
     d7 = p 7 . (|< orbit 6)
     d8 = p 8 . (|< orbit 7)
     d9 = p 9 . (|< orbit 8)
-    d10 = p 10 . (|< orbit 9)
-    d11 = p 11 . (|< orbit 10)
-    d12 = p 12 . (|< orbit 11)
-    d13 = p 13
-    d14 = p 14
-    d15 = p 15
-    d16 = p 16
 :}
 
 :{
@@ -67,89 +67,20 @@ let setI = streamSetI tidal
     setB = streamSetB tidal
 :}
 
-
-
-
-
-
-
-
-:{
-
+:{ -------------------------------------------------------------------- Song Structure
   -- TODO: fix song method
     -- normalize array before calling structureSong
-  -- FIXME: maybe put tonality in here?
-
-  -- Song Structure
   let measures n p ms = (n, p):ms
       loopend n p = measures n p []
       structureSong st [] = []
       structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps)
       songLoop ms = seqPLoop $ structureSong 0 ms -- TODO: sloop?
       song ms = seqP $ structureSong 0 ms
-
-
-
-  {-- conv: Applies a list of notes over a rhythmic pattern.
-    FIXME: a space at the end of the pat string breaks it
-  Logic:
-    - Cycle patterns based on lcm
-    - Split list into two: detected tags and patterns in between tags
-    - Substitute symbols into first list
-    - Zip them back into one
-    --}
-
-  --
-  let conv beats notes = pure $ subst beats notes
-                          where
-                            flatten = (>>= id)
-                            split = foldr (\x ~(y2,y1) -> (x:y1, y2)) ([],[])
-                            rotate n xs | xs == [] = []
-                                        | otherwise = zipWith const (drop n (cycle xs)) xs
-                            merge xs ys | xs == [] = ys
-                                        | ys == [] = xs
-                                        | otherwise = (head xs) : (head ys) : merge (tail xs) (tail ys)
-                            splitBy delimiter = foldr f [[]]
-                                  where f c l@(x:xs) | c == delimiter = []:l
-                                                     | otherwise = (c:x):xs
-                            subst pat@(x:rst) notes = flatten merged
-                                where
-                                  tag = 'x'
-                                  tags = length . filter (== tag)
-                                  tagcount = tags beats
-                                  notecount = length notes
-                                  step = tagcount - notecount
-                                  common = lcm tagcount notecount
-                                  repA = common `div` tagcount
-                                  repB = common `div` notecount
-                                  xs = filter (/= "") . splitBy tag . flatten . take repA . repeat $ pat
-                                  ys = flatten . take repB . repeat $ notes -- remember to map show notes for non-string values
-                                  merged = merge xs ys
-      pat1 = " x ~ x ~ ~ x"
-      -- notes1 = [1, 2, 3, 4, 7]
-      notes1 = ["bd", "hh"]
-  in conv pat1 notes1
-  -- in d1 $ sound (conv pat1 notes1)
-
-
-  {-| no: mutes a track -}
-  let no = # gain 0
 :}
 
--- | FIXME: Cluster (maybe try a recursive implementation?)
--- | TODO: recursive stack
--- [x | x <- [0..], x < depth]
--- TODO: Try fmap
 
--- | TODO: normalize time (math.pi, cps math)
-let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) |+ 1) |+| gain ((slow time $ sine <~ 0.5) |/ 12)
--- let cluster time depth = speed (slow time sine
---                           |* (stack $ map (\x -> x / depth) [0, 1, 2, 3])
---                           -- |* (stack $ fmap (\x -> x / depth) [x | x <- [0..], x <= depth])
---                           |+ 1)
---                           |+| gain ((slow time $ sine <~ 0.5) |+ 0.5)
-
-:set prompt "\n lalis | "
+:{ -------------------------------------------------------------------- Prompt
+:set prompt "\n ghales | "
 
 
 -- tophrase :: phr r -> Pattern
@@ -158,15 +89,33 @@ let cluster time depth = speed (slow time sine |* (stack $ map (\x -> x / depth)
 let tophrase phr r = n (r +| phr)
 
 
+-- | ON - Apply a function to a pattern when a tag is found "1 2 3 4:1" (1 is the tag, denoted by :)
+let tag = pI "tag"
+    ntag = grp [mF "note", mI "tag"]
+    phrase = "{16 14 11 0 ~     16 14 11 4 6 7 6 7 9 7 9 11:1 ~   16:1 14 11:1 6:2 ~ }%8"
+    on tagname lambda = fix lambda (tag tagname)
 
--- FIXME: String-level equivalent to "x ~ x ~ x" <~> [1, 2, 3, 4] or "x ~ x ~ x" <~> "1 2 3 4"
-conv :: a -> a
-
--- TODO: Play pattern on time signature using slow n where n is the number of beats
-on :: time_signature
-
-
+:{ -------------------------------------------------------------------- Faders
+let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
+    vx n = cF 0 $ "v" ++ (show n) -- Maps ID to Volume Fader
+    px n = cF 0 $ "p" ++ (show n) -- Maps ID to Pan Knob
+:}
 
 
+:{ -------------------------------------------------------------------- Tonal Defs
+let bus = room (cF 0.1 "room") # size (cF 0.1 "size") # orbit 0
+    fader vol = gain (vol |* cF 1 "master")
+    root = 5
+    mode = "chromatic"
+    tonal scalename pat = (note . (|+ root) . scale scalename) pat
+:}
 
-scale "minor" "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14"
+:{ -------------------------------------------------------------------- Instruments
+let vk = s "vk" # n 3
+    vs = s "vs" # n 117
+    vh = s "vh" # n 2 # sus 0.08
+    vo = s "vh" # n 15 # sus 1
+    gretsch x = n x # s "gretsch" # bus
+    piano x = tonal mode x # s "superpiano" # lpf 450 # bus
+    vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
+:}
