@@ -1,0 +1,7 @@
+{
+    "settings": {
+        "key": "ghales",
+        "server": "rtmp://toplap.org/eulerroom/"
+    },
+    "type": "rtmp_custom"
+}
