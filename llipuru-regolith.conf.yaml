@@ -12,7 +12,6 @@
     if: '[ !-d /usr/share/fonts/opentype/hasklig ]'
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
 
-
 # Installing Terminal Tools
 - shell:
   - command: '[/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Installing Homebrew]'
@@ -95,60 +94,9 @@
   - [sudo apt-get install -y zathura, Installing zathura]
 
 
+- shell:
+  - [dotbot -d . -c llipuru-regolith-dotfiles.conf.yaml, Linking Configs]
 
-# Linking Dotfiles
-- link:
-    ~/.profile:
-      force: true
-      path: regolith/.profile
-    ~/.config/regolith/i3/config:
-      force: true
-      create: true
-      path: regolith/i3config
-    ~/.Xresources-regolith:
-      force: true
-      path: regolith/Xresources-regolith
-    ~/.oh-my-zsh/themes/lalis.zsh-theme:
-      path: common/lalis.zsh-theme
-      force: true
-    ~/.taskrc: .taskrc
-    ~/.zshrc:
-      path: .zshrc
-      force: true
-    ~/.config/alacritty/alacritty.yml:
-      create: true
-      path: common/alacritty.yml
-    ~/.config/kak/kakrc:
-      path: common/kakrc
-      create: true
-      force: true
-    ~/.config/init.vim:
-      path: common/init.vim
-      force: true
-    ~/.config/MuseScore/MuseScore2.ini:
-      path: common/MuseScore2.ini
-      force: true
-    ~/.config/MuseScore/MuseScore3.ini:
-      path: common/MuseScore3.ini
-      force: true
-    # VSCodium
-    ~/.config/VSCodium/User:
-      path: common/code/*
-      glob: true
-      force: true
-    ~/.config/zathura/zathurarc: common/zathurarc
-    # Gaming Stuff
-    /lib/udev/rules.d/99-steam-controller-perms.rules:
-        create: true
-        force: true
-        path: regolith/steam-controller-config
-    ~/.config/SuperCollider:
-      path: common/supercollider/*
-      glob: true
-      force: true
-    # Folder Shortcuts
-    ~/screcs: ~/.local/share/SuperCollider/Recordings
-    ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples
 
 # Link local.properties to Android Projects
 - link:
