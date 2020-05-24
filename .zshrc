@@ -127,6 +127,8 @@ alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 # TODO: Change this to atom on ubuntu regolith, create .zshrc for ubuntu
 alias config="codium ~/git/doer/data"
 
+alias ff="~/.cabal/bin/feedforward 2> ~/err.txt"
+
 # lol
 alias killdiablo='wine "C:/Games/Diablo II/Diablo II.exe"'
 alias cheatdiablo='wine "C:/Games/Diablo II/Diablo II.exe" -nosave'

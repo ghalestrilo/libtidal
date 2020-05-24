@@ -1,7 +1,8 @@
 {
     "settings": {
-        "key": "ghales",
-        "server": "rtmp://toplap.org/eulerroom/"
+        "key": "z8p4-ac5t-fxjc-dh68-fg23",
+        "server": "rtmp://a.rtmp.youtube.com/live2",
+        "service": "YouTube / YouTube Gaming"
     },
-    "type": "rtmp_custom"
+    "type": "rtmp_common"
 }

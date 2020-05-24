@@ -1,8 +1,8 @@
 {
     "settings": {
-        "key": "live_451517135_7k86jjAn2QDNGTwJzXZE0viMseH4IJ",
-        "server": "auto",
-        "service": "Twitch"
+        "key": "z8p4-ac5t-fxjc-dh68-fg23",
+        "server": "rtmp://a.rtmp.youtube.com/live2",
+        "service": "YouTube / YouTube Gaming"
     },
     "type": "rtmp_common"
 }
