@@ -6,7 +6,8 @@ import Sound.Tidal.Context
 import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
 
--- SINGLE CONFIG
+
+
 tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
 
 
@@ -95,11 +96,38 @@ let tag = pI "tag"
     phrase = "{16 14 11 0 ~     16 14 11 4 6 7 6 7 9 7 9 11:1 ~   16:1 14 11:1 6:2 ~ }%8"
     on tagname lambda = fix lambda (tag tagname)
 
+
+
+
+
+
+
+
+
+
+
+
 :{ -------------------------------------------------------------------- Faders
 let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
     vx n = cF 0 $ "v" ++ (show n) -- Maps ID to Volume Fader
-    px n = cF 0 $ "p" ++ (show n) -- Maps ID to Pan Knob
+    -- px n = cF 0 $ "p" ++ (show n) -- Maps ID to Pan Knob
+    px n = cF0 $ "px" ++ (show n) -- Maps ID to Pad X
+    py n = cF0 $ "py" ++ (show n) -- Maps ID to Pad X
 :}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 :{ -------------------------------------------------------------------- Tonal Defs
@@ -110,6 +138,16 @@ let bus = room (cF 0.1 "room") # size (cF 0.1 "size") # orbit 0
     tonal scalename pat = (note . (|+ root) . scale scalename) pat
 :}
 
+
+
+
+
+
+
+
+
+
+
 :{ -------------------------------------------------------------------- Instruments
 let vk = s "vk" # n 3
     vs = s "vs" # n 117
@@ -118,9 +156,13 @@ let vk = s "vk" # n 3
     gretsch x = n x # s "gretsch" # bus
     piano x = tonal mode x # s "superpiano" # lpf 450 # bus # octave 5
     vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
+
+-- Midi Instruments
+let mm = s "mm" # orbit 0 # midichan 0
+    reface = s "reface" # orbit 0 # midichan 0
 :}
 
 
-
+scaleList
 ---------------------------------------------------------------------- Prompt
 :set prompt "\n ghales | "

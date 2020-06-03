@@ -124,6 +124,10 @@ alias zc="kak ~/.zshrc"
 alias refresh="source ~/.zshrc"
 alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 
+
+# Quality of life
+alias short='xdg-open https://trello.com/b/xYvCoiBo/short'
+
 # TODO: Change this to atom on ubuntu regolith, create .zshrc for ubuntu
 alias config="codium ~/git/doer/data"
 
@@ -138,3 +142,5 @@ source /home/lalis/.config/broot/launcher/bash/br
 # NVM path
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+

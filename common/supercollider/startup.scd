@@ -13,19 +13,14 @@ s.options.maxNodes = 1024 * 64;
 s.options.numOutputBusChannels = 2;
 s.options.numInputBusChannels = 0;
 
+
+
+
 OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.localAddr );
 
-/*OSCdef(\forward_signal_to_blender, {
-  arg msg;
-  NetAddr.new("localhost", 9001).sendMsg("/blender", *msg); // blender
-}, '/play2', n);*/
 
 
 
-
-// To Control Tidal
-// Remember: msg is an array, containing fields
-// OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl", /* cF name (hello) */, /* float value (0.1) */); }, '/ctrl', NetAddr.new("localhost", 8080));
 
 s.waitForBoot {
 	~dirt = SuperDirt();
@@ -51,7 +46,7 @@ s.waitForBoot {
 
 	if (~portmm != nil, {
 		~mm = MIDIOut.newByName("MicroMonsta", "MicroMonsta MIDI 1");
-		~mm = MIDIOut(0, MIDIClient.destinations[1].uid);
+		// ~mm = MIDIOut(0, MIDIClient.destinations[1].uid);
 		~mm.latency = 0;
 		// MIDIClient.sources[4].connect(1);
 		~dirt.soundLibrary.addMIDI(\mm, ~mm);
@@ -59,3 +54,18 @@ s.waitForBoot {
 };
 
 s.latency = 0
+
+
+
+
+
+
+
+// To Control Tidal
+// Remember: msg is an array, containing fields
+// OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl", /* cF name (hello) */, /* float value (0.1) */); }, '/ctrl', NetAddr.new("localhost", 8080));
+
+/*OSCdef(\forward_signal_to_blender, {
+  arg msg;
+  NetAddr.new("localhost", 9001).sendMsg("/blender", *msg); // blender
+}, '/play2', n);*/
