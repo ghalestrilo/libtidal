@@ -162,6 +162,25 @@ let mm = s "mm" # orbit 0 # midichan 0
     reface = s "reface" # orbit 0 # midichan 0
 :}
 
+:{ -- Ritmos
+
+let axe   lo hi = stack [ n "~ <[0 0] [0 0 ~ 0]>" # s lo, slow 2 $ n "0*16" # s hi |* gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85") ]
+    ijexa lo hi = slow 2 $ n "0*16" # s (sew "t ~ t ~ f ~ f ~ . t t ~ f ~ f f ~" hi lo) -- # unit "c" # speed 8
+
+-- Util: bpm function
+-- TODO: add fine+coarse OStageC controls for manual syncing
+let setbpm bpm = setcps (bpm / 120 / 2)
+-- TODO: Create variation mechanism
+-- let variation = grp [mI "variation"]
+--     v = variation
+-- in getI "variation" $ n "0(3,8)" # v "1 0"
+
+:}
+
+
+:{ -- Stolen from Kindohm
+let gtfo = (const $ s "~")
+:}
 
 scaleList
 ---------------------------------------------------------------------- Prompt
