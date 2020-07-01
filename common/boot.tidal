@@ -128,7 +128,7 @@ let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
 
 
 
-
+:?
 
 :{ -------------------------------------------------------------------- Tonal Defs
 let bus = room (cF 0.1 "room") # size (cF 0.1 "size") # orbit 0
@@ -136,6 +136,10 @@ let bus = room (cF 0.1 "room") # size (cF 0.1 "size") # orbit 0
     root = 5
     mode = "chromatic"
     tonal scalename pat = (note . (|+ root) . scale scalename) pat
+
+
+let t = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
+
 :}
 
 
@@ -149,6 +153,7 @@ let bus = room (cF 0.1 "room") # size (cF 0.1 "size") # orbit 0
 
 
 :{ -------------------------------------------------------------------- Instruments
+
 let vk = s "vk" # n 3
     vs = s "vs" # n 117
     vh = s "vh" # n 2 # sus 0.08
@@ -162,26 +167,46 @@ let mm = s "mm" # orbit 0 # midichan 0
     reface = s "reface" # orbit 0 # midichan 0
 :}
 
+
 :{ -- Ritmos
 
-let axe   lo hi = stack [ n "~ <[0 0] [0 0 ~ 0]>" # s lo, slow 2 $ n "0*16" # s hi |* gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85") ]
-    ijexa lo hi = slow 2 $ n "0*16" # s (sew "t ~ t ~ f ~ f ~ . t t ~ f ~ f f ~" hi lo) -- # unit "c" # speed 8
+let help = print ["ritmos", "tldr", "scaleList"]
+    wtf = help
+    fuck = help
+    ritmos = print ["axe", "ijexa", "funk", "maracatu", "baiao", "brega"]
+    tldr = print "to be done :)"
+
+fuck
+
+
+let axe      hi lo = fast 2 $ stack [ n "~ <[0 0] [0 0 ~ 0]>" # s lo, slow 2 $ n "0*16" # s hi |* gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85") ]
+    ijexa    hi lo = n "0*16" # s (sew "t ~ t ~ f ~ f ~ . t t ~ f ~ f f ~" hi lo) -- # unit "c" # speed 8
+    funk     hi lo = n "0*16" # s (sew "t ~@2 t f ~ t ~ . ~ [t ~] [f ~] ~" lo hi)
+    maracatu hi lo = "~"
+    baiao    hi lo = "~"
+    brega    hi lo = "~"
+
+-- let r name lo hi =
+--       case name of
+--       "axe"      -> fast 2 $ stack [ n "~ <[0 0] [0 0 ~ 0]>" # s lo, slow 2 $ n "0*16" # s hi |* gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85") ]
+--       "ijexa"    -> n "0*16" # s (sew "t ~ t ~ f ~ f ~ . t t ~ f ~ f f ~" hi lo) -- # unit "c" # speed 8
+--       "funk"     -> n "0*16" # s (sew "t ~@2 t f ~ t ~ . ~ [t ~] [f ~] ~" lo hi)
+--       "maracatu" -> "~"
+--       "baiao"    -> "~"
+
+
 
 -- Util: bpm function
 -- TODO: add fine+coarse OStageC controls for manual syncing
 let setbpm bpm = setcps (bpm / 120 / 2)
--- TODO: Create variation mechanism
--- let variation = grp [mI "variation"]
---     v = variation
--- in getI "variation" $ n "0(3,8)" # v "1 0"
 
 :}
 
 
 :{ -- Stolen from Kindohm
 let gtfo = (const $ s "~")
+    g = gtfo
 :}
 
-scaleList
 ---------------------------------------------------------------------- Prompt
 :set prompt "\n ghales | "
