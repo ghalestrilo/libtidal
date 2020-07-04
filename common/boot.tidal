@@ -2,6 +2,9 @@
 :set prompt ""
 :set prompt-cont ""
 
+-- import qualified Data.Map as Map
+-- TODO: Song (parts) logic
+import qualified Data.Map as Map
 import Sound.Tidal.Context
 import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
@@ -10,20 +13,30 @@ hSetEncoding stdout utf8
 
 tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
 
+-------------------------------------------------------- LIB
 
-
-
-
+-- Varargs implementation
+:set -XMultiParamTypeClasses
+:set -XFunctionalDependencies
+:set -XFlexibleInstances
+:{
+class Listable a r  | r -> a where
+    makelist' :: [a] -> a -> r
+instance Listable a [a] where
+    makelist' l x = reverse $ x:l
+instance Listable a r => Listable a (a->r) where
+    makelist' l x y = makelist'(x:l) y
+-- @va x...@ varargs function
+va x = makelist' [] x
+build x = makelist' [] x
+  :}
 
 
 -- MULTI-TIDAL CONFIG
 -- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
 
 
-
 :{ -------------------------------------------------------------------- Basic boot.hs
-
-
 let p = streamReplace tidal
     hush = streamHush tidal
     list = streamList tidal
@@ -73,9 +86,9 @@ let setI = streamSetI tidal
     setB = streamSetB tidal
 :}
 
+-- TODO: fix song method
+  -- normalize array before calling structureSong
 :{ -------------------------------------------------------------------- Song Structure
-  -- TODO: fix song method
-    -- normalize array before calling structureSong
   let measures n p ms = (n, p):ms
       loopend n p = measures n p []
       structureSong st [] = []
@@ -91,11 +104,12 @@ let tophrase phr r = n (r +| phr)
 
 
 -- | ON - Apply a function to a pattern when a tag is found "1 2 3 4:1" (1 is the tag, denoted by :)
+:{
 let tag = pI "tag"
     ntag = grp [mF "note", mI "tag"]
     phrase = "{16 14 11 0 ~     16 14 11 4 6 7 6 7 9 7 9 11:1 ~   16:1 14 11:1 6:2 ~ }%8"
     on tagname lambda = fix lambda (tag tagname)
-
+:}
 
 
 
@@ -128,18 +142,13 @@ let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
 
 
 
-:?
-
 :{ -------------------------------------------------------------------- Tonal Defs
 let bus = room (cF 0.1 "room") # size (cF 0.1 "size") # orbit 0
     fader vol = gain (vol |* cF 1 "master")
     root = 5
     mode = "chromatic"
     tonal scalename pat = (note . (|+ root) . scale scalename) pat
-
-
 let t = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
-
 :}
 
 
@@ -151,9 +160,8 @@ let t = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord
 
 
 
-
-:{ -------------------------------------------------------------------- Instruments
-
+ -------------------------------------------------------------------- Instruments
+:{
 let vk = s "vk" # n 3
     vs = s "vs" # n 117
     vh = s "vh" # n 2 # sus 0.08
@@ -161,46 +169,64 @@ let vk = s "vk" # n 3
     gretsch x = n x # s "gretsch" # bus
     piano x = tonal mode x # s "superpiano" # lpf 450 # bus # octave 5
     vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
+:}
 
+:{
 -- Midi Instruments
 let mm = s "mm" # orbit 0 # midichan 0
     reface = s "reface" # orbit 0 # midichan 0
 :}
 
 
-:{ -- Ritmos
+-- Rhythm Builders
+:{
+let rhythm' f x = map f . build x -- builds a rhythm passing a pattern builder and the voices
+    rhythm x = rhythm n -- whar?
+    gs pat a b = gain $ sew pat a b -- Helper function (gain . sew)
+:}
 
+-- Ritmos
+:{
+let axe      = rhythm' id "~ <[0 0] [0 0 ~ 0]>" (slow 2 $ "0*16" # gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85"))
+    baiao    = rhythm' id "0@3 0@5" ("0*4" # gs "f!2 t f" "0.8" "1")
+    brega    = rhythm' id "0*2" "~@3 0 . ~ 0"
+    ijexa    = rhythm' id "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~"
+    funk     = rhythm' id "0(3,8) . ~ [0 ~] ~@2" "[~ 0]*2"
+    funk'    = rhythm' id "[t@3 ~@5 . ~ <~ t>@2 [~ <t ~>]]/2" "[~@3 f@3 f@2 . ~ f]/2"
+    -- maracatu lo hi = "~"
+    capoeira = rhythm' id "~ ~ 0 ~" "~ ~ ~ 0"
+:}
+
+ -- RHYTHM DICTIONARY
+:{
+rhythms = Map.fromList
+      [ ("axe",     rhythm' id "~ <[0 0] [0 0 ~ 0]>" (slow 2 $ "0*16" # gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85")))
+      , ("baiao",   rhythm' id "0@3 0@5" ("0*4" # gs "f!2 t f" "0.8" "1"))
+      , ("brega",   rhythm' id "0*2" "~@3 0 . ~ 0")
+      , ("ijexa",   rhythm' id "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~")
+      , ("funk",    rhythm' id "0(3,8) . ~ [0 ~] ~@2" "[~ 0]*2")
+      , ("funk150", rhythm' id "[t@3 ~@5 . ~ <~ t>@2 [~ <t ~>]]/2" "[~@3 f@3 f@2 . ~ f]/2")
+      ]
+:}
+
+:{
+let r rname = (stack . zipWith (\pat inst -> pat # inst) rname)
+    r' f rname x = r rname . map f . build x -- r': r but receives a function
+    -- rs rname = r rname . map s . build                               -- rs: r' passing s (default)
+    rs = r' s                               -- rs: r' passing s (default)
+:}
+
+
+-- UX
+:{
 let help = print ["ritmos", "tldr", "scaleList"]
     wtf = help
     fuck = help
-    ritmos = print ["axe", "ijexa", "funk", "maracatu", "baiao", "brega"]
+    ritmos = print $ Map.keys rhythms
     tldr = print "to be done :)"
-
-fuck
-
-
-let axe      hi lo = fast 2 $ stack [ n "~ <[0 0] [0 0 ~ 0]>" # s lo, slow 2 $ n "0*16" # s hi |* gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85") ]
-    ijexa    hi lo = n "0*16" # s (sew "t ~ t ~ f ~ f ~ . t t ~ f ~ f f ~" hi lo) -- # unit "c" # speed 8
-    funk     hi lo = n "0*16" # s (sew "t ~@2 t f ~ t ~ . ~ [t ~] [f ~] ~" lo hi)
-    maracatu hi lo = "~"
-    baiao    hi lo = "~"
-    brega    hi lo = "~"
-
--- let r name lo hi =
---       case name of
---       "axe"      -> fast 2 $ stack [ n "~ <[0 0] [0 0 ~ 0]>" # s lo, slow 2 $ n "0*16" # s hi |* gain (sew "t f f t f f t t f f t f f t f f" "1.08" "0.85") ]
---       "ijexa"    -> n "0*16" # s (sew "t ~ t ~ f ~ f ~ . t t ~ f ~ f f ~" hi lo) -- # unit "c" # speed 8
---       "funk"     -> n "0*16" # s (sew "t ~@2 t f ~ t ~ . ~ [t ~] [f ~] ~" lo hi)
---       "maracatu" -> "~"
---       "baiao"    -> "~"
-
-
-
--- Util: bpm function
--- TODO: add fine+coarse OStageC controls for manual syncing
-let setbpm bpm = setcps (bpm / 120 / 2)
-
 :}
+
+let setbpm bpm = setcps (bpm / 120)
 
 
 :{ -- Stolen from Kindohm
