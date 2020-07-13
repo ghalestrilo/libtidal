@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/lalis/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,20 +101,20 @@ alias zshconfig="kak ~/.zshrc"
 
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval $(thefuck --alias)
-export PATH="/home/lalis/.ghcup/bin:$PATH"
-export PATH="/home/lalis/.ghcup/bin:/home/lalis/.ghcup/ghc/8.6.5/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$HOME/.ghcup/ghc/8.6.5/bin:$PATH"
 
 
 
 
 
-export NVM_DIR="/home/lalis/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
 
 # Custom Exports
-export SC_REC_DIR="/home/lalis/.local/share/SuperCollider/Recordings/"
+export SC_REC_DIR="$HOME/.local/share/SuperCollider/Recordings/"
 
 # Record Screen (Video only)
 alias rec="ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 output.mp4"
@@ -137,7 +137,9 @@ alias ff="~/.cabal/bin/feedforward 2> ~/err.txt"
 alias killdiablo='wine "C:/Games/Diablo II/Diablo II.exe"'
 alias cheatdiablo='wine "C:/Games/Diablo II/Diablo II.exe" -nosave'
 
-source /home/lalis/.config/broot/launcher/bash/br
+if [ -d $HOME/.config/broot ]; then
+	source $HOME/.config/broot/launcher/bash/br
+fi
 
 # NVM path
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
