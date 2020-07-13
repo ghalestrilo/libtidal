@@ -129,7 +129,7 @@ alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
 alias short='xdg-open https://trello.com/b/xYvCoiBo/short'
 
 # TODO: Change this to atom on ubuntu regolith, create .zshrc for ubuntu
-alias config="codium ~/git/doer/data"
+alias config="codium ~/git/dots"
 
 alias ff="~/.cabal/bin/feedforward 2> ~/err.txt"
 

@@ -59,5 +59,6 @@
       glob: true
       force: true
     ~/.config/REAPER/ProjectTemplates/tidal-tracking.RPP:
-	    path: common/tidal-tracking.RPP
-	    force: true
+      path: common/tidal-tracking.RPP
+      force: true
+

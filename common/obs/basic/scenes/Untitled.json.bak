@@ -766,23 +766,25 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.@ghalestrilo": [],
                 "libobs.hide_scene_item.Media Source": [],
                 "libobs.hide_scene_item.Microphone": [],
-                "libobs.hide_scene_item.QR": [],
+                "libobs.hide_scene_item.QR - Algorave": [],
+                "libobs.hide_scene_item.QR - Ghales": [],
                 "libobs.hide_scene_item.Reaper Out": [],
                 "libobs.hide_scene_item.Reface": [],
                 "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
+                "libobs.hide_scene_item.Texto: Chamada": [],
                 "libobs.hide_scene_item.Webcam": [],
-                "libobs.show_scene_item.@ghalestrilo": [],
                 "libobs.show_scene_item.Media Source": [],
                 "libobs.show_scene_item.Microphone": [],
-                "libobs.show_scene_item.QR": [],
+                "libobs.show_scene_item.QR - Algorave": [],
+                "libobs.show_scene_item.QR - Ghales": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Reface": [],
                 "libobs.show_scene_item.Screen": [],
                 "libobs.show_scene_item.SuperCollider": [],
+                "libobs.show_scene_item.Texto: Chamada": [],
                 "libobs.show_scene_item.Webcam": []
             },
             "id": "scene",
@@ -797,7 +799,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 25,
+                "id_counter": 26,
                 "items": [
                     {
                         "align": 5,
@@ -919,7 +921,7 @@
                         "align": 5,
                         "bounds": {
                             "x": 904.0,
-                            "y": 814.0
+                            "y": 636.0
                         },
                         "bounds_align": 0,
                         "bounds_type": 1,
@@ -933,7 +935,7 @@
                         "name": "Webcam",
                         "pos": {
                             "x": 2936.0,
-                            "y": 1346.0
+                            "y": 1524.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
@@ -959,9 +961,9 @@
                         "group_item_backup": false,
                         "id": 18,
                         "locked": false,
-                        "name": "@ghalestrilo",
+                        "name": "Texto: Chamada",
                         "pos": {
-                            "x": 2956.0,
+                            "x": 2978.0,
                             "y": 916.0
                         },
                         "private_settings": {},
@@ -1046,7 +1048,36 @@
                         "group_item_backup": false,
                         "id": 25,
                         "locked": false,
-                        "name": "QR",
+                        "name": "QR - Ghales",
+                        "pos": {
+                            "x": 2924.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 0.79307359457015991,
+                            "y": 0.79307359457015991
+                        },
+                        "scale_filter": "disable",
+                        "visible": false
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 26,
+                        "locked": false,
+                        "name": "QR - Algorave",
                         "pos": {
                             "x": 2924.0,
                             "y": 0.0
@@ -1100,16 +1131,19 @@
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "@ghalestrilo",
+            "name": "Texto: Chamada",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "log_lines": 3,
+                "color2": 4294967295,
+                "drop_shadow": true,
+                "log_lines": 1,
                 "log_mode": true,
-                "text": "https://ghales.top\n@ghalestrilo"
+                "outline": true,
+                "text": "algoravebrasil.ml"
             },
             "sync": 0,
             "volume": 1.0
@@ -1199,10 +1233,10 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.@ghalestrilo": [],
                 "libobs.hide_scene_item.Message": [],
-                "libobs.show_scene_item.@ghalestrilo": [],
-                "libobs.show_scene_item.Message": []
+                "libobs.hide_scene_item.Texto: Chamada": [],
+                "libobs.show_scene_item.Message": [],
+                "libobs.show_scene_item.Texto: Chamada": []
             },
             "id": "scene",
             "mixers": 0,
@@ -1262,7 +1296,7 @@
                         "group_item_backup": false,
                         "id": 3,
                         "locked": false,
-                        "name": "@ghalestrilo",
+                        "name": "Texto: Chamada",
                         "pos": {
                             "x": 2955.0,
                             "y": 50.0
@@ -1332,7 +1366,7 @@
             "push-to-talk-delay": 0,
             "settings": {},
             "sync": 0,
-            "volume": 1.0
+            "volume": 0.83058398962020874
         },
         {
             "deinterlace_field_order": 0,
@@ -1482,20 +1516,20 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.@ghalestrilo": [],
                 "libobs.hide_scene_item.Media Source": [],
                 "libobs.hide_scene_item.Microphone": [],
                 "libobs.hide_scene_item.Reaper Out": [],
                 "libobs.hide_scene_item.Reface": [],
                 "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
-                "libobs.show_scene_item.@ghalestrilo": [],
+                "libobs.hide_scene_item.Texto: Chamada": [],
                 "libobs.show_scene_item.Media Source": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Reface": [],
                 "libobs.show_scene_item.Screen": [],
-                "libobs.show_scene_item.SuperCollider": []
+                "libobs.show_scene_item.SuperCollider": [],
+                "libobs.show_scene_item.Texto: Chamada": []
             },
             "id": "scene",
             "mixers": 0,
@@ -1642,7 +1676,7 @@
                         "group_item_backup": false,
                         "id": 6,
                         "locked": false,
-                        "name": "@ghalestrilo",
+                        "name": "Texto: Chamada",
                         "pos": {
                             "x": 2950.0,
                             "y": 50.0
@@ -1729,7 +1763,7 @@
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "QR",
+            "name": "QR - Ghales",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
@@ -1737,6 +1771,28 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "file": "/home/lalis/git/dots/img/ghales.qr.2.png"
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "image_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "QR - Algorave",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "/home/lalis/Pictures/algobr/algobr-qr.png"
             },
             "sync": 0,
             "volume": 1.0
