@@ -107,3 +107,5 @@
   - sudo chmod 666 /dev/uinput
   - sudo apt-get install python3-autopilot
   - sudo udevadm trigger
+
+- shell: sudo update-alternatives --config x-terminal-emulator
