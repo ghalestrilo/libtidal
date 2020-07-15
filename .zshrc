@@ -65,6 +65,22 @@ ZSH_THEME="lalis"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  last-working-dir
+  copybuffer
+  # systemd
+  # colorize
+  docker-compose
+  # debian
+  # ubuntu
+  # npm
+  # nvm
+  # react-native
+  sudo
+  themes
+  tmux
+  z
+  zsh-syntax-highlighting
+  # zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh

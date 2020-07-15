@@ -63,6 +63,7 @@ nnoremap <C-Space> :vs $MYVIMRC<CR>
 let g:tidal_target = "terminal"
 
 map      <C-Enter>   :TidalSend<CR>
+map      <C-S-Enter>   :TidalSend<CR>
 
 "Tidal Syntax
 au BufRead,BufNewFile *.tidal set filetype=haskell
