@@ -11,6 +11,9 @@
   # Atom PPA
   - command: [sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable, Adding Musescore PPA]
     if: '[ ! command -v musescore ]'
+  # cava PPA
+  - command: [sudo add-apt-repository ppa:hsheth2/ppa]
+    if: '[ ! command -v cava ]'
   # SyncThing
   - command: [curl -s https://syncthing.net/release-key.txt | sudo apt-key add -, syncthing | Add the release PGP keys]
     if: '[ ! command -v syncthing ]'
@@ -22,7 +25,7 @@
   - command: [echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list, Adding Yarn PPA]
     if: '[ ! command -v yarn ]'
   # VS Codium PPA
-  - command: [ttps://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -, vscodium | Add the GPG key of the repository]
+  - command: [https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -, vscodium | Add the GPG key of the repository]
     if: '[ ! command -v vscodium ]'
   - command: [echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list, vscodium | Add the repository:]
 

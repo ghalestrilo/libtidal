@@ -43,6 +43,7 @@ ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[green]%}$DOT"
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
+ZSH_HIGHLIGHT_STYLES[cursor]='bg=white fg=black'
 # ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 # ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
 # ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
