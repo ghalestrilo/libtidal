@@ -67,3 +67,4 @@ map      <C-S-Enter>   :TidalSend<CR>
 
 "Tidal Syntax
 au BufRead,BufNewFile *.tidal set filetype=haskell
+au BufRead,BufNewFile *.tidal set ft=tidal

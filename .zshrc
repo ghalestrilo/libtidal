@@ -162,4 +162,17 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 
-alias jam="i3-msg workspace jam; exec alacritty -e sclang; exec alacritty -e cava; exec alacritty -e nvim ~/art; move up"
+
+# Start a Tidal Jam Session
+alias jam="i3-msg 'workspace jam; layout splitv; \
+    exec alacritty --title supercollider -e sclang; \
+    exec alacritty --title cava -e cava; \
+    exec alacritty --title tidal -e nvim ~/art'; \
+    exec alacritty --title cninjam -e cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack \
+  && sleep 0.2 \
+  && i3-msg '[title=tidal] focus; move left'"
+
+# Start a Tidal Jam Session
+#  alias jam="i3-msg 'workspace jam; exec alacritty -e sclang; exec alacritty -e cava; exec alacritty --title tidal -e nvim ~/art' \
+#   && sleep 0.2 \
+#   && i3-msg '[title=tidal] focus; move left'"
