@@ -1,3 +1,4 @@
 gen
-get-pip.py
-output
+*get-pip.py
+*output
+

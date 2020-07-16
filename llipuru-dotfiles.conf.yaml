@@ -1,3 +1,5 @@
+- shell: make bootstrap
+
 # # Preparing i3 config file
 # - shell:
 #   # Create Gen Folder

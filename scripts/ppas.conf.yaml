@@ -24,10 +24,15 @@
     if: '[ ! command -v yarn ]'
   - command: [echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list, Adding Yarn PPA]
     if: '[ ! command -v yarn ]'
-  # VS Codium PPA
+  # VS Codium PPA 
   - command: [https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -, vscodium | Add the GPG key of the repository]
     if: '[ ! command -v vscodium ]'
   - command: [echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list, vscodium | Add the repository:]
+
+# VS Codium
+# wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
+# echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list
+# sudo apt update && sudo apt install codium
 
 - shell:
   - [sudo apt-get update, Updating Apt Repositories]
