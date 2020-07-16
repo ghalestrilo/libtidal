@@ -21,7 +21,8 @@
       force: true
     ~/.config/alacritty/alacritty.yml:
       create: true
-      path: common/alacritty.yml
+      force: true
+      path: regolith/rhino/alacritty.yml
     ~/.config/kak/kakrc:
       path: common/kakrc
       create: true
