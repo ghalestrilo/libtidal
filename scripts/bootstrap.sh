@@ -11,3 +11,4 @@ if [ ! $(python3 -c "from simple_term_menu import TerminalMenu") ];
 	then pip install simple_term_menu;
 fi
 
+if ! command -v dotbot; then pip install dotbot; fi
