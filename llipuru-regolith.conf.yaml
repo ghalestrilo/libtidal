@@ -51,6 +51,7 @@
   - [echo Installing Node and Tools]
   - [curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash, Installing NVM]
   - [nvm install node, Installing NodeJS]
+  - source ~/.bashrc # update path to get nvm
   # - [sudo apt-get install -y nodejs, Installing NodeJS]
   # - [sudo apt-get install -y npm, Installing npm]
   # - [sudo apt-get install -y yarnpkg, Installing yarn]
@@ -66,9 +67,9 @@
   - [sudo apt-get install -y supercollider, Installing Supercollider]
   - [sudo apt-get install -y sc3-plugins, Installing SC3 Plugins]
   - [sudo apt-get install -y haskell-platform, Installing Haskell (ghc, ghci)]
-  - [sudo apt-get install -y cabal, Installing Cabal]
-  - [cabal update, Updating Cabal]
-  - [cabal install tidal, Installing Tidal]
+  - [sudo apt-get install -y cabal-install, Installing Cabal]
+    # - [cabal update, Updating Cabal]
+    # - [cabal install tidal, Installing Tidal]
 
 # Gaming
 - shell:
