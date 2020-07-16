@@ -65,6 +65,22 @@ ZSH_THEME="lalis"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  last-working-dir
+  copybuffer
+  # systemd
+  # colorize
+  docker-compose
+  # debian
+  # ubuntu
+  # npm
+  # nvm
+  # react-native
+  sudo
+  themes
+  tmux
+  z
+  zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -105,16 +121,12 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.ghcup/bin:$HOME/.ghcup/ghc/8.6.5/bin:$PATH"
 
 
-
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
-
 # Custom Exports
 export SC_REC_DIR="$HOME/.local/share/SuperCollider/Recordings/"
+export TIDAL_BOOT_PATH="$HOME/git/dots/common/boot.tidal"
 
 # Record Screen (Video only)
 alias rec="ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 output.mp4"
@@ -145,6 +157,16 @@ fi
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Start a Tidal Jam Session
+alias jam="i3-msg 'workspace jam; layout splitv; \
+    exec alacritty --title supercollider -e sclang; \
+    exec alacritty --title cava -e cava; \
+    exec alacritty --title tidal -e nvim ~/art'; \
+    exec alacritty --title cninjam -e cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack \
+  && sleep 0.2 \
+  && i3-msg '[title=tidal] focus; move left'"
 
-
-source /home/ghales/.config/broot/launcher/bash/br
+# Start a Tidal Jam Session
+#  alias jam="i3-msg 'workspace jam; exec alacritty -e sclang; exec alacritty -e cava; exec alacritty --title tidal -e nvim ~/art' \
+#   && sleep 0.2 \
+#   && i3-msg '[title=tidal] focus; move left'"

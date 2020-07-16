@@ -37,3 +37,13 @@ ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[gray]%}$DOT"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ÷" # ✂
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[green]%}|%{$fg_no_bold[green]%}"
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[green]%}$DOT"
+
+# Highlighting (https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md)
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+ZSH_HIGHLIGHT_STYLES[cursor]='bg=white fg=black'
+# ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
+# ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
+# ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue

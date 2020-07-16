@@ -1,5 +1,6 @@
 {
     "AuxAudioDevice1": {
+        "balance": 0.5,
         "deinterlace_field_order": 0,
         "deinterlace_mode": 0,
         "enabled": true,
@@ -37,6 +38,7 @@
         "volume": 0.51199990510940552
     },
     "DesktopAudioDevice1": {
+        "balance": 0.5,
         "deinterlace_field_order": 0,
         "deinterlace_mode": 0,
         "enabled": true,
@@ -63,8 +65,8 @@
         "sync": 0,
         "volume": 0.63605594635009766
     },
-    "current_program_scene": "Tidal Streaming",
-    "current_scene": "Tidal Streaming",
+    "current_program_scene": "Youtube Rec",
+    "current_scene": "Youtube Rec",
     "current_transition": "Fade",
     "groups": [],
     "modules": {
@@ -130,6 +132,7 @@
     ],
     "sources": [
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -374,6 +377,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -618,11 +622,13 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
             "filters": [
                 {
+                    "balance": 0.5,
                     "deinterlace_field_order": 0,
                     "deinterlace_mode": 0,
                     "enabled": true,
@@ -664,11 +670,13 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
             "filters": [
                 {
+                    "balance": 0.5,
                     "deinterlace_field_order": 0,
                     "deinterlace_mode": 0,
                     "enabled": true,
@@ -692,6 +700,7 @@
                     "volume": 1.0
                 },
                 {
+                    "balance": 0.5,
                     "deinterlace_field_order": 0,
                     "deinterlace_mode": 0,
                     "enabled": true,
@@ -714,6 +723,7 @@
                     "volume": 1.0
                 },
                 {
+                    "balance": 0.5,
                     "deinterlace_field_order": 0,
                     "deinterlace_mode": 0,
                     "enabled": true,
@@ -760,6 +770,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1097,6 +1108,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1122,6 +1134,7 @@
             "volume": 0.31443202495574951
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1149,11 +1162,13 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
             "filters": [
                 {
+                    "balance": 0.5,
                     "deinterlace_field_order": 0,
                     "deinterlace_mode": 0,
                     "enabled": true,
@@ -1200,6 +1215,7 @@
             "volume": 0.438975989818573
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1227,6 +1243,7 @@
             "volume": 0.47455188632011414
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1316,6 +1333,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1344,6 +1362,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1369,6 +1388,7 @@
             "volume": 0.83058398962020874
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1458,6 +1478,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1480,6 +1501,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1510,6 +1532,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1754,6 +1777,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
@@ -1776,6 +1800,7 @@
             "volume": 1.0
         },
         {
+            "balance": 0.5,
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,

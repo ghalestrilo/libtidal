@@ -29,6 +29,11 @@
   - [sudo apt-get install -y cloc, Installing CLOC]
   - [brew install scc, Installing SCC]
 
+# ZSH Plugins
+- shell:
+  - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting, Installing zsh-syntax-highlighting]
+  - [git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions, Installing zsh-autosuggestions]
+
 # Installing YTT
 - shell:
   - [brew tap k14s/tap, Adding ytt to taps]
@@ -91,6 +96,7 @@
   - [echo Installing File Tools]
   - [sudo apt-get install -y syncthing, Installing Syncthing]
   - [sudo apt-get install -y nnn, Installing nnn]
+  - [sudo apt-get install -y fd-find, Installing fd-find]
   - [brew install broot, Installing broot]
   - [sudo apt-get install -y zathura, Installing zathura]
 
@@ -108,3 +114,6 @@
   - sudo chmod 666 /dev/uinput
   - sudo apt-get install python3-autopilot
   - sudo udevadm trigger
+
+# - shell: sudo update-alternatives --config x-terminal-emulator
+- shell: sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty  

@@ -7,15 +7,16 @@ Plug 'scrooloose/nerdcommenter' "Commenting Tool
 "Plug 'w0rp/ale'                 "Linting
 Plug 'kien/ctrlp.vim'           "File Search
 
-Plug 'junegunn/goyo.vim'        "Focus Mode
+"Plug 'junegunn/goyo.vim'        "Focus Mode
 "Plug 'junegunn/limelight.vim'   "Block-Scoped Highlighting
-Plug 'elentok/plaintasks.vim'   "TEST: .todo format
+"Plug 'elentok/plaintasks.vim'   "TEST: .todo format
 
 "--------------------------------- SYNTAX
-Plug 'rhysd/vim-crystal'
+"Plug 'rhysd/vim-crystal'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
-Plug 'ElmCast/elm-vim'
+"Plug 'ElmCast/elm-vim'
+Plug 'tidalcycles/vim-tidal'
 
 syntax on
 filetype plugin indent on
@@ -40,9 +41,9 @@ set shiftwidth=4
 
 "colorscheme znake "haskell
 "colorscheme maui  "haskell
-"colorscheme mustang "default
+colorscheme mustang "default
 "colorscheme gruvbox
-colorscheme lucid   "default alt
+"colorscheme lucid   "default alt
 
 
 
@@ -57,3 +58,13 @@ nnoremap <C-f>     :Goyo<CR>
 nnoremap <C-\>     :TagbarToggle<CR>
 nnoremap <C-C>     :colorscheme 
 nnoremap <C-Space> :vs $MYVIMRC<CR>
+
+"Tidal Config
+let g:tidal_target = "terminal"
+
+map      <C-Enter>   :TidalSend<CR>
+map      <C-S-Enter>   :TidalSend<CR>
+
+"Tidal Syntax
+au BufRead,BufNewFile *.tidal set filetype=haskell
+au BufRead,BufNewFile *.tidal set ft=tidal
