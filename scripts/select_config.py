@@ -8,9 +8,10 @@ def list_files(directory="."):
     and file.endswith(".conf.yaml"))
 
 def main():
+  configdir = "configs"
   cli = Bullet(
     prompt = "\nChoose your config (wisely):",
-    choices = list(list_files()),
+    choices = list(list_files(configdir)),
     indent = 0,
     align = 5,
     margin = 2,
@@ -24,7 +25,7 @@ def main():
 	  pad_right = 2
   )
   choice = cli.launch()
-  os.system("dotbot -d . -c " + choice)
+  os.system("dotbot -d . -c " + os.path.join(configdir, choice))
 
 if __name__ == "__main__":
   main()
