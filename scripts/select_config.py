@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
 import os
-from simple_term_menu import TerminalMenu
+from bullet import Bullet
+from bullet import colors
 
 def list_files(directory="."):
   return (file for file in os.listdir(directory)
@@ -8,10 +8,23 @@ def list_files(directory="."):
     and file.endswith(".conf.yaml"))
 
 def main():
-  print("Select config:")
-  terminal_menu = TerminalMenu(list_files(), preview_size=0.75)
-  terminal_menu.show()
-
+  cli = Bullet(
+    prompt = "\nPlease choose a demo: ",
+    choices = list(list_files()),
+    indent = 0,
+    align = 5,
+    margin = 2,
+    bullet = ">",
+    # bullet_color=colors.bright(colors.foreground["red"]),
+    # word_color=colors.bright(colors.foreground["yellow"]),
+	  # word_on_switch=colors.bright(colors.foreground["green"]),
+    # background_color=colors.background["black"],
+    # background_on_switch=colors.background["black"],
+	  pad_right = 2
+  )
+  result = cli.launch()
+  return result
 
 if __name__ == "__main__":
   main()
+

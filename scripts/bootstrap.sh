@@ -7,8 +7,8 @@ fi
 
 if ! command -v pip; then python3 get-pip.py; fi
 
-if [ ! $(python3 -c "from simple_term_menu import TerminalMenu") ];
-	then pip install simple_term_menu;
+if [ ! $(python3 -c "from bullet import Bullet") ];
+	then pip install bullet;
 fi
 
 if ! command -v dotbot; then pip install dotbot; fi
