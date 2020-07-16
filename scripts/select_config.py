@@ -9,21 +9,22 @@ def list_files(directory="."):
 
 def main():
   cli = Bullet(
-    prompt = "\nPlease choose a demo: ",
+    prompt = "\nChoose your config (wisely):",
     choices = list(list_files()),
     indent = 0,
     align = 5,
     margin = 2,
     bullet = ">",
-    # bullet_color=colors.bright(colors.foreground["red"]),
+    bullet_color=colors.bright(colors.foreground["yellow"]),
     # word_color=colors.bright(colors.foreground["yellow"]),
-	  # word_on_switch=colors.bright(colors.foreground["green"]),
+	  word_on_switch=colors.bright(colors.foreground["yellow"]),
     # background_color=colors.background["black"],
-    # background_on_switch=colors.background["black"],
+    # 
+    background_on_switch=colors.background["black"],
 	  pad_right = 2
   )
-  result = cli.launch()
-  return result
+  choice = cli.launch()
+  os.system("dotbot -d . -c " + choice)
 
 if __name__ == "__main__":
   main()
