@@ -121,16 +121,12 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.ghcup/bin:$HOME/.ghcup/ghc/8.6.5/bin:$PATH"
 
 
-
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
-
 # Custom Exports
 export SC_REC_DIR="$HOME/.local/share/SuperCollider/Recordings/"
+export TIDAL_BOOT_PATH="$HOME/git/dots/common/boot.tidal"
 
 # Record Screen (Video only)
 alias rec="ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 output.mp4"
@@ -160,8 +156,6 @@ fi
 # NVM path
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-
 
 # Start a Tidal Jam Session
 alias jam="i3-msg 'workspace jam; layout splitv; \
