@@ -12,89 +12,32 @@ hSetEncoding stdout utf8
 
 
 tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
+-- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
+
+:script /home/lalis/git/dots/common/tidal/core.tidal
 
 -------------------------------------------------------- LIB
 
--- Varargs implementation
-:set -XMultiParamTypeClasses
-:set -XFunctionalDependencies
-:set -XFlexibleInstances
-:{
-class Listable a r  | r -> a where
-    makelist' :: [a] -> a -> r
-instance Listable a [a] where
-    makelist' l x = reverse $ x:l
-instance Listable a r => Listable a (a->r) where
-    makelist' l x y = makelist'(x:l) y
--- @va x...@ varargs function
-va x = makelist' [] x
-build x = makelist' [] x
-  :}
+:script /home/lalis/git/dots/common/tidal/varargs.tidal
+:script /home/lalis/git/dots/common/tidal/mixer.tidal
+:script /home/lalis/git/dots/common/tidal/rhythm.tidal
+:script /home/lalis/git/dots/common/tidal/ux.tidal
+:script /home/lalis/git/dots/common/tidal/instruments.tidal
 
 
--- MULTI-TIDAL CONFIG
--- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
 
 
-:{ -------------------------------------------------------------------- Basic boot.hs
-let p = streamReplace tidal
-    hush = streamHush tidal
-    list = streamList tidal
-    mute = streamMute tidal
-    unmute = streamUnmute tidal
-    solo = streamSolo tidal
-    unsolo = streamUnsolo tidal
-    once = streamOnce tidal
-    asap = once
-    nudgeAll = streamNudgeAll tidal
-    all = streamAll tidal
-    resetCycles = streamResetCycles tidal
-    setcps = asap . cps
-    xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i
-    xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i
-    histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i
-    wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i
-    waitT i f t = transition tidal True (Sound.Tidal.Transition.waitT f t) i
-    jump i = transition tidal True (Sound.Tidal.Transition.jump) i
-    jumpIn i t = transition tidal True (Sound.Tidal.Transition.jumpIn t) i
-    jumpIn' i t = transition tidal True (Sound.Tidal.Transition.jumpIn' t) i
-    jumpMod i t = transition tidal True (Sound.Tidal.Transition.jumpMod t) i
-    mortal i lifespan release = transition tidal True (Sound.Tidal.Transition.mortal lifespan release) i
-    interpolate i = transition tidal True (Sound.Tidal.Transition.interpolate) i
-    interpolateIn i t = transition tidal True (Sound.Tidal.Transition.interpolateIn t) i
-    clutch i = transition tidal True (Sound.Tidal.Transition.clutch) i
-    clutchIn i t = transition tidal True (Sound.Tidal.Transition.clutchIn t) i
-    anticipate i = transition tidal True (Sound.Tidal.Transition.anticipate) i
-    anticipateIn i t = transition tidal True (Sound.Tidal.Transition.anticipateIn t) i
-    forId i t = transition tidal False (Sound.Tidal.Transition.mortalOverlay t) i
-    d1 = p 1 . (|< orbit 0)
-    d2 = p 2 . (|< orbit 1)
-    d3 = p 3 . (|< orbit 2)
-    d4 = p 4 . (|< orbit 3)
-    d5 = p 5 . (|< orbit 4)
-    d6 = p 6 . (|< orbit 5)
-    d7 = p 7 . (|< orbit 6)
-    d8 = p 8 . (|< orbit 7)
-    d9 = p 9 . (|< orbit 8)
-:}
-
-:{
-let setI = streamSetI tidal
-    setF = streamSetF tidal
-    setS = streamSetS tidal
-    setR = streamSetI tidal
-    setB = streamSetB tidal
-:}
 
 -- TODO: fix song method
   -- normalize array before calling structureSong
-:{ -------------------------------------------------------------------- Song Structure
-  let measures n p ms = (n, p):ms
-      loopend n p = measures n p []
-      structureSong st [] = []
-      structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps)
-      songLoop ms = seqPLoop $ structureSong 0 ms -- TODO: sloop?
-      song ms = seqP $ structureSong 0 ms
+-------------------------------------------------------------------- Song Structure
+:{
+let measures n p ms = (n, p):ms
+    loopend n p = measures n p []
+    structureSong st [] = []
+    structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps)
+    songLoop ms = seqPLoop $ structureSong 0 ms -- TODO: sloop?
+    song ms = seqP $ structureSong 0 ms
 :}
 
 -- tophrase :: phr r -> Pattern
@@ -103,121 +46,13 @@ let setI = streamSetI tidal
 let tophrase phr r = n (r +| phr)
 
 
+-------------------------------------------------------------------- Melody?
 -- | ON - Apply a function to a pattern when a tag is found "1 2 3 4:1" (1 is the tag, denoted by :)
 :{
 let tag = pI "tag"
     ntag = grp [mF "note", mI "tag"]
     phrase = "{16 14 11 0 ~     16 14 11 4 6 7 6 7 9 7 9 11:1 ~   16:1 14 11:1 6:2 ~ }%8"
     on tagname lambda = fix lambda (tag tagname)
-:}
-
-
-
-
-
-
-
-
-
-
-
-:{ -------------------------------------------------------------------- Faders
-let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
-    vx n = cF 0 $ "v" ++ (show n) -- Maps ID to Volume Fader
-    -- px n = cF 0 $ "p" ++ (show n) -- Maps ID to Pan Knob
-    px n = cF0 $ "px" ++ (show n) -- Maps ID to Pad X
-    py n = cF0 $ "py" ++ (show n) -- Maps ID to Pad X
-:}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:{ -------------------------------------------------------------------- Tonal Defs
-let bus' rv sv = room (cF rv "room") # size (cF sv "size") # orbit 0
-    bus = bus' 0.1 0.1
-    fader vol = gain (vol |* cF 1 "master")
-    root = 5
-    mode = "chromatic"
-    tonal scalename pat = (note . (|+ root) . scale scalename) pat
-let t = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
-:}
-
-
-
-
-
-
-
-
-
-
- -------------------------------------------------------------------- Instruments
-:{
-let vk = s "vk" # n 3
-    vs = s "vs" # n 117
-    vh = s "vh" # n 2 # sus 0.08
-    vo = s "vh" # n 15 # sus 1
-    gretsch x = n x # s "gretsch" # bus
-    piano x = tonal mode x # s "superpiano" # lpf 450 # bus # octave 5
-    vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
-:}
-
-:{
--- Midi Instruments
-let mm = s "mm" # orbit 0 # midichan 0
-    reface = s "reface" # orbit 0 # midichan 0
-:}
-
--- Rhythm Builders | rd: rhythm define
-:{
-let rhythm' f x = map f . build x -- builds a rhythm passing a pattern builder and the voices
-    rhythm x = rhythm n -- whar?
-    gs pat a b = gain $ sew pat a b -- Helper function (gain . sew)
-    l = build
-    rd' f name patlist = (name, map f patlist)
-    rd = rd' id
-:}
-
- -- RHYTHM DICTIONARY
-:{
-let rhythms = Map.fromList $ l
-      (rd "axe"      $ l "~ <[0 0] [0 0 ~ 0]>" (slow 2 $ "0*16" # gs "t f f t f f t t f f t f f t f f" "1.08" "0.85") "~")
-      (rd "baiao"    $ l "0@3 0@5" ("0*4" # gs "f!2 t f" "0.8" "1"))
-      (rd "brega"    $ l "0*2" "~@3 0 . ~ 0")
-      (rd "ijexa"    $ l "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~")
-      (rd "funk"     $ l "0(3,8) . ~ [0 ~] ~@2" "[~ 0]*2")
-      (rd "funk150"  $ l "[t@3 ~@5 . ~ <~ t>@2 [~ <t ~>]]/2" "[~@3 f@3 f@2 . ~ f]/2")
-      (rd "capoeira" $ l "~ ~ 0 ~" "~ ~ ~ 0")
-      (rd "house"    $ l "0*2" "~ 0" "[~ 0]*2" ("[0 0 ~ 0]*2" |* gain 0.8))
-      (rd' (slow (7/4))
-        "t1" $ l "0@6 0@8" "~@3 0@3 ~@8" ("[0!3 ~]!3 <0 [0*2]>@0.5" # rel 0.2))
-      (rd' (slow (7/4))
-        "t2" $ l
-          ("0@6 0!2 ~@6" |* rel "1 0.4")
-          ("~@3 0@3 ~@4 0!2 ~@2" # gain "1 0.8" |* rel "1 0.3")
-          ("[0!3 ~]!3 <0 [0*2]>@0.5" # rel 0.2))
-:}
-
-:{
-let r rname = (stack . zipWith (\pat inst -> pat # inst) rdef)
-                -- where rdef = Map.findWithDefault [("~" # gain 0)] rname rhythms
-                where rdef = case Map.lookup rname rhythms of
-                              Just p -> p
-                              Nothing -> do [("~" # gain 0)]
-    -- r rname = (stack . zipWith (\pat inst -> pat # inst) rname)
-    r' f rname = r rname . map f -- r': r but receives a function
-    -- rs rname = r rname . map s . build                               -- rs: r' passing s (default)
-    rs = r' s                               -- rs: r' passing s (default)
 :}
 
 -- (sometimes) Probability helpers
@@ -228,19 +63,9 @@ let se x y = sometimesBy x . every y
     -- (##) = sbh 1
 :}
 
--- UX
+
+-- Stolen from Kindohm
 :{
-let help = print ["ritmos", "tldr", "scaleList"]
-    wtf = help
-    fuck = help
-    ritmos = print $ Map.keys rhythms
-    tldr = print "to be done :)"
-:}
-
-let setbpm bpm = setcps (bpm / 120)
-
-
-:{ -- Stolen from Kindohm
 let gtfo = (const $ s "~")
     g = gtfo
 :}

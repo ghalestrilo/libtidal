@@ -1,0 +1,10 @@
+-- UX
+:{
+let help = print ["ritmos", "tldr", "scaleList"]
+    wtf = help
+    fuck = help
+    ritmos = print $ Map.keys rhythms
+    tldr = print "to be done :)"
+:}
+
+let setbpm bpm = setcps (bpm / 120)

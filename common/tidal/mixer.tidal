@@ -1,0 +1,15 @@
+:{ -------------------------------------------------------------------- Faders
+let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
+    vx n = cF 0 $ "v" ++ (show n) -- Maps ID to Volume Fader
+    -- px n = cF 0 $ "p" ++ (show n) -- Maps ID to Pan Knob
+    px n = cF0 $ "px" ++ (show n) -- Maps ID to Pad X
+    py n = cF0 $ "py" ++ (show n) -- Maps ID to Pad X
+:}
+
+:{ -------------------------------------------------------------------- Tonal Defs
+let bus' rv sv = room (cF rv "room") # size (cF sv "size") # orbit 0
+    bus = bus' 0.1 0.1
+    fader vol = gain (vol |* cF 1 "master")
+    tonal = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
+-- let t = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
+:}
