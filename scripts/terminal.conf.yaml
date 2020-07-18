@@ -1,0 +1,41 @@
+# Installing Terminal Tools
+- shell:
+  - [/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Installing Homebrew]
+  - ["if [ ! command -v alacritty ]; then sudo apt-get install -y alacritty; fi", Installing alacritty]
+  - ["if [ ! command -v alacritty ]; then gsettings set org.gnome.desktop.default-applications.terminal exec alacritty; fi", Making Alacritty the default terminal]
+  - "if [ command -v alacritty ]; then sudo update-alternatives --set x-terminal-emulator $(which alacritty); fi"
+  - ["if [ ! command -v zsh: ]; then sudo apt-get install -y zsh; fi", Installing zsh]
+  - [chsh -s $(which zsh), Making zsh default shell]
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
+  - ["if [ ! command -v thefuck: ]; then sudo apt-get install -y thefuck; fi", Installing thefuck]
+  - ["if [ ! command -v tldr ];     then sudo apt-get install -y tldr; fi",    Installing tldr]
+  - ["if [ ! command -v tig ];      then sudo apt-get install -y tig; fi",     Installing tig]
+  - ["if [ ! command -v httpie ];   then sudo apt-get install -y httpie; fi",  Installing HTTPie]
+  - ["if [ ! command -v cloc ];     then sudo apt-get install -y cloc; fi",    Installing CLOC]
+  - [brew install scc, Installing SCC]
+
+
+# ZSH Plugins
+- shell:
+  - ["git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting", Installing zsh-syntax-highlighting]
+  - ["git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions", Installing zsh-autosuggestions]
+
+# Dev Tools
+- shell:
+  - [echo Installing Dev Tools]
+  - [sudo apt-get install -y docker.io, Installing Docker]
+  - [sudo systemctl start docker, Starting docker engine]
+  - [sudo systemctl enable docker, Enabling docker module]
+  - [sudo usermod -aG docker \$(whoami), Adding self to docker group]
+  - [sudo apt-get install -y docker-compose, Installing docker-compose]
+  - [sudo apt-get install -y leiningen, Installing leiningen]
+  - [snap install insomnia, Installing Insomnia]
+
+# Office and Misc Tools
+- shell:
+  - [echo Installing File Tools]
+  - [sudo apt-get install -y syncthing, Installing Syncthing]
+  - [sudo apt-get install -y nnn, Installing nnn]
+  - [sudo apt-get install -y fd-find, Installing fd-find]
+  - [brew install broot, Installing broot]
+  - [sudo apt-get install -y zathura, Installing zathura]

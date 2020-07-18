@@ -1,0 +1,13 @@
+
+# Gaming
+- shell:
+  - [echo Setting up gaming stuff]
+  - ["if [ ! command -v wine ]; then sudo apt-get install -y wine; fi", Installing Wine]
+  - ["if [ ! command -v steam ]; then sudo apt-get install -y steam; fi", Installing Steam]
+  # - ["if [ ! command -v retroach ]; then sudo apt-get install -y retroach; fi", Installing Retroarch]
+
+# Steam Stuff (https://steamcommunity.com/app/221410/discussions/0/1693795812304458372/)
+- shell:
+  - sudo chmod 666 /dev/uinput
+  - sudo apt-get install python3-autopilot
+  - sudo udevadm trigger
