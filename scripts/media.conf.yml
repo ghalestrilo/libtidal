@@ -5,6 +5,11 @@
   - ["if [ ! comand -v cmus ]; then sudo apt-get install -y cmus; fi", Installing cmus]
   - ["if [ ! comand -v cava ]; then sudo apt-get install -y cava; fi" , Installing cava]
 
+- shell:
+  - ["if [ ! comand -v cadence ]; then sudo apt-get install -y cadence; fi", Installing Cadence]
+  - ["if [ ! comand -v catia ]; then sudo apt-get install -y catia; fi", Installing Catia]
+  - ["if [ ! comand -v claudia ]; then sudo apt-get install -y claudia; fi", Installing Claudia]
+
 # Live Coding Set
 - shell:
   - [echo Setting up Tidal]

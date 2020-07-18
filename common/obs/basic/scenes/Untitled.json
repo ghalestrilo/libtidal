@@ -126,44 +126,17 @@
             "deinterlace_mode": 0,
             "enabled": true,
             "flags": 0,
-            "hotkeys": {},
-            "id": "xshm_input",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Screen",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {},
-            "sync": 0,
-            "versioned_id": "xshm_input",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
             "hotkeys": {
-                "MediaSource.Pause": [],
-                "MediaSource.Play": [],
-                "MediaSource.Restart": [],
-                "MediaSource.Stop": [],
                 "libobs.mute": [],
                 "libobs.push-to-mute": [],
                 "libobs.push-to-talk": [],
                 "libobs.unmute": []
             },
-            "id": "ffmpeg_source",
+            "id": "jack_output_capture",
             "mixers": 255,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Redmi",
+            "name": "Mic",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -171,11 +144,10 @@
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "input": "http://192.168.25.131:8080/mjpeg",
-                "is_local_file": false
+                "channels": 1
             },
             "sync": 0,
-            "versioned_id": "ffmpeg_source",
+            "versioned_id": "jack_output_capture",
             "volume": 1.0
         },
         {
@@ -206,7 +178,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 6,
+                "id_counter": 7,
                 "items": [
                     {
                         "align": 5,
@@ -308,16 +280,20 @@
             "enabled": true,
             "flags": 0,
             "hotkeys": {
+                "MediaSource.Pause": [],
+                "MediaSource.Play": [],
+                "MediaSource.Restart": [],
+                "MediaSource.Stop": [],
                 "libobs.mute": [],
                 "libobs.push-to-mute": [],
                 "libobs.push-to-talk": [],
                 "libobs.unmute": []
             },
-            "id": "jack_output_capture",
+            "id": "ffmpeg_source",
             "mixers": 255,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Mic",
+            "name": "Redmi",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -325,10 +301,34 @@
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "channels": 1
+                "input": "http://192.168.25.131:8080/mjpeg",
+                "is_local_file": false
             },
             "sync": 0,
-            "versioned_id": "jack_output_capture",
+            "versioned_id": "ffmpeg_source",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "xshm_input",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Screen",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {},
+            "sync": 0,
+            "versioned_id": "xshm_input",
             "volume": 1.0
         }
     ],
