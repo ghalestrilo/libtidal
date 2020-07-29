@@ -6,5 +6,7 @@ export BROWSER=/usr/bin/brave
 export TERMINAL=/usr/bin/alacritty
 export TERM=/usr/bin/alacritty
 
+export QT_SCREEN_SCALE_FACTORS=2 
+
 setxkbmap -layout us,br
 setxkbmap -option 'grp:alt_shift_toggle'

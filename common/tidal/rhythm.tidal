@@ -8,17 +8,33 @@ let rhythm' f x = map f . build x -- builds a rhythm passing a pattern builder a
     rd = rd' id
 :}
 
+
+
+-- TODO: Rhythm variations
+:{
+let var = pI "var"
+    getVariation pat = maybe 0 ivalue <$> Map.lookup "var" <$> pat
+:}
+-- pass this into pickF (?)
+-- in getVariation $ n "0 1 2" # var 4
+
+
  -- RHYTHM DICTIONARY
 :{
 let rhythms = Map.fromList $ l
       (rd "axe"      $ l "~ <[0 0] [0 0 ~ 0]>" (slow 2 $ "0*16" # gs "t f f t f f t t f f t f f t f f" "1.08" "0.85") "~")
       (rd "baiao"    $ l "0@3 0@5" ("0*4" # gs "f!2 t f" "0.8" "1"))
-      (rd "brega"    $ l "0*2" "~@3 0 . ~ 0")
+      (rd "brega"    $ l "0*2" "~@3 0 . ~ 0" "[0 0 0  ~]*2")
       (rd "ijexa"    $ l "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~")
       (rd "funk"     $ l "0(3,8) . ~ [0 ~] ~@2" "[~ 0]*2")
       (rd "funk150"  $ l "[t@3 ~@5 . ~ <~ t>@2 [~ <t ~>]]/2" "[~@3 f@3 f@2 . ~ f]/2")
       (rd "capoeira" $ l "~ ~ 0 ~" "~ ~ ~ 0")
       (rd "house"    $ l "0*2" "~ 0" "[~ 0]*2" ("[0 0 ~ 0]*2" |* gain 0.8))
+      (rd "mrct1"    $ l
+          "<[x@3 x@5] [[~ x]!2 . <x x>]>"
+          "<x>@3 x"
+          (fast 2 $ "x*4" # gain "1 0.8 0.9 0.8")
+          (stack ["x*2", fast 2 $ "[~ x]*<1 1 2 1>" |+ up 5]))
       (rd' (slow (7/4))
         "t1" $ l "0@6 0@8" "~@3 0@3 ~@8" ("[0!3 ~]!3 <0 [0*2]>@0.5" # rel 0.2))
       (rd' (slow (7/4))
@@ -28,14 +44,13 @@ let rhythms = Map.fromList $ l
           ("[0!3 ~]!3 <0 [0*2]>@0.5" # rel 0.2))
 :}
 
+-- rs: play a rhythm with a list of sounds
 :{
-let r rname = (stack . zipWith (\pat inst -> pat # inst) rdef)
-                -- where rdef = Map.findWithDefault [("~" # gain 0)] rname rhythms
-                where rdef = case Map.lookup rname rhythms of
-                              Just p -> p
-                              Nothing -> do [("~" # gain 0)]
-    -- r rname = (stack . zipWith (\pat inst -> pat # inst) rname)
-    r' f rname = r rname . map f -- r': r but receives a function
-    -- rs rname = r rname . map s . build                               -- rs: r' passing s (default)
-    rs = r' s                               -- rs: r' passing s (default)
+let playrhythm rdef = (stack . zipWith (\pat inst -> pat # inst) rdef)
+    findrhythm rname = case Map.lookup rname rhythms of
+                          Just p -> p
+                          Nothing -> do [("~" # gain 0)]
+    r = playrhythm . findrhythm
+    r' f rname = r rname . map f
+    rs = r' s
 :}
