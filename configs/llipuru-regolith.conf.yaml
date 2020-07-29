@@ -1,7 +1,6 @@
 - clean: ['~']
 - clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
 
-
 - shell:
   # - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
   # - [dotbot -d . -c scripts/ fonts.conf.yaml, Adding Fonts]
@@ -17,7 +16,6 @@
 
 - shell:
   - [dotbot -d . -c llipuru-regolith-dotfiles.conf.yaml, Linking Configs]
-
 
 # Link local.properties to Android Projects
 - link:

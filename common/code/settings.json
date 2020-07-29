@@ -5,7 +5,6 @@
   "terminal.integrated.fontSize": 14,
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Nord",
   // "editor.fontFamily": "Connection Regular",
   // "editor.fontFamily": "Telegrama Raw",    
   // "editor.insertSpaces": false,
@@ -43,10 +42,14 @@
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.statusBar.enabled": false,
   "eslint.format.enable": true,
+  "workbench.colorTheme": "Nord",
   /*
   "bracket-pair-colorizer-2.colors": [
     "#222233"
   ],
   "bracket-pair-colorizer-2.hightlightActiveScope": true
   */
+
+  "sync.ignoredExtensions": [],
+  "editor.formatOnSave": true,
 }

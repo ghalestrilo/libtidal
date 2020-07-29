@@ -1,7 +1,7 @@
 # Media Tools
 - shell:
   - ["if [ ! comand -v obs ]; then sudo apt-get install -y obs-studio; fi", Installing OBS]
-  - ["if [ ! comand -v musescore ]; then sudo apt-get install -y musescore3; fi", Installing Musescore]
+  - ["if [ ! comand -v musescore3 ]; then sudo apt-get install -y musescore3; fi", Installing Musescore]
   - ["if [ ! comand -v cmus ]; then sudo apt-get install -y cmus; fi", Installing cmus]
   - ["if [ ! comand -v cava ]; then sudo apt-get install -y cava; fi" , Installing cava]
 
@@ -9,6 +9,7 @@
   - ["if [ ! comand -v cadence ]; then sudo apt-get install -y cadence; fi", Installing Cadence]
   - ["if [ ! comand -v catia ]; then sudo apt-get install -y catia; fi", Installing Catia]
   - ["if [ ! comand -v claudia ]; then sudo apt-get install -y claudia; fi", Installing Claudia]
+  - sudo apt install qjackctl pulseaudio-module-jack # Jack Sink for Pulseaudio
 
 # Live Coding Set
 - shell:

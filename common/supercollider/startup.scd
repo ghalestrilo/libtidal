@@ -1,12 +1,11 @@
-~portonyx = MIDIOut.findPort("reface CP", "reface CP MIDI 1");
-~portreface = MIDIOut.findPort("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
+~portreface = MIDIOut.findPort("reface CP", "reface CP MIDI 1");
+~portonyx = MIDIOut.findPort("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
 ~portmm = MIDIOut.findPort("MicroMonsta", "MicroMonsta MIDI 1");
 
 Quarks.update("SuperDirt");
 include("SuperDirt");
 
 s.options.device_("JackRouter");
-
 
 s.options.memSize = 8192 * 16;
 s.options.numBuffers = 1024 * 16;
@@ -35,13 +34,13 @@ s.waitForBoot {
 
 	MIDIClient.init;
 
-	if (~portonyx != nil, {
+	if (~portreface!= nil, {
 		~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
 		~dirt.soundLibrary.addMIDI(\reface, ~reface);
 		~reface.latency = 0;
 	});
 
-	if (~portreface != nil, {
+	if (~portonyx != nil, {
 		~onyx = MIDIOut.newByName("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
 		~onyx.latency = 0;
 		~dirt.soundLibrary.addMIDI(\onyx, ~onyx);
