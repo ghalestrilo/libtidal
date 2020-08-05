@@ -23,6 +23,16 @@ tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", o
 :script /home/ghales/git/dots/common/tidal/rhythm.tidal
 :script /home/ghales/git/dots/common/tidal/ux.tidal
 :script /home/ghales/git/dots/common/tidal/instruments.tidal
+:script /home/ghales/git/dots/common/tidal/song.tidal
+
+-- :script /home/lalis/git/dots/common/tidal/varargs.tidal
+-- :script /home/lalis/git/dots/common/tidal/mixer.tidal
+-- :script /home/lalis/git/dots/common/tidal/rhythm.tidal
+-- :script /home/lalis/git/dots/common/tidal/ux.tidal
+-- :script /home/lalis/git/dots/common/tidal/instruments.tidal
+-- :script /home/lalis/git/dots/common/tidal/song.tidal
+
+
 
 
 
@@ -38,20 +48,8 @@ let measures n p ms = (n, p):ms
     song ms = seqP $ structureSong 0 ms
 :}
 
--- tophrase :: phr r -> Pattern
---   @receives: a phrase and a root
---   @returns: a pattern made by the phrase offsetted by given root
-let tophrase phr r = n (r +| phr)
-
 
 -------------------------------------------------------------------- Melody?
--- | ON - Apply a function to a pattern when a tag is found "1 2 3 4:1" (1 is the tag, denoted by :)
-:{
-let tag = pI "tag"
-    ntag = grp [mF "note", mI "tag"]
-    phrase = "{16 14 11 0 ~     16 14 11 4 6 7 6 7 9 7 9 11:1 ~   16:1 14 11:1 6:2 ~ }%8"
-    on tagname lambda = fix lambda (tag tagname)
-:}
 
 -- (sometimes) Probability helpers
 :{
