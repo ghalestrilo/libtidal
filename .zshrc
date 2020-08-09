@@ -126,7 +126,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Custom Exports
 export SC_REC_DIR="$HOME/.local/share/SuperCollider/Recordings/"
-export TIDAL_BOOT_PATH="$HOME/git/dots/common/boot.tidal"
+export TIDAL_BOOT_PATH="$HOME/git/dots/tidal/boot.tidal"
 
 # Record Screen (Video only)
 alias rec="ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 output.mp4"
