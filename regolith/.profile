@@ -27,4 +27,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-export QT_SCREEN_SCALE_FACTORS=2 
+# 4k resolution
+if [ $(hostname) = 'llipuru' ]; then
+  export QT_SCREEN_SCALE_FACTORS=2 
+fi 

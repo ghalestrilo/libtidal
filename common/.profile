@@ -6,7 +6,10 @@ export BROWSER=/usr/bin/brave
 export TERMINAL=/usr/bin/alacritty
 export TERM=/usr/bin/alacritty
 
-export QT_SCREEN_SCALE_FACTORS=2 
+# 4k resolution
+if [ $(hostname) = 'llipuru' ]; then
+  export QT_SCREEN_SCALE_FACTORS=2 
+fi 
 
 setxkbmap -layout us,br
 setxkbmap -option 'grp:alt_shift_toggle'

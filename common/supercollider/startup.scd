@@ -1,12 +1,12 @@
-~portonyx = MIDIOut.findPort("reface CP", "reface CP MIDI 1");
-~portreface = MIDIOut.findPort("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
+~portreface = MIDIOut.findPort("reface CP", "reface CP MIDI 1");
+~portonyx = MIDIOut.findPort("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
 ~portmm = MIDIOut.findPort("MicroMonsta", "MicroMonsta MIDI 1");
+~usesoftsynths = true;
 
 Quarks.update("SuperDirt");
 include("SuperDirt");
 
 s.options.device_("JackRouter");
-
 
 s.options.memSize = 8192 * 16;
 s.options.numBuffers = 1024 * 16;
@@ -21,8 +21,9 @@ s.options.numInputBusChannels = 2;
 OSCdef(\controltidal, { arg msg; NetAddr.new("localhost", 6010).sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.localAddr );
 
 
-
-
+/*~soft = MIDIOut.newByName("qmidiroute", "in");
+~soft.latency = -1;
+~dirt.soundLibrary.addMIDI(\smidi, ~soft);*/
 
 s.waitForBoot {
 	~dirt = SuperDirt(2, s);
@@ -35,13 +36,13 @@ s.waitForBoot {
 
 	MIDIClient.init;
 
-	if (~portonyx != nil, {
+	if (~portreface!= nil, {
 		~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
 		~dirt.soundLibrary.addMIDI(\reface, ~reface);
 		~reface.latency = 0;
 	});
 
-	if (~portreface != nil, {
+	if (~portonyx != nil, {
 		~onyx = MIDIOut.newByName("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
 		~onyx.latency = 0;
 		~dirt.soundLibrary.addMIDI(\onyx, ~onyx);
@@ -53,6 +54,16 @@ s.waitForBoot {
 		~mm.latency = 0;
 		// MIDIClient.sources[4].connect(1);
 		~dirt.soundLibrary.addMIDI(\mm, ~mm);
+	});
+
+	if (~usesoftsynths == true, {
+		~sco0 = MIDIOut.newByName("SuperCollider", "in0");
+		~sco0.latency = 0;
+		~dirt.soundLibrary.addMIDI(\sco0, ~sco0);
+
+		~sco1 = MIDIOut.newByName("SuperCollider", "in1");
+		~sco1.latency = 0;
+		~dirt.soundLibrary.addMIDI(\sco1, ~sco1);
 	});
 };
 
