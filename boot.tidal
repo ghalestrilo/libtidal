@@ -1,0 +1,70 @@
+:set -XOverloadedStrings
+:set prompt ""
+:set prompt-cont ""
+
+-- import qualified Data.Map as Map
+-- TODO: Song (parts) logic
+import qualified Data.Map as Map
+import Sound.Tidal.Context
+import System.IO (hSetEncoding, stdout, utf8)
+hSetEncoding stdout utf8
+
+
+
+tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
+-- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
+
+:script /home/ghales/git/dots/common/tidal/core.tidal
+
+-------------------------------------------------------- LIB
+
+:script /home/ghales/git/dots/common/tidal/varargs.tidal
+:script /home/ghales/git/dots/common/tidal/mixer.tidal
+:script /home/ghales/git/dots/common/tidal/rhythm.tidal
+:script /home/ghales/git/dots/common/tidal/ux.tidal
+:script /home/ghales/git/dots/common/tidal/instruments.tidal
+:script /home/ghales/git/dots/common/tidal/song.tidal
+
+-- :script /home/lalis/git/dots/common/tidal/varargs.tidal
+-- :script /home/lalis/git/dots/common/tidal/mixer.tidal
+-- :script /home/lalis/git/dots/common/tidal/rhythm.tidal
+-- :script /home/lalis/git/dots/common/tidal/ux.tidal
+-- :script /home/lalis/git/dots/common/tidal/instruments.tidal
+-- :script /home/lalis/git/dots/common/tidal/song.tidal
+
+
+
+
+
+-- TODO: fix song method
+  -- normalize array before calling structureSong
+-------------------------------------------------------------------- Song Structure
+:{
+let measures n p ms = (n, p):ms
+    loopend n p = measures n p []
+    structureSong st [] = []
+    structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps)
+    songLoop ms = seqPLoop $ structureSong 0 ms -- TODO: sloop?
+    song ms = seqP $ structureSong 0 ms
+:}
+
+
+-------------------------------------------------------------------- Melody?
+
+-- (sometimes) Probability helpers
+:{
+let se x y = sometimesBy x . every y
+    sbl' f p = sometimesBy p . foldl (.) id . fmap f
+    sbl = sbl' (#)
+    -- (##) = sbh 1
+:}
+
+
+-- Stolen from Kindohm
+:{
+let gtfo = (const $ s "~")
+    g = gtfo
+:}
+
+---------------------------------------------------------------------- Prompt
+:set prompt "\n ghales | "
