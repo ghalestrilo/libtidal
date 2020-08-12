@@ -1,0 +1,3 @@
+[submodule "tidal"]
+	path = tidal
+	url = https://github.com/ghalestrilo/libtidal

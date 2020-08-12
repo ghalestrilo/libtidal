@@ -112,7 +112,7 @@
       path: data/llipuru/.Xresources
     ~/.config/tidal/boot.tidal:
       create: true
-      path: data/common/boot.tidal
+      path: data/tidal/boot.tidal
     ~/.config/fontconfig/conf.d/01-emoji.conf:
       create: true
       path: data/common/01-emoji.conf
