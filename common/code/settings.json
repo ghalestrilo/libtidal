@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -2,
+  "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
   "terminal.integrated.fontSize": 14,
@@ -42,7 +42,7 @@
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.statusBar.enabled": false,
   "eslint.format.enable": true,
-  "workbench.colorTheme": "★★★★★ DARCULA ★★★★★",
+  "workbench.colorTheme": "★★★★★ NORD DARK ★★★★★",
   /*
   "bracket-pair-colorizer-2.colors": [
     "#222233"
