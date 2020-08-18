@@ -47,15 +47,15 @@ let rhythms = Map.fromList $ l
 
 -- To be deprecated
 -- rs: play a rhythm with a list of sounds
--- :{
--- let playrhythm rdef = (stack . zipWith (#) rdef)
---     findrhythm rname = case Map.lookup rname rhythms of
---                           Just p -> p
---                           Nothing -> do [("~" # gain 0)]
---     r = playrhythm . findrhythm
---     r' f rname = r rname . map f
---     rs = r' s
--- :}
+:{
+let oldplayrhythm rdef = (stack . zipWith (#) rdef)
+    oldfindrhythm rname = case Map.lookup rname rhythms of
+                          Just p -> p
+                          Nothing -> do [("~" # gain 0)]
+    oldr = oldplayrhythm . oldfindrhythm
+    oldr' f rname = oldr rname . map f
+    rs = oldr' s
+:}
 
 
 
