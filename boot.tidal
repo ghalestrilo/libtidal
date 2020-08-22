@@ -56,9 +56,15 @@ let measures n p ms = (n, p):ms
 let se x y = sometimesBy x . every y
     sbl' f p = sometimesBy p . foldl (.) id . fmap f
     sbl = sbl' (#)
-    -- (##) = sbh 1
+    -- (##) chan fx pat = chan . (sbl 1 fx) $ pat
+    -- (##) chan fx = chan . foldl (.) id . fmap (#) $ fx
 :}
 
+-- Array channel preppers
+:{
+let (##) chan fxs pat = chan $ pat # (foldl (#) (n 0) fxs)
+    ($$) chan fxs pat = chan $ (foldl (.) (# n 0) fxs) $ pat
+:}
 
 -- Stolen from Kindohm
 :{
