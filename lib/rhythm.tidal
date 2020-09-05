@@ -44,62 +44,68 @@ let rhythms = Map.fromList $ l
           ("~@3 0@3 ~@4 0!2 ~@2" # gain "1 0.8" |* rel "1 0.3")
           ("[0!3 ~]!3 <0 [0*2]>@0.5" # rel 0.2))
 :}
--- -- Indian - Taala-like
--- struct "[t@1.5 t]" $ n "2" # s "lo",
--- struct "<[t t t ~ ~] [~ t t t t]>" $ n "3 2 5" # s "lo",
--- struct "<[~ [t t] ~ ~ [t t]] [[t t] ~ ~ [t t] [t t]]>" $ n "3 5 3 5" # s "lo"
---
--- -- Cuban - basic Tumbao
--- d2 $ s "[ lo:4, ~ lo:3 ~ lo:3*2, lo:2*2 . [~ lo2]. lo:2*2 . [~ lo:2] ]"
 
+-- To be deprecated
 -- rs: play a rhythm with a list of sounds
 :{
-let playrhythm rdef = (stack . zipWith (\pat inst -> pat # inst) rdef)
-    findrhythm rname = case Map.lookup rname rhythms of
+let oldplayrhythm rdef = (stack . zipWith (#) rdef)
+    oldfindrhythm rname = case Map.lookup rname rhythms of
                           Just p -> p
                           Nothing -> do [("~" # gain 0)]
-    r = playrhythm . findrhythm
-    r' f rname = r rname . map f
-    rs = r' s
+    oldr = oldplayrhythm . oldfindrhythm
+    oldr' f rname = oldr rname . map f
+    rs = oldr' s
 :}
 
 
 
 -- WIP: Second implementation using tidal dictionary (setF, cF_)
+
+
 -- makertmname :: String -> Integer -> String
--- makertmname name idx = "rtm_" ++ name ++ "_" ++ (show idx)
---
---
+makertmname name idx = "rtm_" ++ name ++ "_" ++ (show idx)
+
 -- makerhythmpairs :: String -> [Pattern Double] -> [(String, Pattern Double)]
--- makerhythmpairs name patlist = zipWith (\x y -> (makertmname name x, y)) [0..] patlist
---
+makerhythmpairs name patlist = zipWith (\x y -> (makertmname name x, y)) [0..] patlist
+
+-- getrtmvoice :: String -> Int -> Pattern Double
+getrtmvoice name idx = cF_ (makertmname name idx)
+
+getpat name = getrtmvoice name 0
+
 -- defrhythm :: String -> [Pattern Double] -> IO ()
--- defrhythm name list@(p:ps) = setF (makertmname name 0) (list!!0)
--- defrhythm name [] = print "no patterns"
---
--- defrhythm "testaaa" [(rev . sometimes (fast 2) . scale "major") "[0 2 4 7]*2"]
---
--- getpat :: String -> Pattern Double
--- getpat name = cF_ (makertmname name 0)
+:{
+defrhythm name pats = mapM_ (\(patname, pat) -> setF patname pat)
+    $ zipWith (\idx voice -> (makertmname name idx, voice)) [0..]
+    $ pats
+    :}
 
 
 
 
+-- dr :: String -> [Pattern Double] -> IO ()
+dr = defrhythm
 
 
--- Sketchboard
+-- New Rhythm Dictionary
+-- dr "baiao"    $ l "0@3 0@5" ("0*4" # gain "0.8 0.9 1 0.8" ")
+dr "brega"    $ l "0*2" "~@3 0 . ~ 0" "[0 0 0  ~]*2"
+dr "ijexa"    $ l "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~"
+dr "funk"     $ l "0(3,8) . ~ [0 ~] ~@2" "[~ 0]*2"
+dr "funk150"  $ l "[t@3 ~@5 . ~ <~ t>@2 [~ <t ~>]]/2" "[~@3 f@3 f@2 . ~ f]/2"
+dr "capoeira" $ l "~ ~ 0 ~" "~ ~ ~ 0"
 
--- do (sequence . map (\(x, y) -> setF x y)) [("hahalol", "[1 1 1 ~]*2")]
---
--- do (sequence . map (\(x, y) -> setF x y)) [("hahalol", "[1 1 1 ~]*2")]
---
--- mapM_ (\(x, y) -> setF x y) [("hahalol", "[1 1 1 ~]*2")]
---
---
--- d1 $ note (getpat "hahalol") # s "bd" # gain 1
+dr "tumbao"   $ l "0" "~ 0 ~ 0*2" "[0*2 . [~ 0] . 0*2 . [~ 0]]"
+:{
+dr "taala" $ l
+  (struct "[t@1.5 t]" $ "2")
+  (struct "<[t t t ~ ~] [~ t t t t]>" $ "3 2 5")
+  (struct "<[~ [t t] ~ ~ [t t]] [[t t] ~ ~ [t t] [t t]]>" $ "3 5 3 5")
+  :}
 
-
--- Example
--- -- setF "haha1" "c a f d"
--- -- d1 $ n (cF_ "haha1") # s "superpiano"
--- -- print $ show (cF_ "haha1")
+-- r: plays a rhythm from the state with the passed set of sounds
+:{
+let r name ss = stack
+      $ zipWith (flip (#)) (map s ss)
+      $ map (n . getrtmvoice name) [0..10]
+:}

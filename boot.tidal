@@ -2,6 +2,8 @@
 :set prompt ""
 :set prompt-cont ""
 
+
+
 -- import qualified Data.Map as Map
 -- TODO: Song (parts) logic
 import qualified Data.Map as Map
@@ -9,21 +11,19 @@ import Sound.Tidal.Context
 import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
 
-
-
 tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
 -- tidal <- startTidal (superdirtTarget {oLatency = 0.02}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
 
-:script /home/tidal/core.tidal
+:script /home/tidal/lib/core.tidal
 
--------------------------------------------------------- LIB
+--------------------------------------------------------------------- LIB
 
-:script /home/tidal/varargs.tidal
-:script /home/tidal/mixer.tidal
-:script /home/tidal/rhythm.tidal
-:script /home/tidal/ux.tidal
-:script /home/tidal/instruments.tidal
-:script /home/tidal/song.tidal
+:script /home/tidal/lib/varargs.tidal
+:script /home/tidal/lib/mixer.tidal
+:script /home/tidal/lib/rhythm.tidal
+:script /home/tidal/lib/ux.tidal
+:script /home/tidal/lib/instruments.tidal
+:script /home/tidal/lib/song.tidal
 
 -- :script /home/lalis/git/dots/common/tidal/varargs.tidal
 -- :script /home/lalis/git/dots/common/tidal/mixer.tidal
@@ -34,11 +34,9 @@ tidal <- startTidal (superdirtTarget { oLatency = 0.1, oAddress = "127.0.0.1", o
 
 
 
-
-
 -- TODO: fix song method
   -- normalize array before calling structureSong
--------------------------------------------------------------------- Song Structure
+--------------------------------------------------------------------- Song Structure
 :{
 let measures n p ms = (n, p):ms
     loopend n p = measures n p []
@@ -49,16 +47,22 @@ let measures n p ms = (n, p):ms
 :}
 
 
--------------------------------------------------------------------- Melody?
+--------------------------------------------------------------------- Melody?
 
 -- (sometimes) Probability helpers
 :{
 let se x y = sometimesBy x . every y
     sbl' f p = sometimesBy p . foldl (.) id . fmap f
     sbl = sbl' (#)
-    -- (##) = sbh 1
+    -- (##) chan fx pat = chan . (sbl 1 fx) $ pat
+    -- (##) chan fx = chan . foldl (.) id . fmap (#) $ fx
 :}
 
+-- Array channel preppers
+:{
+let (##) chan fxs pat = chan $ pat # (foldl (#) (n 0) fxs)
+    ($$) chan fxs pat = chan $ (foldl (.) (# n 0) fxs) $ pat
+:}
 
 -- Stolen from Kindohm
 :{
@@ -66,5 +70,5 @@ let gtfo = (const $ s "~")
     g = gtfo
 :}
 
----------------------------------------------------------------------- Prompt
+--------------------------------------------------------------------- Prompt
 :set prompt "\n ghales | "
