@@ -62,7 +62,8 @@ let se x y = sometimesBy x . every y
 
 -- Array channel preppers
 :{
-let (##) chan fxs pat = chan $ pat # (foldl (#) (n 0) fxs)
+let multimap = foldl (#) (gain 1)
+    (##) chan fxs pat = chan $ pat # (foldl (#) (n 0) fxs)
     ($$) chan fxs pat = chan $ (foldl (.) (# n 0) fxs) $ pat
 :}
 
