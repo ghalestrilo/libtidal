@@ -9,8 +9,37 @@ let vk = s "vk" # n 3
     -- vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
 :}
 
-:{
 -- Midi Instruments
+:{
 let mm = s "mm" # orbit 0 # midichan 0
     reface = s "reface" # orbit 0 # midichan 0
 :}
+
+-- FM Synth helpers
+:{
+let fmamp op = pF ("amp" ++ show op)
+    fmratio op = pF ("ratio" ++ show op)
+    fmdetune op = pF ("detune" ++ show op)
+    fmmod opa opb = pF ("mod" ++ show opa ++ show opb)
+    fmegrate op step = pF ("egrate" ++ show op ++ show step)
+    fmeglevel op step = pF ("eglevel" ++ show op ++ show step)
+    fmfeedback = pF "feedback"
+    fma = fmamp
+    fmr = fmratio
+    fmd = fmdetune
+    fmm = fmmod
+    fmf = fmfeedback
+    fmer = fmegrate
+    fmel = fmeglevel
+    fmparam function = foldr (#) (gain 1) . zipWith function [1..]
+    lfma = fmparam fma
+    lfmr = fmparam fmr
+    lfmd = fmparam fmd
+    lfmer op = fmparam (fmer op)
+    lfmel op = fmparam (fmel op)
+:}
+
+-- :{
+-- let fmgroup param = grp $ map param [1..4]
+--     gfmr = fmgroup fmratio
+-- :}
