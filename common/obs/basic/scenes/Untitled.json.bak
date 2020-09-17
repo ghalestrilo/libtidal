@@ -4,7 +4,7 @@
         "deinterlace_field_order": 0,
         "deinterlace_mode": 0,
         "enabled": true,
-        "flags": 0,
+        "flags": 2,
         "hotkeys": {
             "libobs.mute": [
                 {
@@ -22,9 +22,9 @@
             ]
         },
         "id": "pulse_input_capture",
-        "mixers": 255,
+        "mixers": 249,
         "monitoring_type": 0,
-        "muted": true,
+        "muted": false,
         "name": "Mic/Aux",
         "prev_ver": 419430403,
         "private_settings": {},
@@ -33,7 +33,7 @@
         "push-to-talk": false,
         "push-to-talk-delay": 0,
         "settings": {
-            "device_id": "default"
+            "device_id": "alsa_input.usb-LOUD_Technologies_Inc._Onyx_Producer_2-2-00.analog-stereo"
         },
         "sync": 0,
         "versioned_id": "pulse_input_capture",
@@ -134,13 +134,100 @@
             "name": "Tidal Streaming w/ phone"
         },
         {
-            "name": "Performance (Code Overlay)"
+            "name": "Youtube + Redmi"
         },
         {
-            "name": "Youtube + Redmi"
+            "name": "p5 Sketch (Square)"
+        },
+        {
+            "name": "Face"
         }
     ],
     "sources": [
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "xshm_input",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Screen Capture (XSHM)",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {},
+            "sync": 0,
+            "versioned_id": "xshm_input",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.hide_scene_item.Screen Capture (XSHM)": [],
+                "libobs.show_scene_item.Screen Capture (XSHM)": []
+            },
+            "id": "scene",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "p5 Sketch (Square)",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "custom_size": false,
+                "id_counter": 1,
+                "items": [
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 1,
+                        "locked": false,
+                        "name": "Screen Capture (XSHM)",
+                        "pos": {
+                            "x": 0.0,
+                            "y": -162.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 2.3036458492279053,
+                            "y": 2.303703784942627
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    }
+                ]
+            },
+            "sync": 0,
+            "versioned_id": "scene",
+            "volume": 1.0
+        },
         {
             "balance": 0.5,
             "deinterlace_field_order": 0,
@@ -184,6 +271,7 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
+                "libobs.hide_scene_item.Droidcam": [],
                 "libobs.hide_scene_item.Microphone": [],
                 "libobs.hide_scene_item.Reaper Out": [],
                 "libobs.hide_scene_item.Redmi": [],
@@ -191,6 +279,7 @@
                 "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
                 "libobs.hide_scene_item.Webcam": [],
+                "libobs.show_scene_item.Droidcam": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Redmi": [],
@@ -212,7 +301,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 8,
+                "id_counter": 12,
                 "items": [
                     {
                         "align": 5,
@@ -304,11 +393,11 @@
                     {
                         "align": 5,
                         "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
+                            "x": 3840.0,
+                            "y": 2160.0
                         },
                         "bounds_align": 0,
-                        "bounds_type": 0,
+                        "bounds_type": 1,
                         "crop_bottom": 0,
                         "crop_left": 0,
                         "crop_right": 0,
@@ -324,37 +413,8 @@
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 2.0,
-                            "y": 2.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 5,
-                        "locked": false,
-                        "name": "Webcam",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 1535.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.3025000095367432,
-                            "y": 1.3020833730697632
+                            "x": 1.0,
+                            "y": 1.0
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -405,14 +465,72 @@
                         "locked": false,
                         "name": "Redmi",
                         "pos": {
-                            "x": 2836.0,
-                            "y": 1559.0
+                            "x": 2682.0,
+                            "y": 1390.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 1.2581453323364258,
-                            "y": 1.2573221921920776
+                            "x": 2.4225940704345703,
+                            "y": 2.4213836193084717
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 5,
+                        "locked": false,
+                        "name": "Webcam",
+                        "pos": {
+                            "x": 2535.0,
+                            "y": 1181.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 2.0390625,
+                            "y": 2.0395834445953369
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 10,
+                        "locked": false,
+                        "name": "Droidcam",
+                        "pos": {
+                            "x": 2699.0,
+                            "y": 1304.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.7828124761581421,
+                            "y": 1.7833333015441895
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -1079,7 +1197,8 @@
                     "push-to-talk": false,
                     "push-to-talk-delay": 0,
                     "settings": {
-                        "open_threshold": -96.0
+                        "close_threshold": -34.0,
+                        "open_threshold": -31.0
                     },
                     "sync": 0,
                     "versioned_id": "noise_gate_filter",
@@ -1924,26 +2043,20 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.Media Source": [],
                 "libobs.hide_scene_item.Microphone": [],
                 "libobs.hide_scene_item.Reaper Out": [],
-                "libobs.hide_scene_item.Reface": [],
-                "libobs.hide_scene_item.Screen": [],
+                "libobs.hide_scene_item.Redmi": [],
                 "libobs.hide_scene_item.SuperCollider": [],
-                "libobs.hide_scene_item.Webcam": [],
-                "libobs.show_scene_item.Media Source": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
-                "libobs.show_scene_item.Reface": [],
-                "libobs.show_scene_item.Screen": [],
-                "libobs.show_scene_item.SuperCollider": [],
-                "libobs.show_scene_item.Webcam": []
+                "libobs.show_scene_item.Redmi": [],
+                "libobs.show_scene_item.SuperCollider": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Performance (Code Overlay)",
+            "name": "Face",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -1952,7 +2065,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 10,
+                "id_counter": 8,
                 "items": [
                     {
                         "align": 5,
@@ -1970,35 +2083,6 @@
                         "id": 1,
                         "locked": false,
                         "name": "Microphone",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 2,
-                        "locked": false,
-                        "name": "Reface",
                         "pos": {
                             "x": 0.0,
                             "y": 0.0
@@ -2085,74 +2169,16 @@
                         "group_item_backup": false,
                         "id": 7,
                         "locked": false,
-                        "name": "Media Source",
+                        "name": "Redmi",
                         "pos": {
-                            "x": 3840.0,
-                            "y": 1555.0
-                        },
-                        "private_settings": {},
-                        "rot": 180.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 4,
-                        "locked": false,
-                        "name": "Screen",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 0.0
+                            "x": 399.0,
+                            "y": 111.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 9,
-                        "locked": false,
-                        "name": "Webcam",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 995.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.6182692050933838,
-                            "y": 1.6180555820465088
+                            "x": 6.1715478897094727,
+                            "y": 6.1729559898376465
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -2161,6 +2187,33 @@
             },
             "sync": 0,
             "versioned_id": "scene",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "v4l2_input",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Droidcam",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "device_id": "/dev/video0",
+                "input": 0,
+                "pixelformat": 842093913
+            },
+            "sync": 0,
+            "versioned_id": "v4l2_input",
             "volume": 1.0
         }
     ],

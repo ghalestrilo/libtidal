@@ -1,9 +1,17 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-    { "key": "ctrl+tab",		"command": "workbench.action.nextEditor" },
-    { "key": "ctrl+shift+tab",	"command": "workbench.action.previousEditor" },
-
-	{ "key": "ctrl+k ctrl+l",	"command": "editor.action.transformToLowercase" },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "ctrl+k ctrl+l",
+    "command": "editor.action.transformToLowercase"
+  },
   {
     "key": "ctrl+k ctrl+u",
     "command": "editor.action.transformToUppercase"
@@ -62,8 +70,15 @@
     "key": "tab",
     "command": "-editor.emmet.action.expandAbbreviation",
     "when": "config.emmet.triggerExpansionOnTab && editorTextFocus && !editorReadonly && !editorTabMovesFocus"
+  },
+  {
+    "key": "ctrl+shift+g e",
+    "command": "workbench.view.explorer"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.view.explorer"
   }
-
-	// - editor.action.transformToLowercase
-	// - editor.action.transformToUppercase
+  // - editor.action.transformToLowercase
+  // - editor.action.transformToUppercase
 ]

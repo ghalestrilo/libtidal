@@ -157,6 +157,10 @@ fi
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Ganache GUI helper (remember to update version)
+# alias ganache-gui="~/Downloads/software/ganache-2.4.0-linux-x86_64.AppImage"
+alias ganache-gui="~/Downloads/software/ganache-*.AppImage"
+
 # Start a Tidal Jam Session
 alias jam="i3-msg 'workspace jam; layout splitv; \
     exec alacritty --title supercollider -e sclang; \

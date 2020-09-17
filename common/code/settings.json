@@ -43,6 +43,7 @@
   "gitlens.statusBar.enabled": false,
   "eslint.format.enable": true,
   "workbench.colorTheme": "★★★★★ NORD DARK ★★★★★",
+  "telemetry.enableTelemetry": false,
   /*
   "bracket-pair-colorizer-2.colors": [
     "#222233"
@@ -50,5 +51,5 @@
   "bracket-pair-colorizer-2.hightlightActiveScope": true
   */
   "sync.ignoredExtensions": [],
-  "editor.formatOnSave": true,
+  "javascript.updateImportsOnFileMove.enabled": "never",
 }
