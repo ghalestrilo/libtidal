@@ -6,10 +6,56 @@ let fx n = cF 0 $ "f" ++ (show n) -- Maps ID to FX Fader
     py n = cF0 $ "py" ++ (show n) -- Maps ID to Pad X
 :}
 
-:{ -------------------------------------------------------------------- Tonal Defs
+-------------------------------------------------------------------- Mixer Defs
+:{
 let bus' rv sv = room (cF rv "room") # size (cF sv "size") # orbit 0
     bus = bus' 0.1 0.1
     fader vol = gain (vol |* cF 1 "master")
-    tonal = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
--- let t = note . (|+ cF0 "root") . scale (cS "chromatic" "scale") . (|+ cI0 "chord")
+:}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------- Tonal Defs
+:{
+let getGlobalMode = cS "chromatic" "mode_global"
+    setGlobalMode = setS "mode_global"
+    getGlobalRoot = cF0 "root_global"
+    setGlobalRoot = setF "root_global"
+    tonal rr mm = note . (|+ rr) . scale mm
+    t = tonal getGlobalRoot getGlobalMode
+    setkey root mode = do
+      setGlobalMode mode
+      setGlobalRoot root
+:}
+
+
+-- WIP: Polymodality
+:{
+let toModeKey = ("mode_" ++) . show
+    toRootKey = ("root_" ++) . show
+    getMode idx = cS "chromatic" (toModeKey idx)
+    setMode idx = setS (toModeKey idx)
+    getRoot idx = cF0 (toRootKey idx)
+    setRoot idx = setF (toRootKey idx)
+    t' idx = tonal (getRoot idx) (getMode idx)
+    setkey' idx root mode = do
+      setMode idx mode
+      setRoot idx root
 :}

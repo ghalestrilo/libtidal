@@ -109,3 +109,37 @@ let r name ss = stack
       $ zipWith (flip (#)) (map s ss)
       $ map (n . getrtmvoice name) [0..10]
 :}
+
+
+
+-- WIP: Convolutions
+
+import Data.List (sortBy)
+
+-- @bgold thank you forever for this
+:{
+prrw :: (a -> b -> c) -> Int -> (Time, Time) -> Pattern a -> Pattern b -> Pattern c
+prrw f rot (blen, vlen) beatPattern valuePattern =
+  let
+    ecompare ev1 ev2 = compare (start $ part ev1) (start $ part ev2)
+    beats = sortBy ecompare $ queryArc beatPattern (Arc 0 blen)
+    values = fmap value . sortBy ecompare $ queryArc valuePattern (Arc 0 vlen)
+    cycles = blen * (fromIntegral $ lcm (length beats) (length values) `div` (length beats))
+  in
+    _slow cycles $ stack $ zipWith
+      (\ev v -> ((start $ part ev) `rotR`) $ _fastGap (1 / ((stop $ part ev) - (start $ part ev))) $ pure (f (value ev) v))
+      (sortBy ecompare $ queryArc (_fast cycles $ beatPattern) (Arc 0 blen))
+      (drop (rot `mod` length values) $ cycle values)
+:}
+
+
+:{
+prr :: Int -> (Time, Time) -> Pattern String -> Pattern a -> Pattern a
+prr = prrw (flip const)
+:}
+
+preplace = prr 0
+
+(<~>) = preplace (1,1)
+
+ring = flip $ preplace (1,1)

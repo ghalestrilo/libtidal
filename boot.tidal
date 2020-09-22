@@ -2,8 +2,6 @@
 :set prompt ""
 :set prompt-cont ""
 
-
-
 -- import qualified Data.Map as Map
 -- TODO: Song (parts) logic
 import qualified Data.Map as Map
