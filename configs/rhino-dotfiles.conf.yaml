@@ -49,3 +49,7 @@
 - shell:
   # - rm ~/.config/i3/config
   - i3-msg reload
+
+# Clone Kakoune Plugin Manager
+- shell:
+  - "if [ ! -d ~/.config/kak/plugins/plug.kak ]; then git clone https://github.com/robertmeta/plug.kak.git ~/.config/kak/plugins/plug.kak; fi"

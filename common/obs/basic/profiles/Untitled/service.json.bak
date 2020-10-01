@@ -1,8 +1,9 @@
 {
     "settings": {
-        "key": "aehy-d0f2-m036-4gev-6q8h",
-        "server": "rtmp://a.rtmp.youtube.com/live2",
-        "service": "YouTube / YouTube Gaming"
+        "bwtest": false,
+        "key": "visuales?pwd=nwn",
+        "server": "rtmp://198.211.106.132/stream",
+        "use_auth": false
     },
-    "type": "rtmp_common"
+    "type": "rtmp_custom"
 }

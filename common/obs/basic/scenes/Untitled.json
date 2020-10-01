@@ -151,20 +151,24 @@
             "enabled": true,
             "flags": 0,
             "hotkeys": {},
-            "id": "xshm_input",
+            "id": "v4l2_input",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Screen Capture (XSHM)",
+            "name": "Droidcam",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
-            "settings": {},
+            "settings": {
+                "device_id": "/dev/video0",
+                "input": 0,
+                "pixelformat": 842093913
+            },
             "sync": 0,
-            "versioned_id": "xshm_input",
+            "versioned_id": "v4l2_input",
             "volume": 1.0
         },
         {
@@ -175,124 +179,20 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.Screen Capture (XSHM)": [],
-                "libobs.show_scene_item.Screen Capture (XSHM)": []
-            },
-            "id": "scene",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "p5 Sketch (Square)",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "custom_size": false,
-                "id_counter": 1,
-                "items": [
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 1,
-                        "locked": false,
-                        "name": "Screen Capture (XSHM)",
-                        "pos": {
-                            "x": 0.0,
-                            "y": -162.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 2.3036458492279053,
-                            "y": 2.303703784942627
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    }
-                ]
-            },
-            "sync": 0,
-            "versioned_id": "scene",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "MediaSource.Pause": [],
-                "MediaSource.Play": [],
-                "MediaSource.Restart": [],
-                "MediaSource.Stop": [],
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "ffmpeg_source",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Redmi",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "input": "http://192.168.25.131:8080/mjpeg",
-                "is_local_file": false
-            },
-            "sync": 0,
-            "versioned_id": "ffmpeg_source",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.Droidcam": [],
                 "libobs.hide_scene_item.Microphone": [],
                 "libobs.hide_scene_item.Reaper Out": [],
                 "libobs.hide_scene_item.Redmi": [],
-                "libobs.hide_scene_item.Reface": [],
-                "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
-                "libobs.hide_scene_item.Webcam": [],
-                "libobs.show_scene_item.Droidcam": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Redmi": [],
-                "libobs.show_scene_item.Reface": [],
-                "libobs.show_scene_item.Screen": [],
-                "libobs.show_scene_item.SuperCollider": [],
-                "libobs.show_scene_item.Webcam": []
+                "libobs.show_scene_item.SuperCollider": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Youtube + Redmi",
+            "name": "Face",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -301,7 +201,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 12,
+                "id_counter": 8,
                 "items": [
                     {
                         "align": 5,
@@ -345,67 +245,9 @@
                         "crop_right": 0,
                         "crop_top": 0,
                         "group_item_backup": false,
-                        "id": 2,
-                        "locked": false,
-                        "name": "Reface",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
                         "id": 3,
                         "locked": false,
                         "name": "SuperCollider",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 3840.0,
-                            "y": 2160.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 1,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 4,
-                        "locked": false,
-                        "name": "Screen",
                         "pos": {
                             "x": 0.0,
                             "y": 0.0
@@ -461,76 +303,18 @@
                         "crop_right": 0,
                         "crop_top": 0,
                         "group_item_backup": false,
-                        "id": 8,
+                        "id": 7,
                         "locked": false,
                         "name": "Redmi",
                         "pos": {
-                            "x": 2682.0,
-                            "y": 1390.0
+                            "x": 399.0,
+                            "y": 111.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 2.4225940704345703,
-                            "y": 2.4213836193084717
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 5,
-                        "locked": false,
-                        "name": "Webcam",
-                        "pos": {
-                            "x": 2535.0,
-                            "y": 1181.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 2.0390625,
-                            "y": 2.0395834445953369
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 10,
-                        "locked": false,
-                        "name": "Droidcam",
-                        "pos": {
-                            "x": 2699.0,
-                            "y": 1304.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.7828124761581421,
-                            "y": 1.7833333015441895
+                            "x": 6.1715478897094727,
+                            "y": 6.1729559898376465
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -547,56 +331,6 @@
             "deinterlace_mode": 0,
             "enabled": true,
             "flags": 0,
-            "hotkeys": {},
-            "id": "image_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "QR - Algorave",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "/home/lalis/Pictures/algobr/algobr-qr.png"
-            },
-            "sync": 0,
-            "versioned_id": "image_source",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "image_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "QR - Ghales",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "/home/lalis/git/dots/img/ghales.qr.2.png"
-            },
-            "sync": 0,
-            "versioned_id": "image_source",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
                 "libobs.hide_scene_item.Media Source": [],
@@ -605,20 +339,20 @@
                 "libobs.hide_scene_item.Reface": [],
                 "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
-                "libobs.hide_scene_item.Texto: Chamada": [],
+                "libobs.hide_scene_item.Webcam": [],
                 "libobs.show_scene_item.Media Source": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Reface": [],
                 "libobs.show_scene_item.Screen": [],
                 "libobs.show_scene_item.SuperCollider": [],
-                "libobs.show_scene_item.Texto: Chamada": []
+                "libobs.show_scene_item.Webcam": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Tidal Streaming w/ phone",
+            "name": "Youtube Rec",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -627,7 +361,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 9,
+                "id_counter": 8,
                 "items": [
                     {
                         "align": 5,
@@ -739,8 +473,8 @@
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 1.0,
-                            "y": 1.0
+                            "x": 2.0,
+                            "y": 2.0
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -758,18 +492,18 @@
                         "crop_right": 0,
                         "crop_top": 0,
                         "group_item_backup": false,
-                        "id": 6,
+                        "id": 5,
                         "locked": false,
-                        "name": "Texto: Chamada",
+                        "name": "Webcam",
                         "pos": {
-                            "x": 2950.0,
-                            "y": 50.0
+                            "x": 0.0,
+                            "y": 1535.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 2.9634552001953125,
-                            "y": 2.9659864902496338
+                            "x": 1.3025000095367432,
+                            "y": 1.3020833730697632
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -826,8 +560,8 @@
                         "private_settings": {},
                         "rot": 180.0,
                         "scale": {
-                            "x": 1.0,
-                            "y": 1.0
+                            "x": 2.0526316165924072,
+                            "y": 2.0523011684417725
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -837,340 +571,6 @@
             "sync": 0,
             "versioned_id": "scene",
             "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "MediaSource.Pause": [],
-                "MediaSource.Play": [],
-                "MediaSource.Restart": [],
-                "MediaSource.Stop": [],
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "ffmpeg_source",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Media Source",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "clear_on_media_end": false,
-                "input": "http://192.168.25.131:8080/mjpeg",
-                "is_local_file": false
-            },
-            "sync": 0,
-            "versioned_id": "ffmpeg_source",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "xcomposite_input",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Window Capture (Xcomposite)",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "capture_window": "77594625\r\ncumpleaños.tidal — ~/git/isohedron — Atom\r\natom"
-            },
-            "sync": 0,
-            "versioned_id": "xcomposite_input",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.SuperCollider": [],
-                "libobs.hide_scene_item.Window Capture (Xcomposite)": [],
-                "libobs.show_scene_item.SuperCollider": [],
-                "libobs.show_scene_item.Window Capture (Xcomposite)": []
-            },
-            "id": "scene",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Atom Focus",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "custom_size": false,
-                "id_counter": 2,
-                "items": [
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 1,
-                        "locked": false,
-                        "name": "SuperCollider",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 2,
-                        "locked": false,
-                        "name": "Window Capture (Xcomposite)",
-                        "pos": {
-                            "x": 0.0,
-                            "y": -232.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.7395397424697876,
-                            "y": 1.7394167184829712
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    }
-                ]
-            },
-            "sync": 0,
-            "versioned_id": "scene",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "jack_output_capture",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Reaper Out",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {},
-            "sync": 0,
-            "versioned_id": "jack_output_capture",
-            "volume": 0.83058398962020874
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "text_ft2_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Message",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "font": {
-                    "face": "Hasklig",
-                    "flags": 1,
-                    "size": 32,
-                    "style": ""
-                },
-                "text": "hold up\nwill be back shortly~"
-            },
-            "sync": 0,
-            "versioned_id": "text_ft2_source",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.Message": [],
-                "libobs.hide_scene_item.Texto: Chamada": [],
-                "libobs.show_scene_item.Message": [],
-                "libobs.show_scene_item.Texto: Chamada": []
-            },
-            "id": "scene",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Offline",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "custom_size": false,
-                "id_counter": 3,
-                "items": [
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 1,
-                        "locked": false,
-                        "name": "Message",
-                        "pos": {
-                            "x": 182.0,
-                            "y": 705.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 8.6942358016967773,
-                            "y": 8.693333625793457
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "group_item_backup": false,
-                        "id": 3,
-                        "locked": false,
-                        "name": "Texto: Chamada",
-                        "pos": {
-                            "x": 2955.0,
-                            "y": 50.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 2.9473683834075928,
-                            "y": 2.9466667175292969
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    }
-                ]
-            },
-            "sync": 0,
-            "versioned_id": "scene",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "jack_output_capture",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Reface",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "channels": 1
-            },
-            "sync": 0,
-            "versioned_id": "jack_output_capture",
-            "volume": 0.56988638639450073
         },
         {
             "balance": 0.5,
@@ -1185,11 +585,11 @@
                     "enabled": true,
                     "flags": 0,
                     "hotkeys": {},
-                    "id": "noise_gate_filter",
-                    "mixers": 255,
+                    "id": "mask_filter",
+                    "mixers": 0,
                     "monitoring_type": 0,
                     "muted": false,
-                    "name": "Noise Gate",
+                    "name": "Image Mask/Blend",
                     "prev_ver": 419430403,
                     "private_settings": {},
                     "push-to-mute": false,
@@ -1197,86 +597,22 @@
                     "push-to-talk": false,
                     "push-to-talk-delay": 0,
                     "settings": {
-                        "close_threshold": -34.0,
-                        "open_threshold": -31.0
+                        "color": 4294967295,
+                        "stretch": false,
+                        "type": "blend_mul_filter.effect"
                     },
                     "sync": 0,
-                    "versioned_id": "noise_gate_filter",
+                    "versioned_id": "mask_filter",
                     "volume": 1.0
                 }
             ],
             "flags": 0,
-            "hotkeys": {
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "jack_output_capture",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Microphone",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "channels": 1
-            },
-            "sync": 0,
-            "versioned_id": "jack_output_capture",
-            "volume": 0.62167346477508545
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
             "hotkeys": {},
-            "id": "text_ft2_source",
+            "id": "xshm_input",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Texto: Chamada",
-            "prev_ver": 419430403,
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "color2": 4294967295,
-                "drop_shadow": true,
-                "log_lines": 1,
-                "log_mode": true,
-                "outline": true,
-                "text": "algoravebrasil.ml"
-            },
-            "sync": 0,
-            "versioned_id": "text_ft2_source",
-            "volume": 1.0
-        },
-        {
-            "balance": 0.5,
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "jack_output_capture",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "SuperCollider",
+            "name": "Screen",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -1285,8 +621,116 @@
             "push-to-talk-delay": 0,
             "settings": {},
             "sync": 0,
-            "versioned_id": "jack_output_capture",
-            "volume": 0.4382970929145813
+            "versioned_id": "xshm_input",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "filters": [
+                {
+                    "balance": 0.5,
+                    "deinterlace_field_order": 0,
+                    "deinterlace_mode": 0,
+                    "enabled": true,
+                    "flags": 0,
+                    "hotkeys": {},
+                    "id": "crop_filter",
+                    "mixers": 0,
+                    "monitoring_type": 0,
+                    "muted": false,
+                    "name": "Crop/Pad",
+                    "prev_ver": 419430403,
+                    "private_settings": {},
+                    "push-to-mute": false,
+                    "push-to-mute-delay": 0,
+                    "push-to-talk": false,
+                    "push-to-talk-delay": 0,
+                    "settings": {
+                        "left": 120,
+                        "right": 120
+                    },
+                    "sync": 0,
+                    "versioned_id": "crop_filter",
+                    "volume": 1.0
+                },
+                {
+                    "balance": 0.5,
+                    "deinterlace_field_order": 0,
+                    "deinterlace_mode": 0,
+                    "enabled": true,
+                    "flags": 0,
+                    "hotkeys": {},
+                    "id": "sharpness_filter",
+                    "mixers": 0,
+                    "monitoring_type": 0,
+                    "muted": false,
+                    "name": "Sharpen",
+                    "prev_ver": 419430403,
+                    "private_settings": {},
+                    "push-to-mute": false,
+                    "push-to-mute-delay": 0,
+                    "push-to-talk": false,
+                    "push-to-talk-delay": 0,
+                    "settings": {
+                        "sharpness": 1.0
+                    },
+                    "sync": 0,
+                    "versioned_id": "sharpness_filter",
+                    "volume": 1.0
+                },
+                {
+                    "balance": 0.5,
+                    "deinterlace_field_order": 0,
+                    "deinterlace_mode": 0,
+                    "enabled": true,
+                    "flags": 0,
+                    "hotkeys": {},
+                    "id": "mask_filter",
+                    "mixers": 0,
+                    "monitoring_type": 0,
+                    "muted": false,
+                    "name": "Image Mask/Blend",
+                    "prev_ver": 419430403,
+                    "private_settings": {},
+                    "push-to-mute": false,
+                    "push-to-mute-delay": 0,
+                    "push-to-talk": false,
+                    "push-to-talk-delay": 0,
+                    "settings": {
+                        "color": 4278344079,
+                        "opacity": 100,
+                        "type": "blend_mul_filter.effect"
+                    },
+                    "sync": 0,
+                    "versioned_id": "mask_filter",
+                    "volume": 1.0
+                }
+            ],
+            "flags": 0,
+            "hotkeys": {},
+            "id": "v4l2_input",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Webcam",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "device_id": "/dev/video1",
+                "input": 0,
+                "pixelformat": 842093913,
+                "resolution": -1
+            },
+            "sync": 0,
+            "versioned_id": "v4l2_input",
+            "volume": 1.0
         },
         {
             "balance": 0.5,
@@ -1633,93 +1077,41 @@
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
-            "filters": [
-                {
-                    "balance": 0.5,
-                    "deinterlace_field_order": 0,
-                    "deinterlace_mode": 0,
-                    "enabled": true,
-                    "flags": 0,
-                    "hotkeys": {},
-                    "id": "crop_filter",
-                    "mixers": 0,
-                    "monitoring_type": 0,
-                    "muted": false,
-                    "name": "Crop/Pad",
-                    "prev_ver": 419430403,
-                    "private_settings": {},
-                    "push-to-mute": false,
-                    "push-to-mute-delay": 0,
-                    "push-to-talk": false,
-                    "push-to-talk-delay": 0,
-                    "settings": {
-                        "left": 120,
-                        "right": 120
-                    },
-                    "sync": 0,
-                    "versioned_id": "crop_filter",
-                    "volume": 1.0
-                },
-                {
-                    "balance": 0.5,
-                    "deinterlace_field_order": 0,
-                    "deinterlace_mode": 0,
-                    "enabled": true,
-                    "flags": 0,
-                    "hotkeys": {},
-                    "id": "sharpness_filter",
-                    "mixers": 0,
-                    "monitoring_type": 0,
-                    "muted": false,
-                    "name": "Sharpen",
-                    "prev_ver": 419430403,
-                    "private_settings": {},
-                    "push-to-mute": false,
-                    "push-to-mute-delay": 0,
-                    "push-to-talk": false,
-                    "push-to-talk-delay": 0,
-                    "settings": {
-                        "sharpness": 1.0
-                    },
-                    "sync": 0,
-                    "versioned_id": "sharpness_filter",
-                    "volume": 1.0
-                },
-                {
-                    "balance": 0.5,
-                    "deinterlace_field_order": 0,
-                    "deinterlace_mode": 0,
-                    "enabled": true,
-                    "flags": 0,
-                    "hotkeys": {},
-                    "id": "mask_filter",
-                    "mixers": 0,
-                    "monitoring_type": 0,
-                    "muted": false,
-                    "name": "Image Mask/Blend",
-                    "prev_ver": 419430403,
-                    "private_settings": {},
-                    "push-to-mute": false,
-                    "push-to-mute-delay": 0,
-                    "push-to-talk": false,
-                    "push-to-talk-delay": 0,
-                    "settings": {
-                        "color": 4278344079,
-                        "opacity": 100,
-                        "type": "blend_mul_filter.effect"
-                    },
-                    "sync": 0,
-                    "versioned_id": "mask_filter",
-                    "volume": 1.0
-                }
-            ],
+            "flags": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "jack_output_capture",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "SuperCollider",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {},
+            "sync": 0,
+            "versioned_id": "jack_output_capture",
+            "volume": 0.4382970929145813
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
             "flags": 0,
             "hotkeys": {},
-            "id": "v4l2_input",
+            "id": "text_ft2_source",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Webcam",
+            "name": "Texto: Chamada",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -1727,13 +1119,15 @@
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "device_id": "/dev/video1",
-                "input": 0,
-                "pixelformat": 842093913,
-                "resolution": -1
+                "color2": 4294967295,
+                "drop_shadow": true,
+                "log_lines": 1,
+                "log_mode": true,
+                "outline": true,
+                "text": "algoravebrasil.ml"
             },
             "sync": 0,
-            "versioned_id": "v4l2_input",
+            "versioned_id": "text_ft2_source",
             "volume": 1.0
         },
         {
@@ -1749,11 +1143,11 @@
                     "enabled": true,
                     "flags": 0,
                     "hotkeys": {},
-                    "id": "mask_filter",
-                    "mixers": 0,
+                    "id": "noise_gate_filter",
+                    "mixers": 255,
                     "monitoring_type": 0,
                     "muted": false,
-                    "name": "Image Mask/Blend",
+                    "name": "Noise Gate",
                     "prev_ver": 419430403,
                     "private_settings": {},
                     "push-to-mute": false,
@@ -1761,22 +1155,209 @@
                     "push-to-talk": false,
                     "push-to-talk-delay": 0,
                     "settings": {
-                        "color": 4294967295,
-                        "stretch": false,
-                        "type": "blend_mul_filter.effect"
+                        "close_threshold": -34.0,
+                        "open_threshold": -31.0
                     },
                     "sync": 0,
-                    "versioned_id": "mask_filter",
+                    "versioned_id": "noise_gate_filter",
                     "volume": 1.0
                 }
             ],
             "flags": 0,
-            "hotkeys": {},
-            "id": "xshm_input",
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "jack_output_capture",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Microphone",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "channels": 1
+            },
+            "sync": 0,
+            "versioned_id": "jack_output_capture",
+            "volume": 0.62167346477508545
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "jack_output_capture",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Reface",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "channels": 1
+            },
+            "sync": 0,
+            "versioned_id": "jack_output_capture",
+            "volume": 0.56988638639450073
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.hide_scene_item.Message": [],
+                "libobs.hide_scene_item.Texto: Chamada": [],
+                "libobs.show_scene_item.Message": [],
+                "libobs.show_scene_item.Texto: Chamada": []
+            },
+            "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Screen",
+            "name": "Offline",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "custom_size": false,
+                "id_counter": 3,
+                "items": [
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 1,
+                        "locked": false,
+                        "name": "Message",
+                        "pos": {
+                            "x": 182.0,
+                            "y": 705.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 8.6942358016967773,
+                            "y": 8.693333625793457
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 3,
+                        "locked": false,
+                        "name": "Texto: Chamada",
+                        "pos": {
+                            "x": 2955.0,
+                            "y": 50.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 2.9473683834075928,
+                            "y": 2.9466667175292969
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    }
+                ]
+            },
+            "sync": 0,
+            "versioned_id": "scene",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "text_ft2_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Message",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "font": {
+                    "face": "Hasklig",
+                    "flags": 1,
+                    "size": 32,
+                    "style": ""
+                },
+                "text": "hold up\nwill be back shortly~"
+            },
+            "sync": 0,
+            "versioned_id": "text_ft2_source",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "jack_output_capture",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Reaper Out",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -1785,7 +1366,160 @@
             "push-to-talk-delay": 0,
             "settings": {},
             "sync": 0,
-            "versioned_id": "xshm_input",
+            "versioned_id": "jack_output_capture",
+            "volume": 0.83058398962020874
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.hide_scene_item.SuperCollider": [],
+                "libobs.hide_scene_item.Window Capture (Xcomposite)": [],
+                "libobs.show_scene_item.SuperCollider": [],
+                "libobs.show_scene_item.Window Capture (Xcomposite)": []
+            },
+            "id": "scene",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Atom Focus",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "custom_size": false,
+                "id_counter": 2,
+                "items": [
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 1,
+                        "locked": false,
+                        "name": "SuperCollider",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 2,
+                        "locked": false,
+                        "name": "Window Capture (Xcomposite)",
+                        "pos": {
+                            "x": 0.0,
+                            "y": -232.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.7395397424697876,
+                            "y": 1.7394167184829712
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    }
+                ]
+            },
+            "sync": 0,
+            "versioned_id": "scene",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "xcomposite_input",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Window Capture (Xcomposite)",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "capture_window": "77594625\r\ncumpleaños.tidal — ~/git/isohedron — Atom\r\natom"
+            },
+            "sync": 0,
+            "versioned_id": "xcomposite_input",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "MediaSource.Pause": [],
+                "MediaSource.Play": [],
+                "MediaSource.Restart": [],
+                "MediaSource.Stop": [],
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "ffmpeg_source",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Media Source",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "clear_on_media_end": false,
+                "input": "http://192.168.25.131:8080/mjpeg",
+                "is_local_file": false
+            },
+            "sync": 0,
+            "versioned_id": "ffmpeg_source",
             "volume": 1.0
         },
         {
@@ -1802,20 +1536,20 @@
                 "libobs.hide_scene_item.Reface": [],
                 "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
-                "libobs.hide_scene_item.Webcam": [],
+                "libobs.hide_scene_item.Texto: Chamada": [],
                 "libobs.show_scene_item.Media Source": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Reface": [],
                 "libobs.show_scene_item.Screen": [],
                 "libobs.show_scene_item.SuperCollider": [],
-                "libobs.show_scene_item.Webcam": []
+                "libobs.show_scene_item.Texto: Chamada": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Youtube Rec",
+            "name": "Tidal Streaming w/ phone",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -1824,7 +1558,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 8,
+                "id_counter": 9,
                 "items": [
                     {
                         "align": 5,
@@ -1936,8 +1670,8 @@
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 2.0,
-                            "y": 2.0
+                            "x": 1.0,
+                            "y": 1.0
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -1955,18 +1689,18 @@
                         "crop_right": 0,
                         "crop_top": 0,
                         "group_item_backup": false,
-                        "id": 5,
+                        "id": 6,
                         "locked": false,
-                        "name": "Webcam",
+                        "name": "Texto: Chamada",
                         "pos": {
-                            "x": 0.0,
-                            "y": 1535.0
+                            "x": 2950.0,
+                            "y": 50.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 1.3025000095367432,
-                            "y": 1.3020833730697632
+                            "x": 2.9634552001953125,
+                            "y": 2.9659864902496338
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -2023,8 +1757,8 @@
                         "private_settings": {},
                         "rot": 180.0,
                         "scale": {
-                            "x": 2.0526316165924072,
-                            "y": 2.0523011684417725
+                            "x": 1.0,
+                            "y": 1.0
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -2041,22 +1775,80 @@
             "deinterlace_mode": 0,
             "enabled": true,
             "flags": 0,
+            "hotkeys": {},
+            "id": "image_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "QR - Ghales",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "/home/lalis/git/dots/img/ghales.qr.2.png"
+            },
+            "sync": 0,
+            "versioned_id": "image_source",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "image_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "QR - Algorave",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "/home/lalis/Pictures/algobr/algobr-qr.png"
+            },
+            "sync": 0,
+            "versioned_id": "image_source",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
+                "libobs.hide_scene_item.Droidcam": [],
                 "libobs.hide_scene_item.Microphone": [],
                 "libobs.hide_scene_item.Reaper Out": [],
                 "libobs.hide_scene_item.Redmi": [],
+                "libobs.hide_scene_item.Reface": [],
+                "libobs.hide_scene_item.Screen": [],
                 "libobs.hide_scene_item.SuperCollider": [],
+                "libobs.hide_scene_item.Webcam": [],
+                "libobs.show_scene_item.Droidcam": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Redmi": [],
-                "libobs.show_scene_item.SuperCollider": []
+                "libobs.show_scene_item.Reface": [],
+                "libobs.show_scene_item.Screen": [],
+                "libobs.show_scene_item.SuperCollider": [],
+                "libobs.show_scene_item.Webcam": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Face",
+            "name": "Youtube + Redmi",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
@@ -2065,7 +1857,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 8,
+                "id_counter": 12,
                 "items": [
                     {
                         "align": 5,
@@ -2109,9 +1901,67 @@
                         "crop_right": 0,
                         "crop_top": 0,
                         "group_item_backup": false,
+                        "id": 2,
+                        "locked": false,
+                        "name": "Reface",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
                         "id": 3,
                         "locked": false,
                         "name": "SuperCollider",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 3840.0,
+                            "y": 2160.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 1,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 4,
+                        "locked": false,
+                        "name": "Screen",
                         "pos": {
                             "x": 0.0,
                             "y": 0.0
@@ -2167,18 +2017,172 @@
                         "crop_right": 0,
                         "crop_top": 0,
                         "group_item_backup": false,
-                        "id": 7,
+                        "id": 8,
                         "locked": false,
                         "name": "Redmi",
                         "pos": {
-                            "x": 399.0,
-                            "y": 111.0
+                            "x": 2682.0,
+                            "y": 1390.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 6.1715478897094727,
-                            "y": 6.1729559898376465
+                            "x": 2.4225940704345703,
+                            "y": 2.4213836193084717
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 5,
+                        "locked": false,
+                        "name": "Webcam",
+                        "pos": {
+                            "x": 2535.0,
+                            "y": 1181.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 2.0390625,
+                            "y": 2.0395834445953369
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 10,
+                        "locked": false,
+                        "name": "Droidcam",
+                        "pos": {
+                            "x": 2699.0,
+                            "y": 1304.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.7828124761581421,
+                            "y": 1.7833333015441895
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    }
+                ]
+            },
+            "sync": 0,
+            "versioned_id": "scene",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "MediaSource.Pause": [],
+                "MediaSource.Play": [],
+                "MediaSource.Restart": [],
+                "MediaSource.Stop": [],
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "ffmpeg_source",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Redmi",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "input": "http://192.168.25.131:8080/mjpeg",
+                "is_local_file": false
+            },
+            "sync": 0,
+            "versioned_id": "ffmpeg_source",
+            "volume": 1.0
+        },
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.hide_scene_item.Screen Capture (XSHM)": [],
+                "libobs.show_scene_item.Screen Capture (XSHM)": []
+            },
+            "id": "scene",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "p5 Sketch (Square)",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "custom_size": false,
+                "id_counter": 1,
+                "items": [
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 1,
+                        "locked": false,
+                        "name": "Screen Capture (XSHM)",
+                        "pos": {
+                            "x": 0.0,
+                            "y": -162.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 2.3036458492279053,
+                            "y": 2.303703784942627
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -2196,24 +2200,20 @@
             "enabled": true,
             "flags": 0,
             "hotkeys": {},
-            "id": "v4l2_input",
+            "id": "xshm_input",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Droidcam",
+            "name": "Screen Capture (XSHM)",
             "prev_ver": 419430403,
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
-            "settings": {
-                "device_id": "/dev/video0",
-                "input": 0,
-                "pixelformat": 842093913
-            },
+            "settings": {},
             "sync": 0,
-            "versioned_id": "v4l2_input",
+            "versioned_id": "xshm_input",
             "volume": 1.0
         }
     ],

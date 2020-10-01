@@ -2,8 +2,8 @@
     "settings": {
         "bwtest": false,
         "key": "visuales?pwd=nwn",
-        "server": "rtmp://198.211.106.132/stream",
-        "use_auth": false
+        "server": "auto",
+        "service": "Twitch"
     },
-    "type": "rtmp_custom"
+    "type": "rtmp_common"
 }
