@@ -10,14 +10,35 @@ map global normal <c-k> ":edit ~/.config/kak/kakrc <ret>"
 map global normal <c-p> ":edit ~/.config/kak-lsp/kak-lsp.toml <ret>"
 
 map global normal <c-l> :bn<ret>
-map global normal <c-h> :bp<ret>
+# map global normal <c-h> :bp<ret>
 map global normal <c-w> :db<ret>
 
 
 # In case we're using LSPs
-eval %sh{kak-lsp --kakoune -s $kak_session}
+# eval %sh{kak-lsp --kakoune -s $kak_session}
 
 # If shit goes bad
-eval %sh{ (kak-lsp -vvv) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
+# eval %sh{ (kak-lsp -vvv) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
 
-set-option global lsp_insert_spaces true
+# set-option global lsp_insert_spaces true
+
+
+## Plugins
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+# plug "tgirod/tidal.kak"
+plug "https://github.com/tgirod/tidal.kak"
+map global normal <c-e> ':tidal-send-block<ret>'
+map global normal <c-h> ':tidal-hush<ret>'
+
+# :tidal-start-repl
+# :tidal-start-superdirt
+# :tidal-send-line
+# :tidal-send-block
+# :tidal-hush
+
+# Set tidal syntax to haskell
+hook global BufCreate .+\.tidal %{ set buffer filetype haskell }
+
+# Set tidal syntax to haskell
+set-option global tidal_boot_file /home/tidal/boot.tidal
