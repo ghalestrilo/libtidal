@@ -5,6 +5,7 @@
     ~/.profile:
       force: true
       path: regolith/.profile
+    # NOTE: Please don't use this. it will ruin your life
     # ~/.config/regolith/i3/config:
     #   force: true
     #   create: true
