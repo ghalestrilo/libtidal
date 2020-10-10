@@ -5,13 +5,13 @@
     ~/.profile:
       force: true
       path: regolith/.profile
-    ~/.config/regolith/i3/config:
-      force: true
-      create: true
-      path: regolith/i3config
-    ~/.Xresources-regolith:
-      force: true
-      path: regolith/Xresources-regolith
+    # ~/.config/regolith/i3/config:
+    #   force: true
+    #   create: true
+    #   path: regolith/i3config
+    # ~/.Xresources-regolith:
+    #   force: true
+    #   path: regolith/Xresources-regolith
     ~/.oh-my-zsh/themes/lalis.zsh-theme:
       path: common/lalis.zsh-theme
       force: true

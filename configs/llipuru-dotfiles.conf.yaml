@@ -107,9 +107,9 @@
     /usr/bin/basecamp: /home/lalis/Downloads/basecamp-linux-x64/basecamp
     # ~/start_jack.sh: data/common/start_jack.sh
     ~/.profile: data/common/.profile # FUCKING MULTILANGUAGE KEYBOARD CONFIG BULLSHIT
-    ~/.Xresources:
-      relink:
-      path: data/llipuru/.Xresources
+    # ~/.Xresources:
+      # relink:
+      # path: data/llipuru/.Xresources
     ~/.config/tidal/boot.tidal:
       create: true
       path: data/tidal/boot.tidal
