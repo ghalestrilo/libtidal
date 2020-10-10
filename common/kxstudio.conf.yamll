@@ -1,6 +1,6 @@
 - shell:
   # Install required dependencies if needed
-  - sudo apt-get install apt-transport-https gpgv
+  - sudo apt-get install -y apt-transport-https gpgv
   # Remove legacy repos
   - sudo dpkg --purge kxstudio-repos-gcc5
   # Download package file
