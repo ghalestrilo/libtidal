@@ -62,3 +62,7 @@
       path: tidal-tracking.RPP
       force: true
 
+
+# Clone Kakoune Plugin Manager
+- shell:
+  - "if [ ! -d ~/.config/kak/plugins/plug.kak ]; then git clone https://github.com/robertmeta/plug.kak.git ~/.config/kak/plugins/plug.kak; fi"
