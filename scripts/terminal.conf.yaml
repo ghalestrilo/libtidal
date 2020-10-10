@@ -12,6 +12,7 @@
   - ["if ! command -v tig ;      then sudo apt-get install -y tig; fi",     Installing tig]
   - ["if ! command -v httpie ;   then sudo apt-get install -y httpie; fi",  Installing HTTPie]
   - ["if ! command -v cloc ;     then sudo apt-get install -y cloc; fi",    Installing CLOC]
+  - ["if ! command -v kakoune ;  then sudo apt-get install -y kakoune; fi",    Installing Kakoune]
   - [brew install scc, Installing SCC]
 
 
