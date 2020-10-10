@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -2,
+  "window.zoomLevel": 0,
   "window.menuBarVisibility": "toggle",
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
   "terminal.integrated.fontSize": 14,
@@ -52,4 +52,24 @@
   */
   "sync.ignoredExtensions": [],
   "javascript.updateImportsOnFileMove.enabled": "never",
+
+  "todohighlight.keywords": [
+    {
+        "text": "NOTE:",
+        "color": "#000",
+        "backgroundColor": "yellow",
+        "overviewRulerColor": "grey"
+    },
+    {
+      "text": "FIXME:",
+      "color": "#000",
+    },
+    {
+        "text": "TODO:", // TODO:
+        "color": "#000",
+        "backgroundColor": "yellow",
+        //other styling properties goes here ... 
+    }
+],
+"editor.formatOnSave": true,
 }

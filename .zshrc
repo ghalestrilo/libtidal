@@ -174,3 +174,12 @@ alias jam="i3-msg 'workspace jam; layout splitv; \
 #  alias jam="i3-msg 'workspace jam; exec alacritty -e sclang; exec alacritty -e cava; exec alacritty --title tidal -e nvim ~/art' \
 #   && sleep 0.2 \
 #   && i3-msg '[title=tidal] focus; move left'"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+
+
+alias bat=batcat
