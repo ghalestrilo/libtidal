@@ -13,6 +13,9 @@
     # ~/.Xresources-regolith:
     #   force: true
     #   path: regolith/Xresources-regolith
+    /etc/regolith/i3xrocks/config:
+      path: common/i3blocks.conf
+      # force: true
     ~/.oh-my-zsh/themes/lalis.zsh-theme:
       path: common/lalis.zsh-theme
       force: true
