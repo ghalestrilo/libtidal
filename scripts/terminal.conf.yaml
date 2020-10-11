@@ -40,3 +40,7 @@
   - [sudo apt-get install -y fd-find, Installing fd-find]
   - [brew install broot, Installing broot]
   - [sudo apt-get install -y zathura, Installing zathura]
+
+# System
+- shell:
+  - [sudo apt-get install i3xrocks-battery, Installing i3xrocks-battery]
