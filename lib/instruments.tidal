@@ -39,7 +39,31 @@ let fmamp op = pF ("amp" ++ show op)
     lfmel op = fmparam (fmel op)
 :}
 
--- :{
--- let fmgroup param = grp $ map param [1..4]
---     gfmr = fmgroup fmratio
--- :}
+-- Synth Params
+
+-- superhammond
+:{
+let vibrato = pF "vibrato"
+    vrate = pF "vrate"
+    perc = pF "perc"
+    percf = pF "percf"
+:}
+
+-- supervibe
+:{
+let modamp = pF "modamp"
+    modfreq = pF "modfreq"
+:}
+
+
+-- Interpretive
+
+-- strum' :: Pattern String -> Integer -> Pattern Double -> Pattern Double
+
+:{
+strum' dir i pat = case i of
+            0 -> pat
+            notzero -> fastcat ((arp dir pat):(take (fromInteger i) $ repeat ("~" :: Pattern Double)))
+:}
+
+strum = strum' "up"
