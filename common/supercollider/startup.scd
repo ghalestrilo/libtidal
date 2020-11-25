@@ -1,7 +1,4 @@
-~portreface = MIDIOut.findPort("reface CP", "reface CP MIDI 1");
-~portonyx = MIDIOut.findPort("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
-~portmm = MIDIOut.findPort("MicroMonsta", "MicroMonsta MIDI 1");
-~usesoftsynths = true;
+~usesoftsynths = false;
 
 Quarks.update("SuperDirt");
 include("SuperDirt");
@@ -36,7 +33,13 @@ s.waitForBoot {
 
 	MIDIClient.init;
 
-	if (~portreface!= nil, {
+	~portreface = MIDIOut.findPort("reface CP", "reface CP MIDI 1");
+	~portonyx   = MIDIOut.findPort("Onyx Producer 2-2", "Onyx Producer 2-2 MIDI 1");
+	~portmm     = MIDIOut.findPort("MicroMonsta", "MicroMonsta MIDI 1");
+	~portaxo    = MIDIOut.findPort("Axoloti Core", "Axoloti Core MIDI 1");
+
+
+	if (~portreface != nil, {
 		~reface = MIDIOut.newByName("reface CP", "reface CP MIDI 1");
 		~dirt.soundLibrary.addMIDI(\reface, ~reface);
 		~reface.latency = 0;
@@ -50,11 +53,29 @@ s.waitForBoot {
 
 	if (~portmm != nil, {
 		~mm = MIDIOut.newByName("MicroMonsta", "MicroMonsta MIDI 1");
-		// ~mm = MIDIOut(0, MIDIClient.destinations[1].uid);
 		~mm.latency = 0;
-		// MIDIClient.sources[4].connect(1);
 		~dirt.soundLibrary.addMIDI(\mm, ~mm);
 	});
+
+	if (~portaxo != nil, {
+		~axo = MIDIOut.newByName("Axoloti Core", "Axoloti Core MIDI 1");
+		~axo.latency = 0;
+		~dirt.soundLibrary.addMIDI(\axo, ~axo);
+	});
+
+	// TEMP
+	~portxd1    = MIDIOut.findPort("minilogue xd", "minilogue xd MIDI 1"); // TEMP
+	~portxd2    = MIDIOut.findPort("minilogue xd", "minilogue xd MIDI 2"); // TEMP
+	if (~portmxd!= nil, {
+		~mxd1 = MIDIOut.newByName("minilogue xd", "minilogue xd MIDI 1");
+		~mxd1.latency = 0;
+		~dirt.soundLibrary.addMIDI(\mxd1, ~mxd1);
+
+		~mxd2 = MIDIOut.newByName("minilogue xd", "minilogue xd MIDI 2");
+		~mxd2.latency = 0;
+		~dirt.soundLibrary.addMIDI(\mxd2, ~mxd2);
+	});
+
 
 	if (~usesoftsynths == true, {
 		~sco0 = MIDIOut.newByName("SuperCollider", "in0");

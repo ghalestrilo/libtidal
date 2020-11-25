@@ -28,6 +28,6 @@ fi
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # 4k resolution
-if [ $(hostname) = 'llipuru' ]; then
-  export QT_SCREEN_SCALE_FACTORS=2 
-fi 
+# if [ $(hostname) = 'llipuru' ]; then
+  # export QT_SCREEN_SCALE_FACTORS=2 
+# fi 
