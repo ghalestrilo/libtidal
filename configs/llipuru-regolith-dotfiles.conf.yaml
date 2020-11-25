@@ -66,6 +66,8 @@
     ~/.config/REAPER/ProjectTemplates/tidal-tracking.RPP:
       path: tidal-tracking.RPP
       force: true
+    ~/.tmux.conf:
+      path: common/tmux.conf
 
 
 # Clone Kakoune Plugin Manager
