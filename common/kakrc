@@ -28,7 +28,10 @@ map global normal <c-w> :db<ret>
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 # plug "tgirod/tidal.kak"
+plug "https://github.com/alexherbo2/explore.kak"
 plug "https://github.com/tgirod/tidal.kak"
+# plug "https://github.com/andreyorst/fzf.kak"
+# plug "https://github.com/alexherbo2/connect.kak"
 map global normal <c-e> ':tidal-send-block<ret>'
 map global normal <c-h> ':tidal-hush<ret>'
 
@@ -37,6 +40,9 @@ map global normal <c-h> ':tidal-hush<ret>'
 # :tidal-send-line
 # :tidal-send-block
 # :tidal-hush
+
+# Enable directory exploring
+require-module explore
 
 # Set tidal syntax to haskell
 hook global BufCreate .+\.tidal %{ set buffer filetype haskell }

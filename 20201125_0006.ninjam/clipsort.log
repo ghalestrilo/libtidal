@@ -1,0 +1,8 @@
+chat TOPIC "" "Welcome to NINJAM. Please play nicely."
+interval 1 115.00 4
+local 01b964a0dbdb7a8449752619be53f80a 0
+interval 2 115.00 4
+local 6a95bdd67feb07906508bc3651ab029c 0
+interval 3 115.00 4
+local bdd5e40783888d94639cc9e04c854835 0
+end

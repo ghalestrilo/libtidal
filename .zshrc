@@ -161,19 +161,22 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # alias ganache-gui="~/Downloads/software/ganache-2.4.0-linux-x86_64.AppImage"
 alias ganache-gui="~/Downloads/software/ganache-*.AppImage"
 
-# Start a Tidal Jam Session
-alias jam="i3-msg 'workspace jam; layout splitv; \
-    exec alacritty --title supercollider -e sclang; \
-    exec alacritty --title cava -e cava; \
-    exec alacritty --title tidal -e nvim ~/art'; \
-    exec alacritty --title cninjam -e cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack \
-  && sleep 0.2 \
-  && i3-msg '[title=tidal] focus; move left'"
+alias devjam="tmux new-session -s jam \
+  kak '~/art/test.tidal' \; \
+  new-window 'sclang' \; \
+  new-window 'cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack' \
+  select-window -t 0"
 
-# Start a Tidal Jam Session
-#  alias jam="i3-msg 'workspace jam; exec alacritty -e sclang; exec alacritty -e cava; exec alacritty --title tidal -e nvim ~/art' \
-#   && sleep 0.2 \
-#   && i3-msg '[title=tidal] focus; move left'"
+# Run a Tidal Jam
+alias jam="jack_control start && \
+  tmux new-session -s jam 'kak ~/art/test.tidal'                             \; \
+  new-window sclang                                                          \; \
+  new-window 'cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack' \; \
+  select-window -t 0 \
+  && jack_control exit"
+
+
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
