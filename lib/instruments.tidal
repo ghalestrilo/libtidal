@@ -57,13 +57,7 @@ let modamp = pF "modamp"
 
 
 -- Interpretive
-
--- strum' :: Pattern String -> Integer -> Pattern Double -> Pattern Double
-
 :{
-strum' dir i pat = case i of
-            0 -> pat
-            notzero -> fastcat ((arp dir pat):(take (fromInteger i) $ repeat ("~" :: Pattern Double)))
-:}
-
-strum = strum' "up"
+let strum' dir i pat = fastcat ((arp dir pat):(take (fromInteger i) $ repeat (degradeBy 1 pat)))
+    strum = strum' "up"
+    :}
