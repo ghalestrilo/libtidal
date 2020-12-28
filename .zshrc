@@ -175,6 +175,18 @@ alias jam="jack_control start && \
   select-window -t 0 \
   && jack_control exit"
 
+# Dev a seg jam (WIP)
+segjam(){
+  echo $1
+  jack_control start && \
+  tmux new-session -s jam "zsh -c \"node --inspect target/js/compiled/segue.js $1\""\; \
+    new-window "sclang"                                            \; \
+    new-window "ghci -ghci-script %opt{tidal_boot_file}" \; \
+    # new-window "cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack" \; \
+    select-window -t 0
+  jack_control exit
+}
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then

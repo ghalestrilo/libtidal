@@ -1,9 +1,11 @@
 {
     "settings": {
         "bwtest": false,
-        "key": "visuales?pwd=nwn",
-        "server": "rtmp://198.211.106.132/stream",
-        "use_auth": false
+        "key": "BVfcBbHx-3gaxJH5l-sBjSlPsk-zSDTycS9",
+        "password": "",
+        "server": "rtmp://tidalcycles.org/solstice/",
+        "use_auth": true,
+        "username": ""
     },
     "type": "rtmp_custom"
 }

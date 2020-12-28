@@ -1,9 +1,11 @@
 {
     "settings": {
         "bwtest": false,
-        "key": "visuales?pwd=nwn",
-        "server": "auto",
-        "service": "Twitch"
+        "key": "BVfcBbHx-3gaxJH5l-sBjSlPsk-zSDTycS9",
+        "password": "",
+        "server": "rtmp://tidalcycles.org/solstice/",
+        "use_auth": true,
+        "username": ""
     },
-    "type": "rtmp_common"
+    "type": "rtmp_custom"
 }
