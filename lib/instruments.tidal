@@ -1,19 +1,30 @@
- -------------------------------------------------------------------- Instruments
-:{
-let vk = s "vk" # n 3
-    vs = s "vs" # n 117
-    vh = s "vh" # n 2 # sus 0.08
-    vo = s "vh" # n 15 # sus 1
-    gretsch x = n x # s "gretsch" # bus
-    -- piano x = tonal mode x # s "superpiano" # lpf 450 # bus # octave 5
-    -- vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
-:}
+let __ = "~"
 
 -- Midi Instruments
 :{
 let mm = s "mm" # orbit 0 # midichan 0
     reface = s "reface" # orbit 0 # midichan 0
+
+    axo = s "axo" # midichan "[0,9]"
+    axocc  n v = once      $ ccv v # ccn n # axo
+    axocc' n v = p "axofx" $ ccv v # ccn n # axo
+    axoreset = do
+                      axocc' 1 "1 0@1000"
+    fxstut = axocc 1
+    fxdrop = axocc 2
+    fxdist = axocc 3
+    nofx = axocc 1 0
 :}
+
+:{
+let cycles pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
+    cyclesDecayTime value = ccn 80 # ccv (value |* 125)
+    cyclesColor     value = ccn 16 # ccv (value |* 125)
+    cyclesShape     value = ccn 17 # ccv (value |* 125)
+    cyclesSweep     value = ccn 18 # ccv (value |* 125)
+    open = cyclesDecayTime
+:}
+
 
 -- FM Synth helpers
 :{
@@ -60,4 +71,44 @@ let modamp = pF "modamp"
 :{
 let strum' dir i pat = fastcat ((arp dir pat):(take (fromInteger i) $ repeat (degradeBy 1 pat)))
     strum = strum' "up"
+    humanize param amt = (|+ param (range (- (amt/10)) (amt/10) $ perlin))
+    h = humanize
+    hg = humanize gain
     :}
+
+
+-- temp: looping functions
+:{
+let brakk' n = unit "c" # legato 1 # speed (1/n)
+    brakk = brakk' 1
+  :}
+
+-------------------------------------------------------------------- Instruments
+:{
+let vk = s "vk" # n 3
+    vs = s "vs" # n 117
+    vh = s "vh" # n 2 # sus 0.08
+    vo = s "vh" # n 15 # sus 1
+    gretsch x = n x # s "gretsch" # bus
+    -- piano x = tonal mode x # s "superpiano" # lpf 450 # bus # octave 5
+    -- vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
+    vibeinst = s "supervibe"
+                    # modamp 0
+                    # velocity 0.3
+                    # lpf 900
+                    # resonance 0.02
+                    # octave 4
+                    # sus 6
+                    # orbit 3
+    vibe pat = p "vibe" $ pat # vibeinst
+    pianoinst = s "superpiano"
+                    # lpf "[1100,300]"
+                    # hpf 0
+                    # bus
+                    # gain 1.55
+                    # octave 4
+                    # velocity 0.35
+                    # sus 2
+                    # orbit 1
+    piano pat = p "piano" $ pat # pianoinst
+:}

@@ -33,7 +33,7 @@ let scale = getScale (scaleTable ++ [("techno", [0,2,3,5,7,8,10]),
                                     ])
 :}
 
-let ch = (|+) -- short for chord
+let ch = (+|) -- short for chord
 
 
 -------------------------------------------------------------------- Tonal Defs

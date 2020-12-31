@@ -91,11 +91,17 @@ dr = defrhythm
 -- dr "baiao"    $ l "0@3 0@5" ("0*4" # gain "0.8 0.9 1 0.8" ")
 dr "brega"    $ l "0*2" "~@3 0 . ~ 0" "[0 0 0  ~]*2"
 dr "ijexa"    $ l "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~"
+dr "ile"      $ l "0 . 1*<2 4>" "t*8" "~ t*<2 0> t!2 . ~ t"
+
+-- Pontos de marinheiro
+dr "ponto1"   $ l "~@3 0*<2 1>" "[0@3 <0 ~>]*2"
+
 dr "funk"     $ l "0(3,8) . ~ [0 ~] ~@2" "[~ 0]*2"
 dr "funk150"  $ l "[t@3 ~@5 . ~ <~ t>@2 [~ <t ~>]]/2" "[~@3 f@3 f@2 . ~ f]/2"
 dr "capoeira" $ l "~ ~ 0 ~" "~ ~ ~ 0"
-
+dr "baiao"    $ l "0@3 0@5" "~" "~" "0*8"
 dr "tumbao"   $ l "0" "~ 0 ~ 0*2" "[0*2 . [~ 0] . 0*2 . [~ 0]]"
+
 :{
 dr "taala" $ l
   (struct "[t@1.5 t]" $ "2")
@@ -104,6 +110,7 @@ dr "taala" $ l
   :}
 
 -- r: plays a rhythm from the state with the passed set of sounds
+-- TODO: Check pattern instance. If it's a PatternMap, don't (map s ss).
 :{
 let r name ss = stack
       $ zipWith (flip (#)) (map s ss)
@@ -112,7 +119,7 @@ let r name ss = stack
 
 
 
--- WIP: Convolutions
+------------------------------------------------------------------------ Convolutions (ring)
 
 import Data.List (sortBy)
 
@@ -132,14 +139,11 @@ prrw f rot (blen, vlen) beatPattern valuePattern =
       (drop (rot `mod` length values) $ cycle values)
 :}
 
-
 :{
 prr :: Int -> (Time, Time) -> Pattern String -> Pattern a -> Pattern a
 prr = prrw (flip const)
 :}
 
 preplace = prr 0
-
 (<~>) = preplace (1,1)
-
 ring = flip $ preplace (1,1)
