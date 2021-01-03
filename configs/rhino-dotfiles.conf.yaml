@@ -42,6 +42,7 @@
       force: true
     ~/.config/zathura/zathurarc: data/common/zathurarc
     ~/screcs: .local/share/SuperCollider/Recordings
+    ~/.tmux.conf: common/tmux.conf
 
 # FIXME: Don't apply i3 currently, because it's breaking
 # - clean: ['~/.config/i3']
