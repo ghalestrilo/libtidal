@@ -16,8 +16,9 @@ let mm = s "mm" # orbit 0 # midichan 0
     nofx = axocc 1 0
 :}
 
+-- Model:Cycles
 :{
-let cycles pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
+let mc pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
     cyclesDecayTime value = ccn 80 # ccv (value |* 125)
     cyclesColor     value = ccn 16 # ccv (value |* 125)
     cyclesShape     value = ccn 17 # ccv (value |* 125)

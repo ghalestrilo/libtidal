@@ -90,7 +90,7 @@ dr = defrhythm
 -- New Rhythm Dictionary
 -- dr "baiao"    $ l "0@3 0@5" ("0*4" # gain "0.8 0.9 1 0.8" ")
 dr "brega"    $ l "0*2" "~@3 0 . ~ 0" "[0 0 0  ~]*2"
-dr "ijexa"    $ l "[<[0!2] [0!2 ~!2]> ~]*2" "~ [f!2] . ~@3 f ~ f f ~"
+dr "ijexa"    $ l "<[0!2] [0!2 ~!2]> ~" "[~ [f!2] . ~@3 f ~ f f ~]/2"
 dr "ile"      $ l "0 . 1*<2 4>" "t*8" "~ t*<2 0> t!2 . ~ t"
 
 -- Pontos de marinheiro
@@ -118,6 +118,24 @@ let r name ss = stack
 :}
 
 
+-- WIP: Retrieve voices from a rhythm
+:{
+let voices' name list = map (n . getrtmvoice name) list
+    voices name = voices' name [0,1,2,3,4,5]
+    withvoices' name fs = zipWith (\f pat -> f pat) fs (voices name)
+    withvoices name fs = stack $ withvoices' name (map (\f -> (# f)) fs)
+    wv = withvoices
+    rv = getrtmvoice
+    nv name idx = n $ rv name idx
+    rhythmpart = nv
+    rhythmparts name = map (nv name)
+    rp  = rhythmpart
+    rps = rhythmparts
+  :}
+
+-- tom: receives the name of a rhythm/ponto and a list of pithes.
+-- returns a stack of the voices of that rhythm played on the provided notes
+tom name = (withvoices name . map note)
 
 ------------------------------------------------------------------------ Convolutions (ring)
 
