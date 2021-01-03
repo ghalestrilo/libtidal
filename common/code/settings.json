@@ -42,7 +42,7 @@
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.statusBar.enabled": false,
   "eslint.format.enable": true,
-  "workbench.colorTheme": "★★★★★ NORD DARK ★★★★★",
+  "workbench.colorTheme": "Nord",
   "telemetry.enableTelemetry": false,
   /*
   "bracket-pair-colorizer-2.colors": [

@@ -169,7 +169,7 @@ alias devjam="tmux new-session -s jam \
 
 # Run a Tidal Jam
 alias jam="jack_control start && \
-  tmux new-session -s jam 'kak ~/art/test.tidal'                             \; \
+  tmux new-session -s jam 'zsh -c \"kak ~/art/test.tidal\"'                             \; \
   new-window sclang                                                          \; \
   new-window 'cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack' \; \
   select-window -t 0 \

@@ -32,6 +32,25 @@ plug "https://github.com/alexherbo2/explore.kak"
 plug "https://github.com/tgirod/tidal.kak"
 # plug "https://github.com/andreyorst/fzf.kak"
 # plug "https://github.com/alexherbo2/connect.kak"
+
+# Load Boot.tidal
+set-option global tidal_boot_file "/home/tidal/boot.tidal"
+
+# Set tidal syntax to haskell
+declare-option bool no_tidal_repl_yet true
+
+
+
+hook global BufCreate .+\.tidal -once %{
+  alias global repl tmux-repl-window
+  tidal-start-repl
+  tmux-focus
+}
+
+# hook global BufCreate .+\.tidal %{
+  # set buffer filetype haskell
+# }
+
 map global normal <c-e> ':tidal-send-block<ret>'
 map global normal <c-h> ':tidal-hush<ret>'
 
@@ -43,9 +62,3 @@ map global normal <c-h> ':tidal-hush<ret>'
 
 # Enable directory exploring
 require-module explore
-
-# Set tidal syntax to haskell
-hook global BufCreate .+\.tidal %{ set buffer filetype haskell }
-
-# Set tidal syntax to haskell
-set-option global tidal_boot_file /home/tidal/boot.tidal
