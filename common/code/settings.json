@@ -99,5 +99,5 @@
   "telemetry.enableTelemetry": false,
   "editor.formatOnSave": true,
   "zenMode.centerLayout": false,
-  "workbench.colorTheme": "Blink Contrast (rainglow)",
+  "workbench.colorTheme": "Grunge Contrast (rainglow)",
 }

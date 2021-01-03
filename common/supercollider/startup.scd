@@ -27,8 +27,10 @@ s.waitForBoot {
 	// Function for safely declaring midi devices to tidal
 	~tidalMidiOut = { |tidal_name, device_name, channel_name|
 		if (MIDIOut.findPort(device_name, channel_name) != nil, {
-			~dirt.soundLibrary.addMIDI(tidal_name, MIDIOut.newByName(device_name, channel_name));
-			// TODO: Add .latency = 0
+			~inst = MIDIOut.newByName(device_name, channel_name);
+			~dirt.soundLibrary.addMIDI(tidal_name, ~inst);
+			~inst.latency = 0.04;
+			// FIXME: I think this is a bug. All midis will map to the same instrument
 		});
 	};
 
@@ -133,8 +135,6 @@ s.waitForBoot {
 		*/
 	});
 };
-
-s.latency = 0
 
 /*
 
