@@ -26,6 +26,10 @@ let mc pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" #
     open = cyclesDecayTime
 :}
 
+-- TODO: chord-finding logic for model cycles
+-- mcchordlist = [""]
+-- chord name = 
+
 
 -- FM Synth helpers
 :{
