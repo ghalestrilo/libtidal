@@ -1,0 +1,53 @@
+-------------------------------------------------------------------- Custom Scales
+:{
+let scale = getScale (scaleTable ++ [("harris", [0,2,4,5,7,8,9,11])
+                                    ])
+:}
+
+let ch = (+|) -- short for chord
+
+
+-------------------------------------------------------------------- Tonal Defs
+:{
+let getGlobalMode = cS "chromatic" "mode_global"
+    setGlobalMode = setS "mode_global"
+    getGlobalRoot = cF0 "root_global"
+    setGlobalRoot = setF "root_global"
+    tonal rr mm = note . (|+ rr) . scale mm
+    t = tonal getGlobalRoot getGlobalMode
+    setkey root mode = do
+      setGlobalMode mode
+      setGlobalRoot root
+:}
+
+
+-- WIP: Polymodality
+:{
+let toModeKey = ("mode_" ++) . show
+    toRootKey = ("root_" ++) . show
+    getMode idx = cS "chromatic" (toModeKey idx)
+    setMode idx = setS (toModeKey idx)
+    getRoot idx = cF0 (toRootKey idx)
+    setRoot idx = setF (toRootKey idx)
+    t' idx = tonal (getRoot idx) (getMode idx)
+    setkey' idx root mode = do
+      setMode idx mode
+      setRoot idx root
+:}
+
+
+-- Integer Permutations (EG. Negative Harmony) 
+--    permute list pat: applies a scale degree permutation (represented by list) to the running pattern (pat). 
+--    deny (neg') cpat: applies negative harmony to the running pattern when cpat (Pattern Bool) is true (eg. "t@2 f t") 
+--    TODO: apply an inversion when negating, to avoid shifting too far from root
+:{
+let permute list pat = toScale list $ floor <$> pat
+    permute' list cpat pat = sew cpat (toScale list $ floor <$> pat) pat
+    neg' = permute' [7,6,5,4,3,2,1,0,11,10,9,8]
+    neg = neg' "t"
+    deny = neg'
+    applyAt list f index = [if i == index then (f x) else x | (i, x) <- zip [0..] list]
+    shift amount deg = permute $ applyAt [0..11] (+ amount) deg
+    sharp = shift 1
+    flat  = shift (-1)
+:}

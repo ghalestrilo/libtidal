@@ -19,6 +19,12 @@ let mm = s "mm" # orbit 0 # midichan 0
 -- Model:Cycles
 :{
 let mc pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
+    m1 pat = p "cycles1" $ pat # s "mc" # midichan 0
+    m2 pat = p "cycles2" $ pat # s "mc" # midichan 1
+    m3 pat = p "cycles3" $ pat # s "mc" # midichan 2
+    m4 pat = p "cycles4" $ pat # s "mc" # midichan 3
+    m5 pat = p "cycles5" $ pat # s "mc" # midichan 4
+    m6 pat = p "cycles6" $ pat # s "mc" # midichan 5
     cyclesDecayTime value = ccn 80 # ccv (value |* 125)
     cyclesColor     value = ccn 16 # ccv (value |* 125)
     cyclesShape     value = ccn 17 # ccv (value |* 125)
@@ -28,7 +34,7 @@ let mc pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" #
 
 -- TODO: chord-finding logic for model cycles
 -- mcchordlist = [""]
--- chord name = 
+-- chord name =
 
 
 -- FM Synth helpers

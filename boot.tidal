@@ -23,13 +23,8 @@ tidal <- startTidal (superdirtTarget { oLatency = 0.4, oAddress = "127.0.0.1", o
 :script /home/tidal/lib/ux.tidal
 :script /home/tidal/lib/instruments.tidal
 :script /home/tidal/lib/song.tidal
+:script /home/tidal/lib/tonal.tidal
 
--- :script /home/lalis/git/dots/common/tidal/varargs.tidal
--- :script /home/lalis/git/dots/common/tidal/mixer.tidal
--- :script /home/lalis/git/dots/common/tidal/rhythm.tidal
--- :script /home/lalis/git/dots/common/tidal/ux.tidal
--- :script /home/lalis/git/dots/common/tidal/instruments.tidal
--- :script /home/lalis/git/dots/common/tidal/song.tidal
 
 
 
