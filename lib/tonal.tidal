@@ -30,15 +30,16 @@ let toModeKey = ("mode_" ++) . show
     getRoot idx = cF0 (toRootKey idx)
     setRoot idx = setF (toRootKey idx)
     t' idx = tonal (getRoot idx) (getMode idx)
+    onkey idx = (|+ (getRoot idx)) . scale (getMode idx)
     setkey' idx root mode = do
       setMode idx mode
       setRoot idx root
 :}
 
 
--- Integer Permutations (EG. Negative Harmony) 
---    permute list pat: applies a scale degree permutation (represented by list) to the running pattern (pat). 
---    deny (neg') cpat: applies negative harmony to the running pattern when cpat (Pattern Bool) is true (eg. "t@2 f t") 
+-- Integer Permutations (EG. Negative Harmony)
+--    permute list pat: applies a scale degree permutation (represented by list) to the running pattern (pat).
+--    deny (neg') cpat: applies negative harmony to the running pattern when cpat (Pattern Bool) is true (eg. "t@2 f t")
 --    TODO: apply an inversion when negating, to avoid shifting too far from root
 :{
 let permute list pat = toScale list $ floor <$> pat
