@@ -1,9 +1,9 @@
 {
     "settings": {
         "bwtest": false,
-        "key": "BVfcBbHx-3gaxJH5l-sBjSlPsk-zSDTycS9",
+        "key": "adqy-pxv1-6m61-qvbj-f78c",
         "password": "",
-        "server": "rtmp://tidalcycles.org/solstice/",
+        "server": "rtmp://a.rtmp.youtube.com/live2",
         "use_auth": true,
         "username": ""
     },

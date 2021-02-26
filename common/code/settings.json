@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": 0,
+  "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
   "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
   "terminal.integrated.fontSize": 14,
@@ -99,5 +99,5 @@
   "telemetry.enableTelemetry": false,
   "editor.formatOnSave": true,
   "zenMode.centerLayout": false,
-  "workbench.colorTheme": "Warlock Light (rainglow)",
+  "workbench.colorTheme": "Jumper Contrast (rainglow)",
 }
