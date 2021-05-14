@@ -7,9 +7,12 @@ if [ ! -f get-pip.py ]; then
 	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 fi
 
+
+
 if ! command -v pip; then
-  sudo apt install python3-distutils -y;
-  python3 get-pip.py;
+  sudo apt install -y python3-distutils python3-pip;
+  sudo apt install 
+  # python3 get-pip.py;
 fi
 
 if [[ $(echo $PATH | grep "$HOME/.local/bin") ]];
