@@ -30,7 +30,7 @@
   - [sudo usermod -aG docker \$(whoami), Adding self to docker group]
   - [sudo apt-get install -y docker-compose, Installing docker-compose]
   - [sudo apt-get install -y leiningen, Installing leiningen]
-  - [snap install insomnia, Installing Insomnia]
+  # - [snap install insomnia, Installing Insomnia]
 
 # Office and Misc Tools
 - shell:
@@ -39,8 +39,4 @@
   - [sudo apt-get install -y nnn, Installing nnn]
   - [sudo apt-get install -y fd-find, Installing fd-find]
   - [brew install broot, Installing broot]
-  - [sudo apt-get install -y zathura, Installing zathura]
-
-# System
-- shell:
-  - [sudo apt-get install i3xrocks-battery, Installing i3xrocks-battery]
+  # - [sudo apt-get install -y zathura, Installing zathura]

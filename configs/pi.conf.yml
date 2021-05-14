@@ -1,0 +1,15 @@
+- clean: ['~']
+- clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
+
+- shell:
+  # - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
+  # - [dotbot -d . -c scripts/fonts.conf.yaml, Adding Fonts]
+  - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
+  - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
+  - [dotbot -d . -c scripts/live-coding.conf.yaml, Configuring Media Tools]
+
+- shell:
+  - ["if [ ! -e ~/git/libtidal ]; git clone https://github.com/ghalestrilo/libtidal ~/git/libtidal; fi", Installing thefuck]
+
+- shell:
+  - [dotbot -d . -c pi-dotfiles.conf.yaml, Linking Configs]

@@ -1,0 +1,30 @@
+
+# Linking Dotfiles
+- link:
+    ~/.profile:
+      force: true
+      path: regolith/.profile
+    ~/.oh-my-zsh/themes/lalis.zsh-theme:
+      path: common/lalis.zsh-theme
+      force: true
+    ~/.taskrc: .taskrc
+    ~/.zshrc:
+      path: .zshrc
+      force: true
+    ~/.config/kak/kakrc:
+      path: common/kakrc
+      create: true
+      force: true
+    ~/.config/init.vim:
+      path: common/init.vim
+      force: true
+    ~/.config/SuperCollider:
+      path: common/supercollider/*
+      glob: true
+      force: true
+    ~/.config/tidal/boot.tidal:
+      create: true
+      path: ~/git/boot.tidal
+    # Folder Shortcuts
+    ~/screcs: ~/.local/share/SuperCollider/Recordings
+    ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples

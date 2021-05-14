@@ -6,6 +6,8 @@
   # - [dotbot -d . -c scripts/ fonts.conf.yaml, Adding Fonts]
   - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
+  - [dotbot -d . -c scripts/i3.conf.yaml, Configuring i3-blocks]
+  - [dotbot -d . -c scripts/regolith.conf.yaml, Configuring Media Tools]
   - [dotbot -d . -c scripts/media.conf.yaml, Configuring Media Tools]
   - [dotbot -d . -c scripts/gaming.conf.yaml, Configuring Media Tools]
 
