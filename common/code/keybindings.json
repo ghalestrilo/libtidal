@@ -78,7 +78,19 @@
   {
     "key": "ctrl+shift+e",
     "command": "-workbench.view.explorer"
-  }
+},
+{
+    "key": "ctrl+'",
+    "command": "workbench.action.terminal.toggleTerminal"
+},
+{
+    "key": "ctrl+shift+[BracketLeft]",
+    "command": "workbench.actions.view.problems"
+},
+{
+    "key": "ctrl+shift+m",
+    "command": "-workbench.actions.view.problems"
+}
   // - editor.action.transformToLowercase
   // - editor.action.transformToUppercase
 ]

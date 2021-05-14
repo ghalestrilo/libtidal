@@ -196,3 +196,8 @@ fi
 export PATH="$PATH:$HOME/.cargo/bin"
 
 alias bat=batcat
+alias lg=lazygit
+
+source /home/ghales/.config/broot/launcher/bash/br
+export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH

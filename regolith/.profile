@@ -35,4 +35,5 @@ source "$HOME/.cargo/env"
 
 # Automatically added by Aspen
 export PATH="/home/ghales/.aspen/bin:$PATH"
-
+export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH
