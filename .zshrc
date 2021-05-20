@@ -194,6 +194,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:~/.local/bin"
 
 alias bat=batcat
 alias lg=lazygit
