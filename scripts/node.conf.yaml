@@ -3,12 +3,9 @@
 - shell:
   - [echo Installing Node and Tools]
   - ["if ! command -v nvm ; then curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash; fi", Installing NVM]
-  - ["if ! command -v gatsby ; then nvm install node; fi", Installing NodeJS]
+  - ["if ! command -v node ; then nvm install node; fi", Installing node]
   - source ~/.bashrc # update path to get nvm
   # - [sudo apt-get install -y nodejs, Installing NodeJS]
   # - [sudo apt-get install -y npm, Installing npm]
   # - [sudo apt-get install -y yarnpkg, Installing yarn]
-  - ["if ! command -v gatsby ; then npm i -g -y gatsby-cli; fi",             Installing Gatsby]
   - ["if ! command -v dockly ; then npm i -g -y dockly; fi",                 Installing Dockly]
-  - ["if ! command -v expo ; then npm i -g -y expo-cli; fi",                 Installing Expo CLI]
-  - ["if ! command -v react-native ; then npm i -g -y react-native-cli; fi", Installing React Native CLI]

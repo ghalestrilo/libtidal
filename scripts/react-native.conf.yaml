@@ -1,0 +1,4 @@
+- shell:
+  - ["if ! command -v gatsby ; then npm i -g -y gatsby-cli; fi",             Installing Gatsby]
+  - ["if ! command -v expo ; then npm i -g -y expo-cli; fi",                 Installing Expo CLI]
+  - ["if ! command -v react-native ; then npm i -g -y react-native-cli; fi", Installing React Native CLI]

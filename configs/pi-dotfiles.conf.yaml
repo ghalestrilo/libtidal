@@ -7,9 +7,8 @@
     ~/.oh-my-zsh/themes/lalis.zsh-theme:
       path: common/lalis.zsh-theme
       force: true
-    ~/.taskrc: .taskrc
     ~/.zshrc:
-      path: .zshrc
+      path: common/.zshrc-pi
       force: true
     ~/.config/kak/kakrc:
       path: common/kakrc
@@ -24,7 +23,7 @@
       force: true
     ~/.config/tidal/boot.tidal:
       create: true
-      path: ~/git/boot.tidal
+      path: ~/git/libtidal/boot.tidal
     # Folder Shortcuts
     ~/screcs: ~/.local/share/SuperCollider/Recordings
     ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples

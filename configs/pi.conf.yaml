@@ -2,10 +2,11 @@
 - clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
 
 - shell:
-	- [bash scripts/install_linuxbrew.sh, Installing Linuxbrew]
+	# - [bash scripts/install_linuxbrew.sh, Installing Linuxbrew]
   # - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
   # - [dotbot -d . -c scripts/fonts.conf.yaml, Adding Fonts]
-  # - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
+  - [bash scripts/ninjam-build.sh, Installing CNinjam]
+  - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
   - [dotbot -d . -c scripts/live-coding.conf.yaml, Configuring Live Coding Tools]
 

@@ -135,7 +135,7 @@ alias recs="cd $SC_REC_DIR"
 alias zc="kak ~/.zshrc"
 alias refresh="source ~/.zshrc"
 alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
-
+alias pip=pip3
 
 # Quality of life
 alias short='xdg-open https://trello.com/b/xYvCoiBo/short'
