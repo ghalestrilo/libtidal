@@ -63,7 +63,10 @@ alias recs="cd $SC_REC_DIR"
 alias zc="kak ~/.zshrc"
 alias refresh="source ~/.zshrc"
 alias save="cd ~/git/config && bash ./scripts/updateconfig.sh reverse; cd $pwd"
+
+# Set Python 3 to default
 alias pip=pip3
+alias python=python3
 
 # TODO: Change this to atom on ubuntu regolith, create .zshrc for ubuntu
 alias config="kak ~/git/dots"
