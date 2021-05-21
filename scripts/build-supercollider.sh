@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cd ~/dots # or cd into the directory where you'd like to clone and build supercollider
+cd ~/git/dots # or cd into the directory where you'd like to clone and build supercollider
 # git clone --recurse-submodules https://github.com/supercollider/supercollider.git
 # cd supercollider
 # mkdir build && cd build
 
-bash scripts/build_jack.sh 
+# bash scripts/build-jack.sh  
 
 buildfolder='build/supercollider'
 [ ! -d $buildfolder ] && git clone --recurse-submodules http://github.com/supercollider/supercollider $buildfolder
@@ -19,14 +19,18 @@ cmake -DCMAKE_BUILD_TYPE=Release \
   -DSC_EL=OFF \
   -DSC_VIM=ON \
   -DNATIVE=ON \
+  -DNO_X11=ON \
+  -DSC_QT=OFF \
   -DSC_USE_QTWEBENGINE:BOOL=OFF \
   ..
 
+echo 'Done with first cmake'
 cmake --build . --config Release --target all -- -j3 # use -j3 flag only on RPi3 or newer
 sudo cmake --build . --config Release --target install
 sudo ldconfig
 
-echo /usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 > ~/.jackdrc
+echo '/usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3' > ~/.jackdrc
+
 
 # cat > ~/autostart.sh <<EOF
 #!/bin/bash

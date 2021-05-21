@@ -19,7 +19,7 @@ buildfolder='build/jack'
 [ ! -d $buildfolder ] && git clone git://github.com/jackaudio/jack2 --depth 1 $buildfolder
 
 # Build
-if [ ! command -v jackd ]; then
+if ! command -v jackd; then
   cd $buildfolder
   ./waf configure --alsa --libdir=/usr/lib/arm-linux-gnueabihf/
   ./waf build
