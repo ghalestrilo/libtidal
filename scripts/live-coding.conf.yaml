@@ -1,6 +1,8 @@
 # Live Coding Set
 - shell:
   - [echo Setting up Live Coding Tools]
+  # - [sudo apt-get install -y gocode jq, Installing Kak requirements]
+  # - [go get goimports gogetdoc, Installing Kak requirements]
   - [sudo apt-get install -y tmux, Installing Supercollider]
   - [sudo apt-get install -y sc3-plugins, Installing SC3 Plugins]
   - [sudo apt-get install -y haskell-platform, Installing Haskell (ghc, ghci)]
