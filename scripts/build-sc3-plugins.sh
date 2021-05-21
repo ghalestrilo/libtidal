@@ -9,4 +9,4 @@ cd "$buildfolder/build"
 cmake -DSC_PATH=../../supercollider -DCMAKE_BUILD_TYPE=Release -DSUPERNOVA=ON ..
 cmake --build .. --config Release
 # to install the plugins - note: linux users likely need sudo
-cmake --build .. --config Release --target install
+sudo cmake --build .. --config Release --target install
