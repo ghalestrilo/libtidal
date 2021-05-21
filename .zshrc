@@ -11,6 +11,9 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="lalis"
 
+alias python=python3
+alias pip=pip3
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
