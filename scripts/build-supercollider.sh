@@ -9,27 +9,24 @@ bash scripts/build_jack.sh
 
 buildfolder='build/supercollider'
 [ ! -d $buildfolder ] && git clone --recurse-submodules http://github.com/supercollider/supercollider $buildfolder
+[ ! -d "$buildfolder/build" ] && mkdir "$buildfolder/build"
+cd "$buildfolder/build"
 
-cd $buildfolder
-
-[ ! -d build ] && mkdir build
-
-# For a GUI build:
+# Build
 cmake -DCMAKE_BUILD_TYPE=Release \
-    -DSUPERNOVA=OFF \
-    -DSC_ED=OFF \
-    -DSC_EL=OFF \
-    -DSC_VIM=ON \
-    -DNATIVE=ON \
-    -DSC_USE_QTWEBENGINE:BOOL=OFF ..
+  -DSUPERNOVA=OFF \
+  -DSC_ED=OFF \
+  -DSC_EL=OFF \
+  -DSC_VIM=ON \
+  -DNATIVE=ON \
+  -DSC_USE_QTWEBENGINE:BOOL=OFF \
+  ..
 
 cmake --build . --config Release --target all -- -j3 # use -j3 flag only on RPi3 or newer
 sudo cmake --build . --config Release --target install
 sudo ldconfig
 
-echo /usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 &gt; ~/.jackdrc
-
-
+echo /usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 > ~/.jackdrc
 
 # cat > ~/autostart.sh <<EOF
 #!/bin/bash

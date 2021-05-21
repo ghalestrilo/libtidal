@@ -1,7 +1,8 @@
 #!/bin/bash
+homefolder='~/git/dots'
 
 # Install Dependencies
-sudo apt-get install \
+sudo apt-get install -y \
     libsamplerate0-dev \
     libsndfile1-dev \
     libasound2-dev \
@@ -18,13 +19,15 @@ buildfolder='build/jack'
 [ ! -d $buildfolder ] && git clone git://github.com/jackaudio/jack2 --depth 1 $buildfolder
 
 # Build
-cd $buildfolder
-./waf configure --alsa --libdir=/usr/lib/arm-linux-gnueabihf/
-./waf build
-sudo ./waf install
-sudo ldconfig
-cd ~/git/dots
-# rm -rf jack2
+if [ ! command -v jackd ]; then
+  cd $buildfolder
+  ./waf configure --alsa --libdir=/usr/lib/arm-linux-gnueabihf/
+  ./waf build
+  sudo ./waf install
+  sudo ldconfig
+  cd $homefolder
+  # rm -rf jack2
+fi
 
 # Update Security Limits
 limits="/etc/security/limits.conf"
