@@ -5,7 +5,7 @@ cd ~/git/dots # or cd into the directory where you'd like to clone and build sup
 # cd supercollider
 # mkdir build && cd build
 
-# bash scripts/build-jack.sh  
+bash scripts/build-jack.sh  
 
 buildfolder='build/supercollider'
 [ ! -d $buildfolder ] && git clone --recurse-submodules http://github.com/supercollider/supercollider $buildfolder
@@ -29,7 +29,9 @@ cmake --build . --config Release --target all -- -j3 # use -j3 flag only on RPi3
 sudo cmake --build . --config Release --target install
 sudo ldconfig
 
-echo '/usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3' > ~/.jackdrc
+if ! grep '/usr/local/bin/jackd' ~/.jackdrc > /dev/null; then
+  echo '/usr/local/bin/jackd -P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3' > ~/.jackdrc
+fi
 
 
 # cat > ~/autostart.sh <<EOF

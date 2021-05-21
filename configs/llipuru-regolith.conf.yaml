@@ -8,9 +8,10 @@
   - [dotbot -d . -c scripts/react-native.conf.yaml, Installing node & packages]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
   - [dotbot -d . -c scripts/i3.conf.yaml, Configuring i3-blocks]
-  - [dotbot -d . -c scripts/regolith.conf.yaml, Configuring Media Tools]
+  # - [dotbot -d . -c scripts/regolith.conf.yaml, Configuring Media Tools]
   - [dotbot -d . -c scripts/media.conf.yaml, Configuring Media Tools]
-  - [dotbot -d . -c scripts/live-coding.conf.yaml, Configuring Media Tools]
+  - [dotbot -d . -c scripts/supercollider.conf.yaml, Installing SuperCollider]
+  - [dotbot -d . -c scripts/live-coding.conf.yaml, Configuring Live Coding Tools]
   - [dotbot -d . -c scripts/gaming.conf.yaml, Configuring Gaming Tools]
 
 # Installing YTT

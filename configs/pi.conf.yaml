@@ -5,13 +5,15 @@
   # - [bash scripts/install_linuxbrew.sh, Installing Linuxbrew]
   # - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
   # - [dotbot -d . -c scripts/fonts.conf.yaml, Adding Fonts]
-  - [bash scripts/build-ninjam.sh, Installing CNinjam]
+  # - [bash scripts/build-ninjam.sh, Installing CNinjam]
   - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
+  - [bash scripts/build-supercollider.sh, Building Supercollider]
+  - [bash scripts/build-sc3-plugins.sh, Building SC3 Plugins]
   - [dotbot -d . -c scripts/live-coding.conf.yaml, Configuring Live Coding Tools]
 
 - shell:
-  - ["if [ ! -e ~/git/libtidal ]; git clone https://github.com/ghalestrilo/libtidal ~/git/libtidal; fi", Installing thefuck]
+  - ["if [ ! -e ~/git/libtidal ]; git clone https://github.com/ghalestrilo/libtidal ~/git/libtidal; fi", Cloning LibTidal]
 
 - shell:
   - [dotbot -d . -c pi-dotfiles.conf.yaml, Linking Configs]
