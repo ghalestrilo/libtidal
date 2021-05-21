@@ -3,7 +3,8 @@ set-option global indentwidth 0
 
 # Yes, this weird slash is really necessary, don't touch it
 add-highlighter global/ number-lines -relative
-colorscheme dracula
+# colorscheme gruvbox
+colorscheme desertex
 
 # Config stuff
 map global normal <c-k> ":edit ~/.config/kak/kakrc <ret>"

@@ -11,7 +11,7 @@
       path: common/.zshrc-pi
       force: true
     ~/.config/kak/kakrc:
-      path: common/kakrc
+      path: common/kakrc-pi
       create: true
       force: true
     ~/.config/init.vim:
