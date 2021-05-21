@@ -29,7 +29,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # You may need to manually set your language environment
-export LANG=pt_BR.UTF-8
+export LANG=en_US.UTF-8
 
 EDITOR='kak'
 
@@ -126,3 +126,5 @@ segjam(){
     select-window -t 0
   jack_control exit
 }
+
+export PATH=$PATH:~/.local/bin
