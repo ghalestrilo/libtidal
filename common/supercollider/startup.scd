@@ -61,6 +61,18 @@ s.waitForBoot {
 		~tidalMidiOut.value(\sco0, "SuperCollider", "in0");
 		~tidalMidiOut.value(\sco1, "SuperCollider", "in1");
 	});
+
+  // Load Additional Scripts (if any)
+  (
+    ~bootscripts = PathName("~/.config/SuperCollider/").files;
+    ~bootscripts.do({ |file|
+      ~script = file.fullPath;
+      if(~script.endsWith(".scd") && ~script.contains("startup.scd").not, {
+        ("Including: " + ~script).postln;
+          ~script.load;
+        });
+      });
+  )
 };
 
 s.latency = 0;
