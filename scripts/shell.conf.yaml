@@ -1,0 +1,15 @@
+# Shell Tools
+- shell:
+  - [sudo apt-get install -y nnn thefuck tldr tig httpie cloc kakoune fd-find, Installing nnn]
+  # - [sudo apt-get install -y nnn , Installing nnn]
+  # - [sudo apt-get install -y fd-find , Installing fd-find]
+  # - [sudo apt-get install -y zathura, Installing zathura]
+  - ["if ! command -v zsh; then sudo apt-get install -y zsh; fi", Installing zsh]
+  - [chsh -s $(which zsh), Making zsh default shell]
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-My-Zsh]
+  # - ["if ! command -v thefuck;   then sudo apt-get install -y thefuck; fi",   Installing thefuck]
+  # - ["if ! command -v tldr ;     then sudo apt-get install -y tldr; fi",    Installing tldr]
+  # - ["if ! command -v tig ;      then sudo apt-get install -y tig; fi",     Installing tig]
+  # - ["if ! command -v httpie ;   then sudo apt-get install -y httpie; fi",  Installing HTTPie]
+  # - ["if ! command -v cloc ;     then sudo apt-get install -y cloc; fi",    Installing CLOC]
+  # - ["if ! command -v kakoune ;  then sudo apt-get install -y kakoune; fi", Installing Kakoune]

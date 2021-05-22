@@ -5,7 +5,10 @@
   # - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
   # - [dotbot -d . -c scripts/ fonts.conf.yaml, Adding Fonts]
   - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
+  - [dotbot -d . -c scripts/homebrew.conf.yaml, Installing homebrew]
+  - [dotbot -d . -c scripts/docker.conf.yaml, Configuring Docker]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
+  - [dotbot -d . -c scripts/shell.conf.yaml, Configuring shell]
   - [dotbot -d . -c scripts/media.conf.yaml, Configuring Media Tools]
   - [dotbot -d . -c scripts/gaming.conf.yaml, Configuring Media Tools]
 

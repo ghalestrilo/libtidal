@@ -7,6 +7,18 @@ cd ~/git/dots # or cd into the directory where you'd like to clone and build sup
 
 sudo apt-get install -y jackd2
 
+sudo apt-get install -y \
+    libsamplerate0-dev \
+    libsndfile1-dev \
+    libasound2-dev \
+    libavahi-client-dev \
+    libreadline-dev \
+    libfftw3-dev \
+    libudev-dev \
+    libncurses5-dev \
+    cmake \
+    git \
+
 # bash scripts/build-jack.sh
 
 buildfolder='build/supercollider'

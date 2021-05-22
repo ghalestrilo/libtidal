@@ -1,0 +1,4 @@
+shell:
+  - [/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Installing Homebrew]
+  - ["if command -v brew; then brew install scc; fi", Installing SCC]
+  - ["if command -v brew; then brew install broot; fi", Installing broot]

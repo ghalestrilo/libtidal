@@ -1,6 +1,8 @@
 #!/bin/bash
 
 buildfolder='build/sc3-plugins'
+cd ~/git/dots
+[ ! -d 'build' ] && mkdir "build"
 [ ! -d $buildfolder ] && git clone --recurse-submodules http://github.com/supercollider/sc3-plugins $buildfolder
 [ ! -d "$buildfolder/build" ] && mkdir "$buildfolder/build"
 cd "$buildfolder/build"
