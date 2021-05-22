@@ -5,6 +5,9 @@ set-option global indentwidth 0
 add-highlighter global/ number-lines -relative
 colorscheme dracula
 
+## Plugins
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
 # Config stuff
 map global normal <c-k> ":edit ~/.config/kak/kakrc <ret>"
 map global normal <c-p> ":edit ~/.config/kak-lsp/kak-lsp.toml <ret>"
@@ -22,9 +25,6 @@ map global normal <c-w> :db<ret>
 
 # set-option global lsp_insert_spaces true
 
-
-## Plugins
-source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 # plug "tgirod/tidal.kak"
 plug "https://github.com/alexherbo2/explore.kak"
