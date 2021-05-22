@@ -9,6 +9,7 @@
   - [sudo apt-get install -y cabal-install, Installing Cabal]
   - [cabal update, Updating Cabal]
   - [cabal install tidal, Installing Tidal]
-  
+  - ["if [ ! -d ~/git/libtidal ]; then git clone https://github.com/ghalestrilo/libtidal && mv libtidal ~/git; fi", Cloning LibTidal]
+  - ["sudo ln -s ~/git/libtidal /home/tidal", Cloning LibTidal]  
 
 
