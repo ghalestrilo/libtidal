@@ -1,10 +1,7 @@
 all:
-	echo "not yet"
+	sh scripts/bootstrap.sh
 
-bootstrap:
-	sh scripts/bootstrap.sh > /dev/null
-
-config: bootstrap
+config:
 	python3 scripts/select_config.py
 
 script:
