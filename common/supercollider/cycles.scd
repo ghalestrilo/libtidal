@@ -11,8 +11,8 @@
 	// Send Slots: Control what virtual (tidal) modules will be sent cc to
 
 s.waitForBoot {
-		if (MIDIOut.findPort("Elektron Model:Cycles", "Elektron Model:Cycles MIDI 1") != nil, {
-			~dirt.soundLibrary.addMIDI(tidal_name, MIDIOut.newByName(device_name, channel_name).latency = 0.04);
+    if (MIDIOut.findPort("Elektron Model:Cycles", "Elektron Model:Cycles MIDI 1") != nil, {
+      // ~dirt.soundLibrary.addMIDI(tidal_name, MIDIOut.newByName(device_name, channel_name).latency = 0.04);
       (
         MIDIIn.connectAll;
         ~send_slots = [];

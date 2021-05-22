@@ -17,10 +17,9 @@
     ~/.config/init.vim:
       path: common/init.vim
       force: true
-    ~/.config/SuperCollider:
-      path: common/supercollider/*
-      glob: true
-      force: true
+    # Personal SC Libs
+    ~/.config/SuperCollider/startup.scd: common/supercollider/startup.scd
+    ~/.config/SuperCollider/cycles.scd: common/supercollider/cycles.scd
     ~/.config/tidal/boot.tidal:
       create: true
       path: ~/git/libtidal/boot.tidal
