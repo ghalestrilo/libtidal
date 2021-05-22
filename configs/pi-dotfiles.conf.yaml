@@ -27,6 +27,9 @@
     # Folder Shortcuts
     ~/screcs: ~/.local/share/SuperCollider/Recordings
     ~/dirtsamples: ~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples
+    ~/.asoundrc:
+      path: common/pi/asound.conf
+      force: true
 
 
 # Clone Kakoune Plugin Manager

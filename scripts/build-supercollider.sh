@@ -5,7 +5,9 @@ cd ~/git/dots # or cd into the directory where you'd like to clone and build sup
 # cd supercollider
 # mkdir build && cd build
 
-bash scripts/build-jack.sh  
+sudo apt-get install -y jackd2
+
+# bash scripts/build-jack.sh
 
 buildfolder='build/supercollider'
 [ ! -d $buildfolder ] && git clone --recurse-submodules http://github.com/supercollider/supercollider $buildfolder
