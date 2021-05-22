@@ -49,7 +49,7 @@ s.waitForBoot {
 	// Function for safely declaring midi devices to tidal
 	~tidalMidiOut = { |tidal_name, device_name, channel_name|
 		if (MIDIOut.findPort(device_name, channel_name) != nil, {
-      ("Connecting" + item[0]).postln;
+      ("Connecting" + tidal_name).postln;
 			~dirt.soundLibrary.addMIDI(tidal_name, MIDIOut.newByName(device_name, channel_name).latency = 0.04);
 		});
 	};
