@@ -50,6 +50,9 @@ if ! grep '/usr/local/bin/jackd' ~/.jackdrc > /dev/null; then
 fi
 
 
+
+
+
 # cat > ~/autostart.sh <<EOF
 #!/bin/bash
 # export PATH=/usr/local/bin:$PATH

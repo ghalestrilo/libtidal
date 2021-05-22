@@ -2,14 +2,13 @@
 - clean: ['~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples']
 
 - shell:
-  # - [bash scripts/install_linuxbrew.sh, Installing Linuxbrew]
-  # - [dotbot -d . -c scripts/ppas.conf.yaml, Adding PPAs]
-  # - [dotbot -d . -c scripts/fonts.conf.yaml, Adding Fonts]
   # - [bash scripts/build-ninjam.sh, Installing CNinjam]
   - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
   - [bash scripts/build-supercollider.sh, Building Supercollider]
   - [bash scripts/build-sc3-plugins.sh, Building SC3 Plugins]
+  - [bash scripts/build-amidiauto.sh, Building amidiauto]
+  - [bash scripts/setup-autostart.sh, Setting up SC to start on boot]
   - [dotbot -d . -c scripts/live-coding.conf.yaml, Configuring Live Coding Tools]
 
 - shell:

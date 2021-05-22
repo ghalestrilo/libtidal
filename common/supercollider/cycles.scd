@@ -22,7 +22,7 @@ s.waitForBoot {
             ~send_slots.do({ |slotnum|
               ~dest = ["slot", slotnum, num].join("_");
               ~tidalctrl.sendMsg("/ctrl", ~dest, val);
-              // [~dest, " = ", val].postln; // TODO: If Debug
+              [~dest, " = ", val].postln; // TODO: If Debug
             });
           });
         });
