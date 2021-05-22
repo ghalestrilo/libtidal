@@ -10,6 +10,7 @@ sudo apt-get install -y jackd2
 # bash scripts/build-jack.sh
 
 buildfolder='build/supercollider'
+[ ! -d 'build' ] && mkdir "build"
 [ ! -d $buildfolder ] && git clone --recurse-submodules http://github.com/supercollider/supercollider $buildfolder
 [ ! -d "$buildfolder/build" ] && mkdir "$buildfolder/build"
 cd "$buildfolder/build"
