@@ -9,3 +9,6 @@
   - [sudo apt-get install -y cabal-install, Installing Cabal]
   - [cabal update, Updating Cabal]
   - [cabal install tidal, Installing Tidal]
+  
+
+
