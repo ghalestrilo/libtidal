@@ -1,5 +1,5 @@
 shell:
-  - [if ! -d ~/git/libtidal; then git clone https://github.com/ghalestrilo/libtidal && mv libtidal ~/git; fi, Cloning LibTidal]
+  - ["if [ ! -d ~/git/libtidal ]; then git clone https://github.com/ghalestrilo/libtidal && mv libtidal ~/git; fi", Cloning LibTidal]
 
 link: 
   /home/tidal:
