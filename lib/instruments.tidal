@@ -19,17 +19,30 @@ let mm = s "mm" # orbit 0 # midichan 0
 -- Model:Cycles
 :{
 let mc pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
-    m1 pat = p "cycles1" $ pat # s "mc" # midichan 0
-    m2 pat = p "cycles2" $ pat # s "mc" # midichan 1
-    m3 pat = p "cycles3" $ pat # s "mc" # midichan 2
-    m4 pat = p "cycles4" $ pat # s "mc" # midichan 3
-    m5 pat = p "cycles5" $ pat # s "mc" # midichan 4
-    m6 pat = p "cycles6" $ pat # s "mc" # midichan 5
+    mcTrack n t pat = xfadeIn ("cycles" ++ show n) t $ pat # s "mc" # midichan n
+    m1' = mcTrack 0
+    m2' = mcTrack 1
+    m3' = mcTrack 2
+    m4' = mcTrack 3
+    m5' = mcTrack 4
+    m6' = mcTrack 5
+    m1  = m1' 0.1
+    m2  = m2' 0.1
+    m3  = m3' 0.1
+    m4  = m4' 0.1
+    m5  = m5' 0.1
+    m6  = m6' 0.1
     cyclesDecayTime value = ccn 80 # ccv (value |* 125)
     cyclesColor     value = ccn 16 # ccv (value |* 125)
     cyclesShape     value = ccn 17 # ccv (value |* 125)
     cyclesSweep     value = ccn 18 # ccv (value |* 125)
     open = cyclesDecayTime
+:}
+
+-- MIDI Track Setting: Remember to set AUTO channel to 16 (Cycles)
+:{
+  let bank device num = asap $ progNum num # s device # midichan 15
+      mcbank num = asap $ progNum num # s "mc" # midichan 15
 :}
 
 -- TODO: chord-finding logic for model cycles
@@ -289,3 +302,140 @@ let rings_models = "res symp sympq mod fm rvb"
     ringsModelN "rvb"   = 5 -- STRING_AND_REVERB
     ringsSmodel = ringsmodel . (ringsModelN <$>)
 :}
+
+
+
+
+
+----------------------------------------------------------------------------------------- slots
+
+-- Cycles as a midi controller for slots (slots: "modules" in a virtual eurorack)
+import Data.Map (fromList,findWithDefault)
+
+------------------------------------------------------ WIP
+
+-- TODO: Default MI synth params -> create function
+:{
+modules = Map.fromList
+    [ ("plaits", \n -> s "plaits"
+          # harm      (slotenc n "pitch")
+          # lpgdecay  (slotenc n "decay")
+          # lpgcolour (slotenc n "color")
+          # timbre    (slotenc n "shape")
+          # morph     (slotenc n "sweep")
+          # harm      (slotenc n "contour")
+          # lpgdecay  (slotenc n "delay_send")
+          # lpgcolour (slotenc n "reverb_send")
+          # morph     (slotenc n "lfo_speed")
+          # gain      (slotenc n "gain")
+          # slope     (slotenc n "swing")
+          # level     (slotenc n "chance")
+          )
+    , ("rings", \n -> ringsfreq (slotenc n "decay")
+          # ringsstruct     (slotenc n "shape")
+          # ringsbright     (slotenc n "color")
+          # ringsdamp       (slotenc n "contour")
+          # ringspos        (slotenc n "sweep")
+          # ringsmodel      (slotenc n "pitch")
+          -- # ringspoly       (slotenci n "")
+          -- # ringsinternal   (slotenci n "")
+          -- # ringseasteregg  (slotenci n "")
+          )
+    , ("clouds", \n -> cloudspitch  (slotenc n "pitch")
+        -- # cloudspos    (slotenc n "pitch")
+        # cloudsspread (slotenc n "decay")
+        # cloudstex    (slotenc n "color")
+        # cloudssize   (slotenc n "shape")
+        # cloudsmode   (slotenc n "sweep")
+        # cloudsdens   (slotenc n "contour")
+        # cloudsrvb    (slotenc n "delay_send")
+        # cloudsfb     (slotenc n "reverb_send")
+        # cloudsgain   (slotenc n "gain")
+        # cloudswet    (slotenc n "lfo_speed")
+        # cloudslofi   (slotenc n "swing")
+        # cloudsfreeze (slotenc n "chance")
+        )
+      , ("elements", \n ->
+          elementspitch        (slotenc n "pitch")
+        # elementsbright       (slotenc n "color")
+        # elementsgeom         (slotenc n "shape")
+        # elementspos          (slotenc n "sweep")
+        # elementscontour      (slotenc n "contour")
+        # elementsflow         (slotenc n "decay")
+        # elementsdamp         (slotenc n "delay_send")
+        # elementsspace        (slotenc n "reverb_send")
+        # elementsmallet       (slotenc n "lfo_speed")
+        # elementsstrength     (slotenc n "gain")
+        # elementsstrikelevel  (slotenc n "swing" |* (127/30))
+        # elementsstriketimb   (slotenc n "chance" |* (127/100))
+        # elementsbowlevel     (slotenc n "delay_size")
+        # elementsbowtimb      (slotenc n "delay_feedback")
+        # elementsblowlevel    (slotenc n "reverb_size")
+        # elementsblowtimb     (slotenc n "reverb_tone")
+        )
+      ]
+      :}
+
+-- -- Functions to create a slottable virtual Mutable Instrument premapped to be controller via Model:Cycles knobs
+-- mapCyclesEncoders' :: (Pattern ControlMap) -> [(Pattern Double -> ControlPattern, String)] -> (Int -> Pattern ControlMap)
+-- mapCyclesEncoders' placeholder list = \slotnumber ->
+      -- (foldr (#) placeholder
+      -- . map (\(param, encoder) -> param (slotenc slotnumber encoder))) list
+--
+--
+-- mapCyclesEncoders ::
+-- mapCyclesEncoders = mapCyclesEncoders' (mu 1)
+--
+-- type Encoder = (Int -> Pattern ControlMap)
+--
+-- type EncoderMap = (String, Encoder)
+--
+-- cyclesControlledMI :: String -> [(Pattern Double -> ControlPattern, String)] -> EncoderMap
+-- cyclesControlledMI       name list = (name, mapCyclesEncoders' (s $ value name) list)
+--
+-- cyclesControlledMIEffect name list = (name, mapCyclesEncoders' (mu 1) list)
+
+
+-- TODO: add following fields to rings
+-- # ringspoly       (slotenci n "")
+-- # ringsinternal   (slotenci n "")
+-- # ringseasteregg  (slotenci n "")
+
+-- Slottable Modules (call with slot <n> <name>)
+-- modules :: EncoderMap
+-- modules = Map.fromList
+--     [ cyclesControlledMI "plaits"
+--         [ (timbre,    "shape")
+--         , (harm,      "contour")
+--         , (morph,     "sweep")
+--         , (lpgdecay,  "decay")
+--         , (lpgcolour, "color")
+--         , (gain,      "gain")
+--         ]
+--     , cyclesControlledMIEffect "rings"
+--         [ (ringsfreq,   "decay")
+--         , (ringsstruct, "shape")
+--         , (ringsbright, "color")
+--         , (ringsdamp,   "contour")
+--         , (ringspos,    "sweep")
+--         , (ringsmodel,  "pitch")
+--         ]
+--     , cyclesControlledMIEffect "clouds"
+--       [ (cloudspitch,  "pitch")
+--       , (cloudspos,    "pitch")
+--       , (cloudsspread, "decay")
+--       , (cloudstex,    "color")
+--       , (cloudssize,   "shape")
+--       , (cloudsmode,   "sweep")
+--       , (cloudsdens,   "contour")
+--       , (cloudsrvb,    "delay_send")
+--       , (cloudsfb,     "reverb_send")
+--       , (cloudsgain,   "gain")
+--       , (cloudswet,    "lfo_speed")
+--       , (cloudslofi,   "swing")
+--       , (cloudsfreeze, "chance")
+--       ]
+--     ]
+
+-- SLOT: Assign module (from modules above, by name) to 1-16 virtual control "slots"
+slot index name = (Map.findWithDefault (\_ -> gain 1) name modules) index

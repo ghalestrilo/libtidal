@@ -7,6 +7,7 @@ let scale = getScale (scaleTable ++ [("harris", [0,2,4,5,7,8,9,11])
 let ch = (+|) -- short for chord
 
 
+
 -------------------------------------------------------------------- Tonal Defs
 :{
 let getGlobalMode = cS "chromatic" "mode_global"
@@ -31,6 +32,7 @@ let toModeKey = ("mode_" ++) . show
     setRoot idx = setF (toRootKey idx)
     t' idx = tonal (getRoot idx) (getMode idx)
     onkey idx = (|+ (getRoot idx)) . scale (getMode idx)
+    nok n = (note . onkey n)
     setkey' idx root mode = do
       setMode idx mode
       setRoot idx root

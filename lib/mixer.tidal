@@ -44,7 +44,14 @@ cyclescc name = Map.findWithDefault 0 name cycles_knobs
 
 -- slotenc: get value from encoder for `ccname` at slot `slotnum`
 :{
-slotenc slotnum ccname = (|/ 128) $ cF 0 varname
-  where encnum = Map.findWithDefault 0 ccname cycles_knobs
-        varname = "slot_" ++ (show slotnum) ++ "_" ++ (show encnum)
+let slotenc' getter slotnum ccname = (|/ 128) $ getter varname
+      where encnum = Map.findWithDefault 0 ccname cycles_knobs
+            varname = "slot_" ++ (show slotnum) ++ "_" ++ (show encnum)
+    slotenc = slotenc' (cF 0)
+    eF  = slotenc' . cF
+    eF0 = slotenc' cF0
+    eF_ = slotenc' cF_
+    -- eI  = slotenc' . cI
+    -- eI0 = slotenc' cI0
+    -- eI_ = slotenc' cI_
 :}
