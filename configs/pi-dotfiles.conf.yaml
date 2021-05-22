@@ -30,6 +30,10 @@
     ~/.asoundrc:
       path: common/pi/asound.conf
       force: true
+    # Pi's JackDRC uses hw:2 (meant to be Elektron Model Cycles)
+    ~/.jackdrc:
+      path: common/pi/jackdrc
+      force: true
 
 
 # Clone Kakoune Plugin Manager

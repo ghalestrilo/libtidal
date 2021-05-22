@@ -1,0 +1,1 @@
+jackd -p16 -P75 -dalsa -dhw:2 -r48000 -p512 -n3 -s
