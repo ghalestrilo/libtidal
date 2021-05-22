@@ -35,10 +35,11 @@ s.options.numInputBusChannels = 2;
 
 s.waitForBoot {
 	~dirt = SuperDirt(2, s);
+  s.sync;
 	~dirt.loadSoundFiles("~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples/*");
 	~dirt.loadSoundFiles("~/samples/*");
 
-	s.sync;
+	
 	// ~dirt.start(57120, [0,2,4,6,8,10,12,14]);
 	// ~dirt.start(57120, [0,2,4,6]);
   ~dirt.start(57120, [0]);
