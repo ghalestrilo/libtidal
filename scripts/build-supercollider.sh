@@ -5,7 +5,8 @@ cd ~/git/dots # or cd into the directory where you'd like to clone and build sup
 # cd supercollider
 # mkdir build && cd build
 
-sudo apt-get install -y jackd2
+sudo apt-get install -y libjack-dev
+sudo apt-get install -y jackd2 libjack-jackd2-dev
 
 sudo apt-get install -y \
     libsamplerate0-dev \
