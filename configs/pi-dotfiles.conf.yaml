@@ -33,6 +33,9 @@
     ~/.jackdrc:
       path: common/pi/jackdrc
       force: true
+    # TMUX config
+    ~/.tmux.conf:
+      path: common/tmux.conf
 
 
 # Clone Kakoune Plugin Manager
