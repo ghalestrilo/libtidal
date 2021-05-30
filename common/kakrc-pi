@@ -1,8 +1,8 @@
 set-option global tabstop 2
 set-option global indentwidth 0
 
-source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "andreyorst/plug.kak" noload
+# source "%val{config}/plugins/plug.kak/rc/plug.kak"
+# plug "andreyorst/plug.kak" noload
 
 
 # Yes, this weird slash is really necessary, don't touch it
@@ -33,10 +33,11 @@ map global normal <c-w> :db<ret>
 
 
 ## Plugins
-# source "%val{config}/plugins/plug.kak/rc/plug.kak"
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/plug.kak" noload
 
 # plug "tgirod/tidal.kak"
-# plug "https://github.com/alexherbo2/explore.kak"
+plug "https://github.com/alexherbo2/explore.kak"
 plug "https://github.com/tgirod/tidal.kak"
 # plug "https://github.com/andreyorst/fzf.kak"
 # plug "https://github.com/alexherbo2/connect.kak"

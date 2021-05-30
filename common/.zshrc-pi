@@ -38,6 +38,7 @@ EDITOR='kak'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+PATH="$HOME/.local/bin:$PATH"
 
 # Aliases
 alias zshconfig="kak ~/.zshrc"
