@@ -68,8 +68,11 @@ makertmname name idx = "rtm_" ++ name ++ "_" ++ (show idx)
 -- makerhythmpairs :: String -> [Pattern Double] -> [(String, Pattern Double)]
 makerhythmpairs name patlist = zipWith (\x y -> (makertmname name x, y)) [0..] patlist
 
--- getrtmvoice :: String -> Int -> Pattern Double
-getrtmvoice name idx = cF_ (makertmname name idx)
+:{
+getrtmvoice :: String -> Int -> Pattern Note
+getrtmvoice name idx = cN_ (makertmname name idx)
+:}
+
 
 getpat name = getrtmvoice name 0
 
@@ -144,7 +147,7 @@ tom name = (withvoices name . map note)
 -- voicing rhythmname index: get a sequence of scale degrees from a rhythm part, combine this with a pattern to make a voicing
 -- voicings rhythmname:      get the list of all scale degree sequences of a rhythm. Pass a list of
 :{
-let voicing rname idx pat = fmap floor $ getrtmvoice rname idx |+ pat
+let voicing rname idx pat = getrtmvoice rname idx |+ pat
     voicings rname pats = zipWith (voicing rname) [0..] pats
 :}
 

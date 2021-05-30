@@ -377,7 +377,7 @@ modules = Map.fromList
       :}
 
 -- -- Functions to create a slottable virtual Mutable Instrument premapped to be controller via Model:Cycles knobs
--- mapCyclesEncoders' :: (Pattern ControlMap) -> [(Pattern Double -> ControlPattern, String)] -> (Int -> Pattern ControlMap)
+-- mapCyclesEncoders' :: (Pattern ValueMap) -> [(Pattern Double -> ControlPattern, String)] -> (Int -> Pattern ValueMap)
 -- mapCyclesEncoders' placeholder list = \slotnumber ->
       -- (foldr (#) placeholder
       -- . map (\(param, encoder) -> param (slotenc slotnumber encoder))) list
@@ -386,7 +386,7 @@ modules = Map.fromList
 -- mapCyclesEncoders ::
 -- mapCyclesEncoders = mapCyclesEncoders' (mu 1)
 --
--- type Encoder = (Int -> Pattern ControlMap)
+-- type Encoder = (Int -> Pattern ValueMap)
 --
 -- type EncoderMap = (String, Encoder)
 --

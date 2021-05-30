@@ -39,7 +39,7 @@ section = Section 1 []
 data Song = Song
   { key      :: (Pattern Integer, Pattern String)
   , sections :: Map.Map String Section
-  , voices   :: [Pattern ControlMap]
+  , voices   :: [Pattern ValueMap]
   } deriving (Show)
 :}
 
