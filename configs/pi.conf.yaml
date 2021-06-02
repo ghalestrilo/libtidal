@@ -3,6 +3,7 @@
 
 - shell:
   # - [bash scripts/build-ninjam.sh, Installing CNinjam]
+  - [bash scripts/install-vim-plug.sh, Installing Vim-Plug]
   - [dotbot -d . -c scripts/node.conf.yaml, Installing node & packages]
   - [dotbot -d . -c scripts/terminal.conf.yaml, Configuring Terminal Tools]
   - [bash scripts/build-supercollider.sh, Building Supercollider]

@@ -98,7 +98,7 @@
   "telemetry.enableTelemetry": false,
   "editor.formatOnSave": true,
   "zenMode.centerLayout": false,
-  "workbench.colorTheme": "Quiet Light",
+  "workbench.colorTheme": "Gruvbox Material Dark",
   "flow.showUncovered": true,
   "flow.coverageSeverity": "warn",
   "terminal.external.linuxExec": "alacritty",
