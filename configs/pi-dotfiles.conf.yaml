@@ -14,7 +14,7 @@
       path: common/kakrc-pi
       create: true
       force: true
-    ~/.config/init.vim:
+    ~/.config/nviminit.vim:
       path: common/init.vim
       force: true
     # Personal SC Libs
