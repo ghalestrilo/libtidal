@@ -1,19 +1,27 @@
 set-option global tabstop 2
 set-option global indentwidth 0
 
+# source "%val{config}/plugins/plug.kak/rc/plug.kak"
+# plug "andreyorst/plug.kak" noload
+
+
 # Yes, this weird slash is really necessary, don't touch it
 add-highlighter global/ number-lines -relative
 # colorscheme gruvbox
 colorscheme desertex
 
-# Config stuff
+# Keybindings
 map global normal <c-k> ":edit ~/.config/kak/kakrc <ret>"
 map global normal <c-p> ":edit ~/.config/kak-lsp/kak-lsp.toml <ret>"
 
 map global normal <c-l> :bn<ret>
-# map global normal <c-h> :bp<ret>
+map global normal <c-h> :bp<ret>
 map global normal <c-w> :db<ret>
 
+
+# plug "kak-lsp/kak-lsp" do %{
+#     cargo install --locked --force --path .
+# }
 
 # In case we're using LSPs
 # eval %sh{kak-lsp --kakoune -s $kak_session}
@@ -26,6 +34,7 @@ map global normal <c-w> :db<ret>
 
 ## Plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/plug.kak" noload
 
 # plug "tgirod/tidal.kak"
 plug "https://github.com/alexherbo2/explore.kak"
@@ -34,10 +43,10 @@ plug "https://github.com/tgirod/tidal.kak"
 # plug "https://github.com/alexherbo2/connect.kak"
 
 # Load Boot.tidal
-set-option global tidal_boot_file "/home/tidal/boot.tidal"
+# set-option global tidal_boot_file "/home/tidal/boot.tidal"
 
 # Set tidal syntax to haskell
-declare-option bool no_tidal_repl_yet true
+# declare-option bool no_tidal_repl_yet true
 
 
 
@@ -47,12 +56,12 @@ hook global BufCreate .+\.tidal -once %{
   tmux-focus
 }
 
-# hook global BufCreate .+\.tidal %{
-  # set buffer filetype haskell
-# }
+hook global BufCreate .+\.tidal %{
+  set buffer filetype haskell
+}
 
 map global normal <c-e> ':tidal-send-block<ret>'
-map global normal <c-h> ':tidal-hush<ret>'
+map global normal <c-a-h> ':tidal-hush<ret>'
 
 # :tidal-start-repl
 # :tidal-start-superdirt
@@ -63,23 +72,23 @@ map global normal <c-h> ':tidal-hush<ret>'
 # require-module connect
 
 # Enable directory exploring
-require-module explore
+# require-module explore
 
 
 # Clipboard
-plug "lePerdu/kakboard" %{
-  hook global WinCreate .* %{ kakboard-enable }
-}
+# plug "lePerdu/kakboard" %{
+#   hook global WinCreate .* %{ kakboard-enable }
+# }
 
 
 
-plug "andreyorst/kaktree" config %{
-    hook global WinSetOption filetype=kaktree %{
-        remove-highlighter buffer/numbers
-        remove-highlighter buffer/matching
-        remove-highlighter buffer/wrap
-        remove-highlighter buffer/show-whitespaces
-    }
-    kaktree-enable
-}
+# plug "andreyorst/kaktree" config %{
+#     hook global WinSetOption filetype=kaktree %{
+#         remove-highlighter buffer/numbers
+#         remove-highlighter buffer/matching
+#         remove-highlighter buffer/wrap
+#         remove-highlighter buffer/show-whitespaces
+#     }
+#     kaktree-enable
+# }
 

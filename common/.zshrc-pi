@@ -38,6 +38,7 @@ EDITOR='kak'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+PATH="$HOME/.local/bin:$PATH"
 
 # Aliases
 alias zshconfig="kak ~/.zshrc"
@@ -107,23 +108,11 @@ alias devjam="tmux new-session -s jam \
   select-window -t 0"
 
 # Run a Tidal Jam
-alias jam="jack_control start && \
-  tmux new-session -s jam 'zsh -c \"kak ~/art/test.tidal\"'                             \; \
-  new-window sclang                                                          \; \
-  new-window 'cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack' \; \
-  select-window -t 0 \
-  && jack_control exit"
-
-# Dev a seg jam (WIP)
-segjam(){
-  echo $1
-  jack_control start && \
-  tmux new-session -s jam "zsh -c \"node --inspect target/js/compiled/segue.js $1\""\; \
-    new-window "sclang"                                            \; \
-    new-window "ghci -ghci-script %opt{tidal_boot_file}" \; \
-    # new-window "cninjam jam.miniestereo.org:2049 -user anonymous:ghales -jack" \; \
-    select-window -t 0
-  jack_control exit
-}
+alias jam=" \
+  tmux new-session -s jam 'zsh -c \"kak ~/art/test.tidal\"'              \; \
+  new-window sclang                                                      \; \
+  new-window 'cninjam 143.110.158.146:2049 -user anonymous:ghales -jack' \; \
+  new-window 'amidiauto'                                                 \; \
+  select-window -t 0 "
 
 export PATH="$PATH:~/.local/bin"
