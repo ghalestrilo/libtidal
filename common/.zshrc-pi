@@ -109,10 +109,12 @@ alias devjam="tmux new-session -s jam \
 
 # Run a Tidal Jam
 alias jam=" \
-  tmux new-session -s jam 'zsh -c \"kak ~/art/test.tidal\"'              \; \
+  tmux new-session -s jam 'zsh -c \"nvim ~/art/test.tidal\"'              \; \
   new-window sclang                                                      \; \
   new-window 'cninjam 143.110.158.146:2049 -user anonymous:ghales -jack' \; \
   new-window 'amidiauto'                                                 \; \
   select-window -t 0 "
 
 export PATH="$PATH:~/.local/bin"
+alias tidal=ghci -ghci-script /home/tidal/boot.tidal
+
