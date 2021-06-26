@@ -32,9 +32,9 @@ call plug#end()
 
 "--------------------------------- EDITOR
 set expandtab
-set softtabstop=4
+set softtabstop=2
 set tabstop=2
-set shiftwidth=4
+set shiftwidth=2
 
 
 
@@ -46,16 +46,20 @@ colorscheme mustang "default
 "colorscheme lucid   "default alt
 
 
-
-
+"Nerdtree
+let g:NERDTreeWinPos = "right"
 
 "Keymaps
-map      <C-S-e>   :NERDTreeToggle<CR>
+map      <C-b>   :NERDTreeToggle<CR>
 map      <C-r>     :source $MYVIMRC<CR>
-map      <C-b>     :!make<CR>
+"map      <C-b>     :!make<CR>
+" Prev and next sections (tidal)
+map      <C-j>   /--\_s@<CR>
+map      <C-k>   ?--\_s@<CR>
 
-nnoremap <C-f>     :Goyo<CR>
-nnoremap <C-\>     :TagbarToggle<CR>
+
+"nnoremap <C-f>     :Goyo<CR>
+"nnoremap <C-\>     :TagbarToggle<CR>
 nnoremap <C-C>     :colorscheme 
 nnoremap <C-Space> :vs $MYVIMRC<CR>
 
