@@ -1,3 +1,4 @@
+MIDIIn.connectAll;
 
 ~mod1 = 15;
 ~mod2 = 16;
@@ -15,7 +16,7 @@ s.waitForBoot {
     if (~device != nil, {
       (
         ~deviceid = ~device.uid;
-        MIDIIn.connectAll;
+        
         ~send_slots = [];
         ~cycles_kbd_offset = 1 - 52;
         MIDIFunc.cc({ |val,num,chan,src|
