@@ -4,9 +4,10 @@ call plug#begin()
 "--------------------------------- TOOLS
 Plug 'scrooloose/nerdtree'      "Directory Explorer
 Plug 'scrooloose/nerdcommenter' "Commenting Tool
-"Plug 'w0rp/ale'                 "Linting
 Plug 'kien/ctrlp.vim'           "File Search
+Plug 'wfxr/minimap.vim'
 
+"Plug 'w0rp/ale'                 "Linting
 "Plug 'junegunn/goyo.vim'        "Focus Mode
 "Plug 'junegunn/limelight.vim'   "Block-Scoped Highlighting
 "Plug 'elentok/plaintasks.vim'   "TEST: .todo format
