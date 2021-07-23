@@ -39,10 +39,10 @@ s.waitForBoot {
 	~dirt.loadSoundFiles("~/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples/*");
 	~dirt.loadSoundFiles("~/samples/*");
 
-	
+
 	// ~dirt.start(57120, [0,2,4,6,8,10,12,14]);
 	// ~dirt.start(57120, [0,2,4,6]);
-  ~dirt.start(57120, [0]);
+    ~dirt.start(57120, [0]);
 
 	MIDIClient.init;
 
