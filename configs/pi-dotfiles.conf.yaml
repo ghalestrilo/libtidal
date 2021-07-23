@@ -20,6 +20,8 @@
     # Personal SC Libs
     ~/.config/SuperCollider/startup.scd: common/supercollider/startup.scd
     ~/.config/SuperCollider/cycles.scd: common/supercollider/cycles.scd
+    ~/.config/SuperCollider/amidiauto.scd: common/supercollider/amidiauto.scd
+    ~/.config/SuperCollider/fluidsynth.scd: common/supercollider/fluidsynth.scd
     ~/.config/tidal/boot.tidal:
       create: true
       path: ~/git/libtidal/boot.tidal
