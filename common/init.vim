@@ -50,6 +50,9 @@ colorscheme mustang "default
 "Nerdtree
 let g:NERDTreeWinPos = "right"
 
+"Minimap
+let g:minimap_auto_start = 1
+
 "Keymaps
 map      <C-b>   :NERDTreeToggle<CR>
 map      <C-r>     :source $MYVIMRC<CR>
