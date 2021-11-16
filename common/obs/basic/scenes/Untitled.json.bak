@@ -71,8 +71,8 @@
         "versioned_id": "pulse_output_capture",
         "volume": 0.4382970929145813
     },
-    "current_program_scene": "webcam+redmi",
-    "current_scene": "webcam+redmi",
+    "current_program_scene": "Tidal Streaming w/ phone",
+    "current_scene": "Tidal Streaming w/ phone",
     "current_transition": "Fade",
     "groups": [],
     "modules": {
@@ -149,6 +149,34 @@
         }
     ],
     "sources": [
+        {
+            "balance": 0.5,
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "alsa_input_capture",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Mic",
+            "prev_ver": 419430403,
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {},
+            "sync": 0,
+            "versioned_id": "alsa_input_capture",
+            "volume": 0.071741677820682526
+        },
         {
             "balance": 0.5,
             "deinterlace_field_order": 0,
@@ -705,6 +733,7 @@
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
                 "libobs.hide_scene_item.Media Source": [],
+                "libobs.hide_scene_item.Mic": [],
                 "libobs.hide_scene_item.Microphone": [],
                 "libobs.hide_scene_item.Reaper Out": [],
                 "libobs.hide_scene_item.Screen": [],
@@ -712,6 +741,7 @@
                 "libobs.hide_scene_item.Synth": [],
                 "libobs.hide_scene_item.Texto: Chamada": [],
                 "libobs.show_scene_item.Media Source": [],
+                "libobs.show_scene_item.Mic": [],
                 "libobs.show_scene_item.Microphone": [],
                 "libobs.show_scene_item.Reaper Out": [],
                 "libobs.show_scene_item.Screen": [],
@@ -732,7 +762,7 @@
             "push-to-talk-delay": 0,
             "settings": {
                 "custom_size": false,
-                "id_counter": 9,
+                "id_counter": 10,
                 "items": [
                     {
                         "align": 5,
@@ -790,7 +820,7 @@
                             "y": 1.0
                         },
                         "scale_filter": "disable",
-                        "visible": true
+                        "visible": false
                     },
                     {
                         "align": 5,
@@ -819,7 +849,7 @@
                             "y": 1.0
                         },
                         "scale_filter": "disable",
-                        "visible": true
+                        "visible": false
                     },
                     {
                         "align": 5,
@@ -844,8 +874,8 @@
                         "private_settings": {},
                         "rot": 0.0,
                         "scale": {
-                            "x": 1.0,
-                            "y": 1.0
+                            "x": 2.0,
+                            "y": 2.0
                         },
                         "scale_filter": "disable",
                         "visible": true
@@ -877,7 +907,7 @@
                             "y": 2.9659864902496338
                         },
                         "scale_filter": "disable",
-                        "visible": true
+                        "visible": false
                     },
                     {
                         "align": 5,
@@ -906,7 +936,7 @@
                             "y": 1.0
                         },
                         "scale_filter": "disable",
-                        "visible": true
+                        "visible": false
                     },
                     {
                         "align": 5,
@@ -930,6 +960,35 @@
                         },
                         "private_settings": {},
                         "rot": 180.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": false
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "group_item_backup": false,
+                        "id": 10,
+                        "locked": false,
+                        "name": "Mic",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
                         "scale": {
                             "x": 1.0,
                             "y": 1.0
@@ -1080,7 +1139,7 @@
                         "name": "Window Capture (Xcomposite)",
                         "pos": {
                             "x": 0.0,
-                            "y": -232.0
+                            "y": 0.0
                         },
                         "private_settings": {},
                         "rot": 0.0,

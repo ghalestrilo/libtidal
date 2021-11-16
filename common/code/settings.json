@@ -4,9 +4,6 @@
   "terminal.integrated.fontSize": 14,
   "workbench.statusBar.visible": false,
   "workbench.activityBar.visible": true,
-  // "editor.fontFamily": "Connection Regular",
-  // "editor.fontFamily": "Telegrama Raw",    
-  // "editor.insertSpaces": false,
   "editor.renderWhitespace": "boundary",
   "editor.renderIndentGuides": false,
   "files.exclude": {
@@ -48,13 +45,15 @@
     "*.krb": "python",
     "**/.i3/config": "i3",
     "**/i3/config": "i3",
+    // "*.html.eex": "erb",
+    // "*.html.leex": "erb"
   },
   "tidalcycles.bootTidalPath": "/home/lalis/.config/tidal/boot.tidal",
   "terminal.integrated.fontFamily": "monospace",
   "editor.tabSize": 2,
   "explorer.confirmDragAndDrop": false,
   "breadcrumbs.enabled": true,
-  "editor.fontFamily": "hasklig",
+  "editor.fontFamily": "hasklig light",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
@@ -95,20 +94,59 @@
       //other styling properties goes here ... 
     }
   ],
+  "prettifySymbolsMode.substitutions": [
+    {
+      "language": "python",
+      "substitutions": [
+        {
+          "ugly": "lambda",
+          "pretty": "λ"
+        },
+      ]
+    }
+  ],
   "telemetry.enableTelemetry": false,
   "editor.formatOnSave": true,
   "zenMode.centerLayout": false,
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "flow.showUncovered": true,
   "flow.coverageSeverity": "warn",
   "terminal.external.linuxExec": "alacritty",
   "flow.useBundledFlow": false,
   "flow.pathToFlow": "",
-"workbench.sideBar.location": "right",
-"workbench.startupEditor": "newUntitledFile",
-"latex.server.autoDownload": true,
-"hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W3tcIm5hbWVcIjpcIkhhc2tsaWdcIn1dLFwibGlicmFyaWVzXCI6XCJnZW5lcmFsXCIsXCJjdXN0b21MaWJyYXJpZXNcIjpbXCJMLnNjcmF0Y2hwYWRcIl0sXCJwbHVnaW5zXCI6W10sXCJyZWNlbnRDb2xvcnNcIjpbXCIwMDAwMDBcIixcIm5vbmVcIixcIjA1MDUwNVwiXSxcImZvcm1hdFdpZHRoXCI6XCIyNDBcIixcImNyZWF0ZVRhcmdldFwiOmZhbHNlLFwicGFnZUZvcm1hdFwiOntcInhcIjowLFwieVwiOjAsXCJ3aWR0aFwiOjg1MCxcImhlaWdodFwiOjExMDB9LFwic2VhcmNoXCI6dHJ1ZSxcInNob3dTdGFydFNjcmVlblwiOnRydWUsXCJncmlkQ29sb3JcIjpcIiNkMGQwZDBcIixcImRhcmtHcmlkQ29sb3JcIjpcIiM2ZTZlNmVcIixcImF1dG9zYXZlXCI6dHJ1ZSxcInJlc2l6ZUltYWdlc1wiOm51bGwsXCJvcGVuQ291bnRlclwiOjAsXCJ2ZXJzaW9uXCI6MTgsXCJ1bml0XCI6MSxcImlzUnVsZXJPblwiOmZhbHNlLFwidWlcIjpcIlwifSJ9",
-"workbench.editor.untitled.hint": "hidden",
-"window.zoomLevel": -2,
-"calva.paredit.defaultKeyMap": "original",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "newUntitledFile",
+  "latex.server.autoDownload": true,
+  "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W3tcIm5hbWVcIjpcIkhhc2tsaWdcIn1dLFwibGlicmFyaWVzXCI6XCJnZW5lcmFsXCIsXCJjdXN0b21MaWJyYXJpZXNcIjpbXCJMLnNjcmF0Y2hwYWRcIl0sXCJwbHVnaW5zXCI6W10sXCJyZWNlbnRDb2xvcnNcIjpbXCJub25lXCIsXCIwMDAwMDBcIixcIkZGRjNFNlwiLFwiRkZFNkNDXCIsXCJFNkZGQ0NcIixcIkZGRkZDQ1wiLFwiMzMzMzMzXCIsXCJFMEVGRkZcIixcIjA1MDUwNVwiLFwiRkZGRkZGXCIsXCJGRkIzNjZcIl0sXCJmb3JtYXRXaWR0aFwiOlwiMjQwXCIsXCJjcmVhdGVUYXJnZXRcIjpmYWxzZSxcInBhZ2VGb3JtYXRcIjp7XCJ4XCI6MCxcInlcIjowLFwid2lkdGhcIjo4NTAsXCJoZWlnaHRcIjoxMTAwfSxcInNlYXJjaFwiOnRydWUsXCJzaG93U3RhcnRTY3JlZW5cIjp0cnVlLFwiZ3JpZENvbG9yXCI6XCIjZDBkMGQwXCIsXCJkYXJrR3JpZENvbG9yXCI6XCIjNmU2ZTZlXCIsXCJhdXRvc2F2ZVwiOnRydWUsXCJyZXNpemVJbWFnZXNcIjpudWxsLFwib3BlbkNvdW50ZXJcIjowLFwidmVyc2lvblwiOjE4LFwidW5pdFwiOjEsXCJpc1J1bGVyT25cIjpmYWxzZSxcInVpXCI6XCJcIn0ifQ==",
+  "workbench.editor.untitled.hint": "hidden",
+  "calva.paredit.defaultKeyMap": "original",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "keyword",
+        "settings": {
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "storage",
+        "settings": {
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "constant.language",
+        "settings": {
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "support.class.builtin",
+        "settings": {
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  },
+  "window.zoomLevel": -1,
 }

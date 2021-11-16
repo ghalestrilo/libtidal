@@ -12,6 +12,21 @@ s.options.maxNodes = 1024 * 64;
 s.options.numOutputBusChannels = 8;
 s.options.numInputBusChannels = 2;
 
+
+// If passed an address, bounce tidal messages to another host
+~bounce = "bounce_tidal".getenv();
+~bounce.postln;
+if(~bounce != nil, {
+
+  n = NetAddr.new(~bounce, 57120);    // create the NetAddr
+
+  o = OSCFunc({ arg msg, time, addr, recvPort; 
+    [msg, time, addr, recvPort].postln;
+    n.sendMsg("/play2", *msg);
+  }, "/play2", n);
+  o.free;    // remove the OSCFunc when you are done.
+});
+
 ~tidalctrl = NetAddr.new("localhost", 6010);
 // OSCdef(\controltidal, { arg msg; msg.postln; ~tidalctrl.sendMsg("/ctrl", *msg); }, '/ctrl', NetAddr.localAddr );
 

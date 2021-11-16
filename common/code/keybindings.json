@@ -90,6 +90,16 @@
 {
     "key": "ctrl+shift+m",
     "command": "-workbench.actions.view.problems"
+},
+{
+  "key": "ctrl+;",
+  "command": "editor.action.commentLine",
+  "when": "editorTextFocus && !editorReadonly"
+},
+{
+  "key": "ctrl+/",
+  "command": "-editor.action.commentLine",
+  "when": "editorTextFocus && !editorReadonly"
 }
   // - editor.action.transformToLowercase
   // - editor.action.transformToUppercase
