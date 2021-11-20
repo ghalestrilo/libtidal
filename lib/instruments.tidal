@@ -2,7 +2,7 @@ let __ = "~"
 
 -- Midi Instruments
 :{
-let mm = s "mm" # orbit 0 # midichan 0
+let mm pat = p "mm" $ pat # s "mm" # orbit 0 # midichan 0
     reface = s "reface" # orbit 0 # midichan 0
 
     axo = s "axo" # midichan "[0,9]"
@@ -18,7 +18,10 @@ let mm = s "mm" # orbit 0 # midichan 0
 
 -- Model:Cycles
 :{
-let mc pats = p "cycles" $ stack $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
+let mc pats = p "cycles"
+      $ stack
+      $ zipWith (\idx pat -> pat # amp (cF 0.5 $ "m" ++ (show idx)++ "amp")) [0..]
+      $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
     mcTrack n t pat = xfadeIn ("cycles" ++ show n) t $ pat # s "mc" # midichan n
     m1' = mcTrack 0
     m2' = mcTrack 1
