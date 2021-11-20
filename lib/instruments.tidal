@@ -40,6 +40,8 @@ let mc pats = p "cycles"
     cyclesShape     value = ccn 17 # ccv (value |* 125)
     cyclesSweep     value = ccn 18 # ccv (value |* 125)
     open = cyclesDecayTime
+    mamp idx value = setF ("m" ++ (show idx) ++ "amp") value
+    ma = mamp
 :}
 
 -- MIDI Track Setting: Remember to set AUTO channel to 16 (Cycles)
