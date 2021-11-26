@@ -22,25 +22,39 @@ let mc pats = p "cycles"
       $ stack
       $ zipWith (\idx pat -> pat # amp (cF 0.5 $ "m" ++ (show idx)++ "amp")) [0..]
       $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
-    mcTrack n t pat = xfadeIn ("cycles" ++ show n) t $ pat # s "mc" # midichan n
+    mcTrack n time pat = xfadeIn ("cycles" ++ show n) time $ pat # s "mc" # midichan n
     m1' = mcTrack 0
     m2' = mcTrack 1
     m3' = mcTrack 2
     m4' = mcTrack 3
     m5' = mcTrack 4
     m6' = mcTrack 5
-    m1  = m1' 0.1
-    m2  = m2' 0.1
-    m3  = m3' 0.1
-    m4  = m4' 0.1
-    m5  = m5' 0.1
-    m6  = m6' 0.1
+    m1 pat = do
+      m1' 0.01 pat
+      m1' 0.01 pat
+    m2 pat = do
+      m2' 0.01 pat
+      m2' 0.01 pat
+    m3 pat = do
+      m3' 0.01 pat
+      m3' 0.01 pat
+    m4 pat = do
+      m4' 0.01 pat
+      m4' 0.01 pat
+    m5 pat = do
+      m5' 0.01 pat
+      m5' 0.01 pat
+    m6 pat = do
+      m6' 0.01 pat
+      m6' 0.01 pat
     cyclesDecayTime value = ccn 80 # ccv (value |* 125)
     cyclesColor     value = ccn 16 # ccv (value |* 125)
     cyclesShape     value = ccn 17 # ccv (value |* 125)
     cyclesSweep     value = ccn 18 # ccv (value |* 125)
     open = cyclesDecayTime
     mamp idx value = setF ("m" ++ (show idx) ++ "amp") value
+    mamps amps = mapM_ (\(v,i) -> mamp i v) $ zip (take 6 $ amps ++ repeat 0) [0..5]
+    mampall = mamp . repeat
     ma = mamp
 :}
 
@@ -119,8 +133,6 @@ let vk = s "vk" # n 3
     vh = s "vh" # n 2 # sus 0.08
     vo = s "vh" # n 15 # sus 1
     gretsch x = n x # s "gretsch" # bus
-    -- piano x = tonal mode x # s "superpiano" # lpf 450 # bus # octave 5
-    -- vibe x  = tonal mode x # s "supervibe" # lpf 500 # bus
     vibeinst = s "supervibe"
                     # modamp 0
                     # velocity 0.3
@@ -139,7 +151,8 @@ let vk = s "vk" # n 3
                     # velocity 0.35
                     # sus 2
                     # orbit 1
-    piano pat = p "piano" $ pat # pianoinst
+    piano' mods pat = p "piano" $ (# mods) $ pat # pianoinst
+    piano = piano' bus
 :}
 
 
