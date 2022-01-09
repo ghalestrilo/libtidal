@@ -2,8 +2,8 @@ let __ = "~"
 
 -- Midi Instruments
 :{
-let mm pat = p "mm" $ pat # s "mm" # orbit 0 # midichan 0
-    reface = s "reface" # orbit 0 # midichan 0
+let mm pat = p "mm" $ pat # s "mm" # orbit 0 # midichan 15
+    reface pat = p "reface" $ pat # s "reface" # orbit 0 # midichan 0
 
     axo = s "axo" # midichan "[0,9]"
     axocc  n v = once      $ ccv v # ccn n # axo
