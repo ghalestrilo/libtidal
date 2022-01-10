@@ -1,19 +1,40 @@
 let __ = "~"
 
+-- Def Utilities
+:{
+let values' op param paramvalues pat = zipWith (\src pat -> op pat (param src)) paramvalues pat
+    values = values' (#)
+:}
+
+-- Tidal Instruments
+:{
+let drums = p "drums"
+               . stack
+               . values orbit [0,0,1,1,2,2,3,3]
+               . values pan [0,1,0,1,0,1,0,1]
+               . values gain (fmap (cF0 . ("dg" ++) . show) [0,1,2,3,4,5,6,7])
+:}
+
+
 -- Midi Instruments
 :{
 let mm pat = p "mm" $ pat # s "mm" # orbit 0 # midichan 15
     reface pat = p "reface" $ pat # s "reface" # orbit 0 # midichan 0
 
-    axo = s "axo" # midichan "[0,9]"
-    axocc  n v = once      $ ccv v # ccn n # axo
-    axocc' n v = p "axofx" $ ccv v # ccn n # axo
+    axoinst = s "axo" # midichan "[0,9]"
+    axocc  n v = once      $ ccv v # ccn n # axoinst
+    axocc' n v = p "axofx" $ ccv v # ccn n # axoinst
     axoreset = do
                       axocc' 1 "1 0@1000"
     fxstut = axocc 1
     fxdrop = axocc 2
     fxdist = axocc 3
     nofx = axocc 1 0
+    axo pats = p "axo"
+             $ stack
+             $ values midichan [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+             $ map (# s "axo")
+             $ pats
 :}
 
 -- Model:Cycles
@@ -153,6 +174,7 @@ let vk = s "vk" # n 3
                     # orbit 1
     piano' mods pat = p "piano" $ (# mods) $ pat # pianoinst
     piano = piano' bus
+    fs idx pat = p "fs" $ pat # midichan idx # s "fs"
 :}
 
 
