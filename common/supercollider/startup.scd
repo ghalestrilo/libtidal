@@ -20,7 +20,7 @@ if(~bounce != nil, {
 
   n = NetAddr.new(~bounce, 57120);    // create the NetAddr
 
-  o = OSCFunc({ arg msg, time, addr, recvPort; 
+  o = OSCFunc({ arg msg, time, addr, recvPort;
     [msg, time, addr, recvPort].postln;
     n.sendMsg("/play2", *msg);
   }, "/play2", n);
@@ -55,9 +55,9 @@ s.waitForBoot {
 	~dirt.loadSoundFiles("~/samples/*");
 
 
-	// ~dirt.start(57120, [0,2,4,6,8,10,12,14]);
+	~dirt.start(57120, [0,2,4,6,8,10,12,14]);
 	// ~dirt.start(57120, [0,2,4,6]);
-    ~dirt.start(57120, [0]);
+	// ~dirt.start(57120, [0]);
 
 	MIDIClient.init;
 

@@ -108,7 +108,7 @@
   "telemetry.enableTelemetry": false,
   "editor.formatOnSave": true,
   "zenMode.centerLayout": false,
-  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.colorTheme": "Dracula",
   "flow.showUncovered": true,
   "flow.coverageSeverity": "warn",
   "terminal.external.linuxExec": "alacritty",
@@ -149,4 +149,8 @@
     ]
   },
   "window.zoomLevel": -1,
+  "vim.useSystemClipboard": true,
+  "vim.handleKeys": {
+    "<C-f>": false
+  }
 }
