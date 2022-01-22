@@ -20,17 +20,23 @@ let drums = p "drums"
 :{
 let mm pat = p "mm" $ pat # s "mm" # orbit 0 # midichan 15
     reface pat = p "reface" $ pat # s "reface" # orbit 0 # midichan 0
+    
+:}
 
-    axoinst = s "axo" # midichan "[0,9]"
-    axocc  n v = once      $ ccv v # ccn n # axoinst
-    axocc' n v = p "axofx" $ ccv v # ccn n # axoinst
-    axoreset = do
-                      axocc' 1 "1 0@1000"
-    fxstut = axocc 1
-    fxdrop = axocc 2
-    fxdist = axocc 3
-    nofx = axocc 1 0
-    axo pats = p "axo"
+-- Axoloti
+:{
+axocc :: Pattern Double -> Pattern Double -> ControlPattern
+axocc ccnum ccpat = ccv ccpat # ccn ccnum
+:}
+
+:{
+axoccs pats = p "axo"
+                $ stack
+                $ map (# s "axo")
+                $ map (# midichan "0")
+                $ pats
+afx = axoccs
+axo pats = p "axo"
              $ stack
              $ values midichan [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
              $ map (# s "axo")
@@ -174,7 +180,7 @@ let vk = s "vk" # n 3
                     # orbit 1
     piano' mods pat = p "piano" $ (# mods) $ pat # pianoinst
     piano = piano' bus
-    fs idx pat = p "fs" $ pat # midichan idx # s "fs"
+    fs idx pat = p ("fs" ++ show idx) $ pat # midichan idx # s "fs"
 :}
 
 
