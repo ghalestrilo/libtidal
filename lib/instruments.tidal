@@ -1,18 +1,40 @@
 let __ = "~"
 
+
+
 -- Def Utilities
 :{
-let values' op param paramvalues pat = zipWith (\src pat -> op pat (param src)) paramvalues pat
+
+let values' op param paramvalues pat = zipWith (\src pat -> pat `op` param src) paramvalues pat
     values = values' (#)
+    toID strr = Sound.Tidal.ID.ID strr
+
 :}
+
+-- let values' op param paramvalues pat = zipWith (\src pat -> op pat (param src)) paramvalues pat
+
+-- Set/Load themes
+:{
+let themes name themes = mapM_ (uncurry setI)
+      $ zip ((name ++) . show <$> [0..]) themes
+    tm name num = cI_ (name ++ show num)
+:}
+
+
 
 -- Tidal Instruments
 :{
+
 let drums = p "drums"
                . stack
                . values orbit [0,0,1,1,2,2,3,3]
                . values pan [0,1,0,1,0,1,0,1]
-               . values gain (fmap (cF0 . ("dg" ++) . show) [0,1,2,3,4,5,6,7])
+               . values' (|*) gain (fmap (cF 0.5 . ("dg" ++) . show) [0,1,2,3,4,5,6,7])
+    damp idx value = setF ("dg" ++ (show idx)) value
+    da = damp
+    damps amps = mapM_ (\(i,v) -> da i v) $ zip [0..7] (take 6 $ amps ++ repeat 0)
+    dampall = damp . repeat
+
 :}
 
 
@@ -47,9 +69,9 @@ axo pats = p "axo"
 :{
 let mc pats = p "cycles"
       $ stack
-      $ zipWith (\idx pat -> pat # amp (cF 0.5 $ "m" ++ (show idx)++ "amp")) [0..]
+      $ zipWith (\idx pat -> pat # amp (cF 0.5 $ "m" ++ (show idx) ++ "amp")) [0..]
       $ zipWith (\cycleschannel pat -> pat # s "mc" # midichan cycleschannel) [0, 1, 2, 3, 4, 5] pats
-    mcTrack n time pat = xfadeIn ("cycles" ++ show n) time $ pat # s "mc" # midichan n
+    mcTrack n time pat = xfadeIn (toID $ "cycles" ++ show n) time $ pat # s "mc" # midichan n
     m1' = mcTrack 0
     m2' = mcTrack 1
     m3' = mcTrack 2
@@ -87,8 +109,10 @@ let mc pats = p "cycles"
 
 -- MIDI Track Setting: Remember to set AUTO channel to 16 (Cycles)
 :{
-  let bank device num = asap $ progNum num # s device # midichan 15
-      mcbank num = asap $ progNum num # s "mc" # midichan 15
+let bank' chan device num = asap $ progNum num # s device # midichan chan
+    bank = bank' 15
+    mcbank num = asap $ progNum num # s "mc" # midichan 15
+    fb chan num = bank' chan "fs" num
 :}
 
 -- TODO: chord-finding logic for model cycles
@@ -153,6 +177,8 @@ let brakk' n = unit "c" # legato 1 # speed (1/n)
     brakk = brakk' 1
   :}
 
+setF "mididelay" 0.04
+
 -------------------------------------------------------------------- Instruments
 :{
 let vk = s "vk" # n 3
@@ -180,7 +206,9 @@ let vk = s "vk" # n 3
                     # orbit 1
     piano' mods pat = p "piano" $ (# mods) $ pat # pianoinst
     piano = piano' bus
-    fs idx pat = p ("fs" ++ show idx) $ pat # midichan idx # s "fs"
+    fs idx pat = p (toID $ "fs" ++ show idx)
+      $ ("^mididelay" <~)
+      $ pat # midichan idx # s "fs"
 :}
 
 
