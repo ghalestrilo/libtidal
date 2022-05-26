@@ -1,0 +1,3 @@
+[submodule "lib/jarmlib"]
+	path = lib/jarmlib
+	url = https://github.com/jarmitage/jarmlib
