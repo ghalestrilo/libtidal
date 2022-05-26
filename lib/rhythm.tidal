@@ -179,3 +179,21 @@ prr = prrw (flip const)
 preplace = prr 0
 (<~>) = preplace (1,1)
 ring = flip $ preplace (1,1)
+
+
+
+
+-- Polymetry
+:{
+let sq = squeeze "^__seq__"
+    ns = n . sq 
+    seqs = setI "__seq__"
+    setbpm val = setF "basecps" (val / 120)
+    b number = cps ("^basecps" |* 4 |/ number)
+    -- bars: set time signatures for "^seq"-indexable sequences 
+    bars signatures =
+      p "__clock__" $
+        squeeze "^__seq__" (map ((\pat count -> n pat # b count) "0*3") signatures)
+          # s "can"
+          # gain 0
+:}

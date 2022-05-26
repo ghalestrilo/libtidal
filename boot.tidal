@@ -10,61 +10,26 @@ import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
 
 -- tidal <- startTidal (superdirtTarget { oLatency = 0.01, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
-tidal <- startTidal (superdirtTarget { oLatency = 0.4, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
--- tidal <- startTidal (superdirtTarget {oLatency = 0.1}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
+-- tidal <- startTidal (superdirtTarget { oLatency = 0.4, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
+-- tidal <- startTidal (superdirtTarget {oLatency = 0.1, oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
 
-:script /home/tidal/lib/core.tidal
+-- tidal <- startTidal (superdirtTarget { oLatency = 0.4, oAddress = "127.0.0.1", oPort = 7771}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
+
+-- :script /home/tidal/lib/core.tidal
 
 
 --------------------------------------------------------------------- LIB
 
-:script /home/tidal/lib/varargs.tidal
-:script /home/tidal/lib/mixer.tidal
-:script /home/tidal/lib/rhythm.tidal
-:script /home/tidal/lib/ux.tidal
-:script /home/tidal/lib/instruments.tidal
-:script /home/tidal/lib/song.tidal
-:script /home/tidal/lib/tonal.tidal
+-- :script /home/tidal/lib/varargs.tidal
+-- :script /home/tidal/lib/mixer.tidal
+-- :script /home/tidal/lib/rhythm.tidal
+-- :script /home/tidal/lib/ux.tidal
+-- :script /home/tidal/lib/instruments.tidal
+-- :script /home/tidal/lib/song.tidal
+-- :script /home/tidal/lib/tonal.tidal
 
 
 
-
--- TODO: fix song method
-  -- normalize array before calling structureSong
---------------------------------------------------------------------- Song Structure
-:{
-let measures n p ms = (n, p):ms
-    loopend n p = measures n p []
-    structureSong st [] = []
-    structureSong st (p:ps) =  (st,(st+(fst p)),snd p) : (structureSong ((fst p)+st) ps)
-    songLoop ms = seqPLoop $ structureSong 0 ms -- TODO: sloop?
-    song ms = seqP $ structureSong 0 ms
-:}
-
-
---------------------------------------------------------------------- Melody?
-
--- (sometimes) Probability helpers
-:{
-let se x y = sometimesBy x . every y
-    sbl' f p = sometimesBy p . foldl (.) id . fmap f
-    sbl = sbl' (#)
-    -- (##) chan fx pat = chan . (sbl 1 fx) $ pat
-    -- (##) chan fx = chan . foldl (.) id . fmap (#) $ fx
-:}
-
--- Array channel preppers
-:{
-let multimap = foldl (#) (gain 1)
-    (##) chan fxs pat = chan $ pat # (foldl (#) (n 0) fxs)
-    ($$) chan fxs pat = chan $ (foldl (.) (# n 0) fxs) $ pat
-:}
-
--- Stolen from Kindohm
-:{
-let gtfo = (const $ s "~")
-    g = gtfo
-:}
 
 --------------------------------------------------------------------- Prompt
-:set prompt "\n ghales | "
+:set prompt " • "
