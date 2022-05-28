@@ -1,0 +1,11 @@
+:{
+let b0 = bwn 0
+:}
+
+:{
+let daw pats = p "daw"
+        $ stack
+        $ zipWith (\channelnumber pat -> bwn channelnumber pat (cF 0.5 $ "daw" ++ (show channelnumber) ++ "amp")) [0, 1, 2, 3, 4, 5] pats
+:}
+
+-- $ zipWith (\idx pat -> pat # amp (cF 0.5 $ "m" ++ (show idx) ++ "amp")) [0..]

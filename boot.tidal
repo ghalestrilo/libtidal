@@ -4,7 +4,7 @@
 :set prompt-cont ""
 :cd /home/ghales/git/libtidal/lib/jarmlib/tidal
 
---------------------------------------------------------------------- Load
+--------------------------------------------------------------------- Load DAW Backend
 import Sound.Tidal.Context
 :script osc/Targets.hs
 
@@ -16,6 +16,9 @@ let oscMap = [bwOscMap]
 :script lib/Lib.hs
 :script osc/TargetLibs.hs
 :script osc/targets/Bitwig/BitwigLib.hs
+
+--------------------------------------------------------------------- Load DAW Backend
+:script /home/ghales/git/libtidal/lib/daw.tidal
 
 --------------------------------------------------------------------- Rice
 :set prompt " • "
