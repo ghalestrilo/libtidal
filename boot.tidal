@@ -1,35 +1,21 @@
+--------------------------------------------------------------------- Bootstrap
 :set -XOverloadedStrings
 :set prompt ""
 :set prompt-cont ""
+:cd /home/ghales/git/libtidal/lib/jarmlib/tidal
 
--- import qualified Data.Map as Map
--- TODO: Song (parts) logic
-import qualified Data.Map as Map
+--------------------------------------------------------------------- Load
 import Sound.Tidal.Context
-import System.IO (hSetEncoding, stdout, utf8)
-hSetEncoding stdout utf8
+:script osc/Targets.hs
 
--- tidal <- startTidal (superdirtTarget { oLatency = 0.01, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
--- tidal <- startTidal (superdirtTarget { oLatency = 0.4, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
--- tidal <- startTidal (superdirtTarget {oLatency = 0.1, oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20, cTempoAddr = "192.168.0.78"})
+:script osc/targets/Bitwig/Bitwig.hs
+let oscMap = [bwOscMap]
+:script stream/Stream.hs
 
--- tidal <- startTidal (superdirtTarget { oLatency = 0.4, oAddress = "127.0.0.1", oPort = 7771}) (defaultConfig { cFrameTimespan = 1/20 , cCtrlAddr = "0.0.0.0" , cCtrlPort = 6010 })
+:script stream/Stream.hs
+:script lib/Lib.hs
+:script osc/TargetLibs.hs
+:script osc/targets/Bitwig/BitwigLib.hs
 
--- :script /home/tidal/lib/core.tidal
-
-
---------------------------------------------------------------------- LIB
-
--- :script /home/tidal/lib/varargs.tidal
--- :script /home/tidal/lib/mixer.tidal
--- :script /home/tidal/lib/rhythm.tidal
--- :script /home/tidal/lib/ux.tidal
--- :script /home/tidal/lib/instruments.tidal
--- :script /home/tidal/lib/song.tidal
--- :script /home/tidal/lib/tonal.tidal
-
-
-
-
---------------------------------------------------------------------- Prompt
+--------------------------------------------------------------------- Rice
 :set prompt " • "
