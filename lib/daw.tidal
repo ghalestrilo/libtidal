@@ -1,7 +1,4 @@
-:{
-let b0 = bwn 0
-:}
-
+-- daw [...] | Send multiple channels at once to DAW
 :{
 let daw pats = p "daw"
         $ stack
@@ -9,3 +6,31 @@ let daw pats = p "daw"
 :}
 
 -- $ zipWith (\idx pat -> pat # amp (cF 0.5 $ "m" ++ (show idx) ++ "amp")) [0..]
+
+
+-- daw<n> pat | Send pattern to daw channel n
+:{
+let daw0 pat = p "daw0" $ bwn 0 (pat |+ 60) (cF 0.5 "daw0amp")
+    daw1 pat = p "daw1" $ bwn 1 (pat |+ 60) (cF 0.5 "daw1amp")
+    daw2 pat = p "daw2" $ bwn 2 (pat |+ 60) (cF 0.5 "daw2amp")
+    daw3 pat = p "daw3" $ bwn 3 (pat |+ 60) (cF 0.5 "daw3amp")
+    daw4 pat = p "daw4" $ bwn 4 (pat |+ 60) (cF 0.5 "daw4amp")
+    daw5 pat = p "daw5" $ bwn 5 (pat |+ 60) (cF 0.5 "daw5amp")
+    daw6 pat = p "daw6" $ bwn 6 (pat |+ 60) (cF 0.5 "daw6amp")
+    daw7 pat = p "daw7" $ bwn 7 (pat |+ 60) (cF 0.5 "daw7amp")
+:}
+
+:{
+let damp n v = setF ("daw" ++ (show n) ++ "amp") v
+:}
+
+:{
+let dr0 pat = daw0 $ round <$> pat
+    dr1 pat = daw1 $ round <$> pat
+    dr2 pat = daw2 $ round <$> pat
+    dr3 pat = daw3 $ round <$> pat
+    dr4 pat = daw4 $ round <$> pat
+    dr5 pat = daw5 $ round <$> pat
+    dr6 pat = daw6 $ round <$> pat
+    dr7 pat = daw7 $ round <$> pat
+:}

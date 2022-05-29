@@ -19,6 +19,9 @@ let oscMap = [bwOscMap]
 
 --------------------------------------------------------------------- Load DAW Backend
 :script /home/ghales/git/libtidal/lib/daw.tidal
+:script /home/ghales/git/libtidal/lib/tonal.tidal
+
+bwlink 4 (-0.14)
 
 --------------------------------------------------------------------- Rice
 :set prompt " • "

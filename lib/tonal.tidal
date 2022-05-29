@@ -1,27 +1,7 @@
--------------------------------------------------------------------- Custom Scales
-:{
-let scale = getScale (scaleTable ++ [("harris", [0,2,4,5,7,8,9,11])
-                                    ])
-:}
-
-let ch = (+|) -- short for chord
-
-
 -- Boilerplate
 setN = setI
 
 -------------------------------------------------------------------- Tonal Defs
-:{
-let getGlobalMode = cS "chromatic" "mode_global"
-    setGlobalMode = setS "mode_global"
-    getGlobalRoot = cN0 "root_global"
-    setGlobalRoot = setN "root_global"
-    tonal rr mm = note . (|+ rr) . scale mm
-    t = tonal getGlobalRoot getGlobalMode
-    setkey root mode = do
-      setGlobalMode mode
-      setGlobalRoot root
-:}
 
 
 -- WIP: Polymodality
@@ -32,12 +12,25 @@ let toModeKey = ("mode_" ++) . show
     setMode idx = setS (toModeKey idx)
     getRoot idx = cN0 (toRootKey idx)
     setRoot idx = setN (toRootKey idx)
-    t' idx = tonal (getRoot idx) (getMode idx)
-    onkey idx = (|+ (getRoot idx)) . scale (getMode idx)
-    nok n = (note . onkey n)
+    onkey idx pat = scale (getMode idx) $ pat
+    k = onkey
     setkey' idx root mode = do
       setMode idx mode
       setRoot idx root
+    -- nok idx pat = note $ onkey idx pat
+:}
+
+:{
+let getGlobalMode = cS "chromatic" "mode_global"
+    setGlobalMode = setS "mode_global"
+    getGlobalRoot = cI0 "root_global"
+    setGlobalRoot = setN "root_global"
+    tonal rr mm = note . (|+ rr) . scale mm
+    t' idx = tonal (cF0 "root_global") (getMode idx)
+    t = tonal (cF0 "root_global") getGlobalMode
+    setkey root mode = do
+      setGlobalMode mode
+      setGlobalRoot root
 :}
 
 
