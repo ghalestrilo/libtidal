@@ -12,7 +12,7 @@ let toModeKey = ("mode_" ++) . show
     setMode idx = setS (toModeKey idx)
     getRoot idx = cN0 (toRootKey idx)
     setRoot idx = setN (toRootKey idx)
-    onkey idx pat = scale (getMode idx) $ pat
+    onkey idx pat = (|+ getRoot idx) $ scale (getMode idx) $ pat
     k = onkey
     setkey' idx root mode = do
       setMode idx mode

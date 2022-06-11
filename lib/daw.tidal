@@ -10,27 +10,36 @@ let daw pats = p "daw"
 
 -- daw<n> pat | Send pattern to daw channel n
 :{
-let daw0 pat = p "daw0" $ bwn 0 (pat |+ 60) (cF 0.5 "daw0amp")
-    daw1 pat = p "daw1" $ bwn 1 (pat |+ 60) (cF 0.5 "daw1amp")
-    daw2 pat = p "daw2" $ bwn 2 (pat |+ 60) (cF 0.5 "daw2amp")
-    daw3 pat = p "daw3" $ bwn 3 (pat |+ 60) (cF 0.5 "daw3amp")
-    daw4 pat = p "daw4" $ bwn 4 (pat |+ 60) (cF 0.5 "daw4amp")
-    daw5 pat = p "daw5" $ bwn 5 (pat |+ 60) (cF 0.5 "daw5amp")
-    daw6 pat = p "daw6" $ bwn 6 (pat |+ 60) (cF 0.5 "daw6amp")
-    daw7 pat = p "daw7" $ bwn 7 (pat |+ 60) (cF 0.5 "daw7amp")
+let daw0 sus pat = stack [bwn 0 (pat |+ 60) (cF 0.5 "daw0amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw1 sus pat = stack [bwn 1 (pat |+ 60) (cF 0.5 "daw1amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw2 sus pat = stack [bwn 2 (pat |+ 60) (cF 0.5 "daw2amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw3 sus pat = stack [bwn 3 (pat |+ 60) (cF 0.5 "daw3amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw4 sus pat = stack [bwn 4 (pat |+ 60) (cF 0.5 "daw4amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw5 sus pat = stack [bwn 5 (pat |+ 60) (cF 0.5 "daw5amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw6 sus pat = stack [bwn 6 (pat |+ 60) (cF 0.5 "daw6amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
+    daw7 sus pat = stack [bwn 7 (pat |+ 60) (cF 0.5 "daw7amp"), ((~>) sus) $ bwnote (pat |+ 60) # bwv 0 # bwnch 6]
 :}
 
 :{
 let damp n v = setF ("daw" ++ (show n) ++ "amp") v
+    dsus n v = setF ("daw" ++ (show n) ++ "sus") v
 :}
 
 :{
-let dr0 pat = daw0 $ round <$> pat
-    dr1 pat = daw1 $ round <$> pat
-    dr2 pat = daw2 $ round <$> pat
-    dr3 pat = daw3 $ round <$> pat
-    dr4 pat = daw4 $ round <$> pat
-    dr5 pat = daw5 $ round <$> pat
-    dr6 pat = daw6 $ round <$> pat
-    dr7 pat = daw7 $ round <$> pat
+let dr0' sus pat = p "daw0" $ daw0 sus $ round <$> pat
+    dr1' sus pat = p "daw1" $ daw1 sus $ round <$> pat
+    dr2' sus pat = p "daw2" $ daw2 sus $ round <$> pat
+    dr3' sus pat = p "daw3" $ daw3 sus $ round <$> pat
+    dr4' sus pat = p "daw4" $ daw4 sus $ round <$> pat
+    dr5' sus pat = p "daw5" $ daw5 sus $ round <$> pat
+    dr6' sus pat = p "daw6" $ daw6 sus $ round <$> pat
+    dr7' sus pat = p "daw7" $ daw7 sus $ round <$> pat
+    dr0 = dr0' 0.5
+    dr1 = dr1' 0.5
+    dr2 = dr2' 0.5
+    dr3 = dr3' 0.5
+    dr4 = dr4' 0.5
+    dr5 = dr5' 0.5
+    dr6 = dr6' 0.5
+    dr7 = dr7' 0.5
 :}
