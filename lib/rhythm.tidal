@@ -28,19 +28,29 @@ preplace = prr 0
 ring = flip $ preplace (1,1)
 
 
-
+-- test
+-- 1. use rot for note_offs
+-- 2. use value first for ccs
+-- 
 
 ------------------------------------------------------------------------ Polymetry
 :{
-let sq = squeeze "^__seq__"
-    ns = n . sq 
-    seqs = setI "__seq__"
+let 
     setbpm val = setF "basecps" (val / 120)
     b number = cps ("^basecps" |* 4 |/ number)
-    -- bars: set time signatures for "^seq"-indexable sequences 
-    bars signatures =
-      p "__clock__" $
-        squeeze "^__seq__" (map ((\pat count -> n pat # b count) "0*3") signatures)
-          # s "can"
-          # gain 0
+    ball' number fns = all ((# b number) . fns)
+    ball = (flip ball') id
+    ba = ball
+    sq = squeeze "^__seq__"
 :}
+
+setbpm 120
+
+    -- ns = n . sq 
+    -- seqs = setI "__seq__"
+    -- bars: set time signatures for "^seq"-indexable sequences 
+    -- bars signatures =
+    --   p "__clock__" $
+    --     squeeze "^__seq__" (map ((\pat count -> n pat # b count) "0*3") signatures)
+    --       # s "can"
+    --       # gain 0

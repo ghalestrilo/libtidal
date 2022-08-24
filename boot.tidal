@@ -2,27 +2,31 @@
 :set -XOverloadedStrings
 :set prompt ""
 :set prompt-cont ""
-:cd /home/ghales/git/libtidal/lib/jarmlib/tidal
+
+-------------------------------------------------------------------Load DAW Backend: Bitwig
+-- :cd /home/ghales/git/libtidal/lib/jarmlib/tidal
+-- import Sound.Tidal.Context
+-- :script osc/Targets.hs
+-- 
+-- :script osc/targets/Bitwig/Bitwig.hs
+-- let oscMap = [bwOscMap]
+-- 
+-- :script stream/Stream.hs
+-- :script lib/Lib.hs
+-- :script osc/TargetLibs.hs
+-- :script osc/targets/Bitwig/BitwigLib.hs
+-- :script /home/ghales/git/libtidal/lib/daw.tidal
+
+--------------------------------------------------------------------- Load DAW Backend: Ableton
+:script /home/ghales/git/libtidal/lib/hack.tidal
+:script /home/ghales/git/libtidal/lib/hackinstruments.tidal
+
 
 --------------------------------------------------------------------- Load DAW Backend
-import Sound.Tidal.Context
-:script osc/Targets.hs
-
-:script osc/targets/Bitwig/Bitwig.hs
-let oscMap = [bwOscMap]
-:script stream/Stream.hs
-
-:script stream/Stream.hs
-:script lib/Lib.hs
-:script osc/TargetLibs.hs
-:script osc/targets/Bitwig/BitwigLib.hs
-
---------------------------------------------------------------------- Load DAW Backend
-:script /home/ghales/git/libtidal/lib/daw.tidal
 :script /home/ghales/git/libtidal/lib/tonal.tidal
 :script /home/ghales/git/libtidal/lib/rhythm.tidal
 
-bwlink 4 (-0.14)
+-- bwlink 4 (-0.14)
 
 --------------------------------------------------------------------- Rice
 :set prompt " • "

@@ -1,0 +1,66 @@
+
+toID strr = Sound.Tidal.ID.ID strr
+setF "mididelay" 0
+
+-- Interpretive
+:{
+let strum' dir i pat = fastcat ((arp dir pat):(take (fromInteger i) $ repeat (degradeBy 1 pat)))
+    strum = strum' "up"
+    humanize param amt = (|+ param (range (- (amt/10)) (amt/10) $ perlin))
+    h = humanize
+    hg = humanize gain
+:}
+
+
+-- temp: looping functions
+:{
+let brakk' n = unit "c" # legato 1 # speed (1/n)
+    brakk = brakk' 1
+:}
+
+
+-- Map a function to a midi device
+:{
+makehackdevice devicename idx pat = let channel = devicename ++ show idx
+  in p (toID channel)
+      $ ("^mididelay" <~)
+      $ pat
+      # s (pure channel)
+:}
+
+
+-- Map a function to a midi device, passing an optional prep function
+:{
+multichannel' prep devicename pats =
+  mapM_ (\(pat,idx) -> makehackdevice devicename idx $ prep pat) $ zip pats [0..16]
+:}
+
+-- Map 
+:{
+let multichannel = multichannel' id
+    multichannelnote = multichannel' note
+:}
+
+
+
+
+
+:{
+let virus = makehackdevice "virus"
+    virusn idx pat = virus idx $ note pat
+    virusns = multichannelnote "virus"
+    v = virus
+    vn = virusn
+    vns = virusns
+:}
+
+:{
+let tr8s = makehackdevice "tr8s"
+    tr8sn idx pat = tr8s idx $ note pat
+    tr8ss = multichannel "tr8s"
+    tr8sns = multichannelnote "tr8s"
+    tr = tr8s
+    trn = tr8sn
+    trns = tr8sns
+    trs = tr8sns
+:}
