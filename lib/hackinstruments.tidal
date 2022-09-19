@@ -64,3 +64,27 @@ let tr8s = makehackdevice "tr8s"
     trns = tr8sns
     trs = tr8sns
 :}
+
+
+
+
+
+
+:{
+let d1 = makehackdevice "drums" 1 . (|< orbit 0)
+    d2 = makehackdevice "drums" 2 . (|< orbit 1)
+    d3 = makehackdevice "drums" 3 . (|< orbit 2)
+    d4 = makehackdevice "drums" 4 . (|< orbit 3)
+    d5 = makehackdevice "drums" 5 . (|< orbit 4)
+    d6 = makehackdevice "drums" 6 . (|< orbit 5)
+    d7 = makehackdevice "drums" 7 . (|< orbit 6)
+    d8 = makehackdevice "drums" 8 . (|< orbit 7)
+    d9 = makehackdevice "drums" 9 . (|< orbit 8)
+    d10 = makehackdevice "drums" 10 . (|< orbit 9)
+    d11 = makehackdevice "drums" 11 . (|< orbit 10)
+    d12 = makehackdevice "drums" 12 . (|< orbit 11)
+    d13 = makehackdevice "drums" 13
+    d14 = makehackdevice "drums" 14
+    d15 = makehackdevice "drums" 15
+    d16 = makehackdevice "drums" 16
+:}
