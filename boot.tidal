@@ -1,7 +1,7 @@
 --------------------------------------------------------------------- Bootstrap
 :set -XOverloadedStrings
 :set prompt ""
-:set prompt-cont ""
+:set prompt-cont "\n"
 
 -------------------------------------------------------------------Load DAW Backend: Bitwig
 -- :cd /home/ghales/git/libtidal/lib/jarmlib/tidal

@@ -50,8 +50,8 @@ tr8sCtrlCCArray = [96,97,102,103,104,105,106,107,108,109,110]
 
 :{
 let tr' prepPatternForTR idx pat = p (toID $ "tr8s" ++ show (tr8sToneCCArray!!idx))
-      $ prepPatternForTR pat # s "tr"
-      # midinote (36 + (tr8sChanArray!!idx)) # midichan 9
+      $ prepPatternForTR pat
+      # s "tr" # midinote (36 + (tr8sChanArray!!idx)) # midichan 9
       # ccn (tr8sToneCCArray!!idx)
     tr = tr' trn
     -- trn pat = s (fmap show pat) # n 0 # ccv pat # s "tr"
@@ -75,4 +75,14 @@ let d1 = tr 0
     d14 = tr 13
     d15 = tr 14
     d16 = tr 15
+:}
+
+
+let dawSynthChannel idx pat = p (toID $ "synth" ++ show idx) $ pat # s "loopback" # midichan (idx + 12)
+
+:{
+let s1 = dawSynthChannel 0
+    s2 = dawSynthChannel 1
+    s3 = dawSynthChannel 2
+    s4 = dawSynthChannel 3
 :}
