@@ -11,7 +11,7 @@ let toModeKey = ("mode_" ++) . show
     getMode idx = cS "chromatic" (toModeKey idx)
     setMode idx = setS (toModeKey idx)
     getRoot idx = cN0 (toRootKey idx)
-    setRoot idx = setN (toRootKey idx)
+    setRoot idx = setI (toRootKey idx)
     onkey idx pat = (|+ getRoot idx) $ scale (getMode idx) $ pat
     k = onkey
     setkey' idx root mode = do
@@ -26,8 +26,8 @@ let getGlobalMode = cS "chromatic" "mode_global"
     getGlobalRoot = cI0 "root_global"
     setGlobalRoot = setN "root_global"
     tonal rr mm = note . (|+ rr) . scale mm
-    t' idx = tonal (cF0 "root_global") (getMode idx)
-    t = tonal (cF0 "root_global") getGlobalMode
+    t' idx = tonal ("^root_global") (getMode idx)
+    t = tonal ("^root_global") getGlobalMode
     setkey root mode = do
       setGlobalMode mode
       setGlobalRoot root

@@ -3,13 +3,28 @@
 :set prompt ""
 :set prompt-cont ""
 
+-------------------------------------------------------------------Load DAW Backend: Bitwig
+-- :cd /home/ghales/git/libtidal/lib/jarmlib/tidal
+-- :script osc/Targets.hs
+-- :script osc/targets/Bitwig/Bitwig.hs
+-- let oscMap = [bwOscMap]
+-- 
+-- :script stream/Stream.hs
+-- :script lib/Lib.hs
+-- :script osc/TargetLibs.hs
+-- :script osc/targets/Bitwig/BitwigLib.hs
+-- :script /home/ghales/git/libtidal/lib/daw.tidal
+
 --------------------------------------------------------------------- Load DAW Backend: Ableton
 :script /Users/admin/git/libtidal/lib/hack.tidal
-:script /Users/admin/git/libtidal/lib/hackinstruments.tidal
+:script /Users/admin/git/libtidal/lib/scinstruments.tidal
+
 
 --------------------------------------------------------------------- Load DAW Backend
 :script /Users/admin/git/libtidal/lib/tonal.tidal
 :script /Users/admin/git/libtidal/lib/rhythm.tidal
+
+carabiner tidal 1 0
 
 --------------------------------------------------------------------- Rice
 :set prompt " • "

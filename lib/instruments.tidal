@@ -187,3 +187,5 @@ let virus idx pat = p (toID $ "virus" ++ show idx)
       $ pat # midichan idx # s "fs"
     v = virus
 :}
+
+-------------------------------------------------------------------- Instruments
