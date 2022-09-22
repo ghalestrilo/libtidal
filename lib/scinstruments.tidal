@@ -51,7 +51,11 @@ tr8sCtrlCCArray = [96,97,102,103,104,105,106,107,108,109,110]
 :{
 let tr' prepPatternForTR idx pat = p (toID $ "tr8s" ++ show (tr8sToneCCArray!!idx))
       $ prepPatternForTR pat
-      # s "tr" # midinote (36 + (tr8sChanArray!!idx)) # midichan 9
+      # stack [
+        s "tr" # midichan 9,
+        s "loopback" # midichan 0
+      ]
+      # midinote (36 + (tr8sChanArray!!idx))
       # ccn (tr8sToneCCArray!!idx)
     tr = tr' trn
     -- trn pat = s (fmap show pat) # n 0 # ccv pat # s "tr"
