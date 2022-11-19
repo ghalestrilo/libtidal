@@ -1,4 +1,4 @@
-
+import Data.Map as M (lookup)
 toID strr = Sound.Tidal.ID.ID strr
 setF "mididelay" 0
 
@@ -53,37 +53,24 @@ let bank' chan device num = asap $ progNum num # s device # midichan chan
     bank = bank' 15
 :}
 
+hush
 
--- tri "0 1 2 3" = channels bd sd lt and mt played in order
+-- TR8S Functions
+-- trs "0 1 2 3" = channels bd sd lt and mt played in order
 -- tr 2 "0*4" = sd plays 4 times
 :{
-let tr' prepPatternForTR idx pat = p (toID $ "tr8s" ++ show (tr8sToneCCArray!!idx))
-      $ prepPatternForTR pat
-      # stack [
-        s "tr" # midichan 9,
-        s "loopback" # midichan 0
-      ]
-      # midinote (tr8sChanArray!!idx)
-      # ccn (tr8sToneCCArray!!idx)
+let ctrl = modw
+    noteToTR8STuneCC idx pat = ccv (fmap (fromIntegral . (`mod` 127) . toInteger . floor . (* 64) . (/ 12) . toRational . maybe 0 nvalue . M.lookup "note") pat) # ccn (tr8sToneCCArray!!idx)
+    susToTR8SDecayCC idx pat = ccv (range 0 127 $ maybe 0 fvalue <$> M.lookup "sustain" <$> pat) # ccn (tr8sDecayCCArray!!idx)
+    modwToTR8SDecayCC idx pat = ccv (maybe 0 fvalue <$> M.lookup "modwheel" <$> pat) # ccn (tr8sCtrlCCArray!!idx)
     tr idx pat = p (toID $ "tr8s" ++ show (tr8sToneCCArray!!idx))
-      $ pat
-      # stack [ s "tr" # midichan 9 # midinote (tr8sChanArray!!idx) , s "loopback" # midichan (pure $ fromIntegral idx) ]
-    -- trn pat = s (fmap show pat) # n 0 # ccv pat # s "tr"
-    -- trn pat idx = s (fmap show pat) # n 0
-    --   # ccn (tr8sToneCCArray!!idx)
-    --   # ccv (fmap (fromIntegral . toInteger . floor . toRational) pat :: Pattern Double) # s "tr"
+      $ stack (pat : fmap (\translator -> translator idx pat) [ noteToTR8STuneCC, susToTR8SDecayCC, modwToTR8SDecayCC ])
+      # stack [
+        s "tr" # midichan 9 # midinote (tr8sChanArray!!idx),
+        s "loopback" # midichan (pure $ fromIntegral idx)
+      ]
     trbank num = asap $ progNum num # s "tr"
     trs pats = mapM_ (\(pat,idx) -> tr idx pat) $ zip pats [0..16]
-    trpat pat = p "tr" $ midinote (fmap (tr8sChanArray!!) pat)
-              # stack [
-                s "tr" # midichan 9,
-                s "loopback" # midichan 0
-              ]
-    trm idx pats = p (toID $ "tr8s" ++ show (tr8sToneCCArray!!idx))
-      $ (stack . map (\f -> f idx)) pats
-      # stack [ s "tr" # midichan 9, s "loopback" # midichan 0 ]
-      # midinote (tr8sChanArray!!idx)
-    trn pat = [\idx -> ccv (fmap (fromIntegral . (`mod` 127) . toInteger . floor . (* 64) . (/ 12) . toRational) pat :: Pattern Double) # ccn (tr8sToneCCArray!!idx)]
 :}
 
 -- TRGroups - groups of tr8s channels by functional closeness
