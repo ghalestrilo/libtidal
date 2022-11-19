@@ -16,7 +16,7 @@ hSetEncoding stdout utf8
 -- :}
 
 :{
-customTarget = Target {oName = "Max", -- Give your target a name
+customTarget = Target {oName = "SuperCollider", -- Give your target a name
                       oAddress = "127.0.0.1", -- the target network address
                       oPort = 57120, -- the target network port
                       oLatency = 0.4, -- the latency (to smooth network jitter
@@ -67,6 +67,7 @@ let p = streamReplace tidal
     begin = pF "begin"
     res = pF "res"
     vel = pF "vel"
+    
     cutoff = pF "cutoff"
     drive = pF "drive"
     filtertype = pS "filter"
@@ -120,4 +121,4 @@ let setI = streamSetI tidal
 :}
 
 -- compat
-let note = n
+-- let note = n

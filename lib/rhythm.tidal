@@ -41,8 +41,17 @@ let
     ball' number fns = all ((# b number) . fns)
     ball = (flip ball') id
     ba = ball
+    setseq = setI "__seq__"
+    seqs = setseq
     sq = squeeze "^__seq__"
+    ns = n . sq
+    bars signatures = p "__clock__" $ squeeze "^__seq__" (map ((\pat count -> n pat # b count) "0*3") signatures) # gain 0
+    seqd = squeeze "^__seq__"
+    over n = map (/ n)
 :}
+
+
+let nok key = note . k key
 
 setbpm 120
 
@@ -54,3 +63,21 @@ setbpm 120
     --     squeeze "^__seq__" (map ((\pat count -> n pat # b count) "0*3") signatures)
     --       # s "can"
     --       # gain 0
+
+
+bars signatures = p "__clock__" $ squeeze "^__seq__" (map ((\pat count -> n pat # b count) "0") signatures)
+
+
+-- breakpoints: slice a function into a list of section based on breakpoints within [0:1]
+let breakpoints bps pat = map (flip zoom $ pat) $ zip ([0] ++ bps) (bps ++ [1])
+
+-- Indices: select items from a list based on indices, container in an input integer list
+let indices indexer list = map (\index -> list!!index) indexer
+let elems = indices
+
+
+:{
+let seqchunks chks = seqd . breakpoints (over (sum chks) . drop 1 . scanl (+) 0 $ chks)
+    nok key = note . k key
+    keys ks = zipWith nok ks
+:}
