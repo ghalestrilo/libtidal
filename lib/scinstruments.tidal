@@ -24,6 +24,7 @@ let withLoopback channel pat = stack [ pat, pat # s "loopback" # midichan channe
     reface pat = p "reface" $ withLoopback 12 $ pat # s "reface" # midichan 0
 :}
 
+
 -- :{
 -- let tr idx pat = p (toID $ "tr8s" ++ show idx) $ pat # s "tr"
 --       # midinote (36 + idx) # midichan 9
@@ -54,19 +55,37 @@ let putTRCC array idx decaypat pat = stack [pat, pat |> ccv decaypat # ccn (arra
 -- TR8S Functions
 -- trs "0 1 2 3" = channels bd sd lt and mt played in order
 -- tr 2 "0*4" = sd plays 4 times
+-- note: to actually record something TR8S can play back, we actually need an additional channel
+-- (loopback2?) where the ccs are stored as notes. In order to get daw to play, we have to send notes as #note,
+-- which TR8S does not support
+
+
 :{
 let ctrl = modw
-    noteToTR8STuneCC idx pat = ccv (fmap (fromIntegral . (`mod` 127) . toInteger . floor . (* 64) . (/ 12) . toRational . maybe 0 nvalue . M.lookup "note") pat) # ccn (tr8sToneCCArray!!idx)
-    susToTR8SDecayCC idx pat = ccv (range 0 127 $ maybe 0 fvalue <$> M.lookup "sustain" <$> pat) # ccn (tr8sDecayCCArray!!idx)
-    modwToTR8SDecayCC idx pat = ccv (maybe 0 fvalue <$> M.lookup "modwheel" <$> pat) # ccn (tr8sCtrlCCArray!!idx)
-    tr idx pat = p (toID $ "tr8s" ++ show (tr8sToneCCArray!!idx))
-      $ stack (pat : fmap (\translator -> translator idx pat) [ noteToTR8STuneCC, susToTR8SDecayCC, modwToTR8SDecayCC ])
-      # stack [
-        s "tr" # midichan 9 # midinote (tr8sChanArray!!idx),
-        s "loopback" # midichan (pure $ fromIntegral idx)
-      ]
+    translateEventsToMIDICC array name valueGetter idx pat = ccv (fmap valueGetter $ filterJust $ M.lookup name <$> pat) # ccn (array!!idx)
+    noteToTR8STuneCC idx pat = translateEventsToMIDICC tr8sToneCCArray "note" (fromIntegral . (`mod` 127) . toInteger . floor . (* 64) . (/ 12) . toRational . nvalue) idx pat
+    modwToTR8SCtrlCC = translateEventsToMIDICC tr8sCtrlCCArray "modwheel" ((* 127) . max 0 . min 1 . fvalue)
+    susToTR8SDecayCC = translateEventsToMIDICC tr8sDecayCCArray "sustain" ((* 127) . max 0 . min 1 . fvalue)
+    tr idx pat = p channelname
+        $ stack (fmap (\translator -> translator idx patoff) [ noteToTR8STuneCC, susToTR8SDecayCC, modwToTR8SCtrlCC ] ++ [patoff])
+        # stack [playbacktarget, rectarget]
+      where patoff = pat |+ note (cN0 ("tr8snoteoffset" ++ show idx))
+            chan = (tr8sChanArray!!idx)
+            playbacktarget = s "tr" # midichan 9 # midinote chan
+            rectarget = s "trloopback1" # midichan (pure $ fromIntegral idx) # midinote chan -- actual recording
+            channelname = toID $ "tr8s" ++ show (tr8sToneCCArray!!idx)
     trbank num = asap $ progNum num # s "tr"
     trs pats = mapM_ (\(pat,idx) -> tr idx pat) $ zip pats [0..16]
+:}
+
+-- read values from tr8s
+:{
+let trcps = (# cps ((cF_ "tr_tempo") |/ 1200))
+    trshuf = (cF0 "tr_shuffle" |/ 127)
+    tracc = (cF0 "tr_accent" |/ 127)
+    byshuf = sometimesBy trshuf
+    byacc = sometimesBy tracc
+    trall fn = all $ trcps . fn
 :}
 
 -- TRGroups - groups of tr8s channels by functional closeness
@@ -81,6 +100,7 @@ let trgroup chans pats = mapM_ (\(pat,idx) -> tr idx pat) $ zip pats chans
 
 
 :{
+
 let d1 = tr 0
     d2 = tr 1
     d3 = tr 2
@@ -97,11 +117,13 @@ let d1 = tr 0
     d14 = tr 13
     d15 = tr 14
     d16 = tr 15
+
 :}
 
 
 -- TR8S SHORTHANDS
 :{
+
 let bd = d1
     sd = d2
     lt = d3
@@ -113,6 +135,23 @@ let bd = d1
     oh = d9
     cc = d10
     rc = d11
+
+:}
+
+-- TR8S OFFSET SHORTHANDS
+:{
+let troff n val = setI ("tr8snoteoffset" ++ show n) val
+    bdoff = troff 0
+    sdoff = troff 1
+    ltoff = troff 2
+    mtoff = troff 3
+    htoff = troff 4
+    rsoff = troff 5
+    hcoff = troff 6
+    choff = troff 7
+    ohoff = troff 8
+    ccoff = troff 9 
+    rcoff = troff 10
 :}
 
 -- TR8S ALT SHORTHANDS

@@ -80,4 +80,8 @@ let elems = indices
 let seqchunks chks = seqd . breakpoints (over (sum chks) . drop 1 . scanl (+) 0 $ chks)
     nok key = note . k key
     keys ks = zipWith nok ks
+    nokstack keys = stack . zipWith nok keys
+    nokcat keys = cat . zipWith nok keys
+    noks = nokstack
+    nokc = nokcat
 :}
