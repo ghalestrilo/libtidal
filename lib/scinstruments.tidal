@@ -1,4 +1,4 @@
-import Data.Map as M (lookup)
+import Data.Map as M (lookup, delete)
 toID strr = Sound.Tidal.ID.ID strr
 setF "mididelay" 0
 
@@ -59,23 +59,37 @@ let putTRCC array idx decaypat pat = stack [pat, pat |> ccv decaypat # ccn (arra
 -- (loopback2?) where the ccs are stored as notes. In order to get daw to play, we have to send notes as #note,
 -- which TR8S does not support
 
+setF "trtuneoff" (-0.02)
 
 :{
+
 let ctrl = modw
-    translateEventsToMIDICC array name valueGetter idx pat = ccv (fmap valueGetter $ filterJust $ M.lookup name <$> pat) # ccn (array!!idx)
-    noteToTR8STuneCC idx pat = translateEventsToMIDICC tr8sToneCCArray "note" (fromIntegral . (`mod` 127) . toInteger . floor . (* 64) . (/ 12) . toRational . nvalue) idx pat
-    modwToTR8SCtrlCC = translateEventsToMIDICC tr8sCtrlCCArray "modwheel" ((* 127) . max 0 . min 1 . fvalue)
-    susToTR8SDecayCC = translateEventsToMIDICC tr8sDecayCCArray "sustain" ((* 127) . max 0 . min 1 . fvalue)
-    tr idx pat = p channelname
-        $ stack (fmap (\translator -> translator idx patoff) [ noteToTR8STuneCC, susToTR8SDecayCC, modwToTR8SCtrlCC ] ++ [patoff])
-        # stack [playbacktarget, rectarget]
-      where patoff = pat |+ note (cN0 ("tr8snoteoffset" ++ show idx))
-            chan = (tr8sChanArray!!idx)
-            playbacktarget = s "tr" # midichan 9 # midinote chan
-            rectarget = s "trloopback1" # midichan (pure $ fromIntegral idx) # midinote chan -- actual recording
-            channelname = toID $ "tr8s" ++ show (tr8sToneCCArray!!idx)
+    _trCleanPat = fmap (M.delete "note" . M.delete "octave")
+    _translateEventsToMIDICC' modifier array name valueGetter idx pat = ccv (modifier (fmap valueGetter $ filterJust $ M.lookup name <$> pat)) # ccn (array!!idx)
+    _translateEventsToMIDICC = _translateEventsToMIDICC' id
+    _noteToTR8STuneCC idx pat = _translateEventsToMIDICC tr8sToneCCArray "note" (fromIntegral . (`mod` 127) . toInteger . floor . (* 64) . (/ 12) . toRational . nvalue) idx pat
+    _modwToTR8SCtrlCC = _translateEventsToMIDICC tr8sCtrlCCArray "modwheel" ((* 127) . max 0 . min 1 . fvalue)
+    _susToTR8SDecayCC = _translateEventsToMIDICC tr8sDecayCCArray "sustain" ((* 127) . max 0 . min 1 . fvalue)
+    tr idx pat = do
+        -- print channelname 
+        -- print finalcmd
+        p channelname $ finalcmd
+        where chan = (tr8sChanArray!!idx)
+              playbacktarget = s "tr" # midichan 9 # midinote chan
+              cctarget = s "tr" # midichan 9 # midinote chan
+              rectarget = s "trloopback1" # midichan (pure $ fromIntegral idx) # midinote chan -- actual recording
+              channelname = toID $ "tr8s" ++ show (tr8sToneCCArray!!idx)
+              addtroffset idx = (|+ cN0 ("tr8snoteoffset" ++ show idx))
+              noteCC = (cT0 "trtuneoff") ~> _noteToTR8STuneCC idx pat
+              decayCC = _susToTR8SDecayCC idx pat
+              ctrlCC = _modwToTR8SCtrlCC idx pat
+              ccs = _trCleanPat $ (stack $ [noteCC, decayCC, ctrlCC]) # stack [cctarget, rectarget]
+              notes = pat # stack [playbacktarget, rectarget]
+              finalcmd = stack [ccs, notes]
     trbank num = asap $ progNum num # s "tr"
     trs pats = mapM_ (\(pat,idx) -> tr idx pat) $ zip pats [0..16]
+    trtuneoff = setF "trtuneoff"
+
 :}
 
 -- read values from tr8s
@@ -117,14 +131,7 @@ let d1 = tr 0
     d14 = tr 13
     d15 = tr 14
     d16 = tr 15
-
-:}
-
-
--- TR8S SHORTHANDS
-:{
-
-let bd = d1
+    bd = d1
     sd = d2
     lt = d3
     mt = d4
