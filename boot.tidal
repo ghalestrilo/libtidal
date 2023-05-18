@@ -1,10 +1,10 @@
 --------------------------------------------------------------------- Bootstrap
 :set -XOverloadedStrings
-:set prompt ""
+:set prompt "; "
 :set prompt-cont "\n"
 
 --------------------------------------------------------------------- Load DAW Backend: Ableton
-:script /Users/admin/git/libtidal/lib/hack.tidal
+:script /Users/admin/git/libtidal/lib/base.tidal
 :script /Users/admin/git/libtidal/lib/tonal.tidal
 :script /Users/admin/git/libtidal/lib/scinstruments.tidal
 
@@ -14,8 +14,6 @@
 
 
 --------------------------------------------------------------------- Rice
-:set prompt "; "
-
 
 let setI = streamSetI tidal
     setF = streamSetF tidal
