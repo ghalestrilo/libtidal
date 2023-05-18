@@ -2,18 +2,6 @@
 import System.IO (hSetEncoding, stdout, utf8)
 import Sound.Tidal.Context
 hSetEncoding stdout utf8
--- total latency = oLatency + cFrameTimespan
--- :{
--- customTarget = Target {oName = "Max", -- Give your target a name
---                       oAddress = "127.0.0.1", -- the target network address
---                       oPort = 2020, -- the target network port
---                       oLatency = 0.2, -- the latency (to smooth network jitter
---                       oSchedule = Live,
---                       oWindow = Nothing,
---                       oHandshake = False,
---                       oBusPort = Nothing
---                       }
--- :}
 
 :{
 customTarget = Target {oName = "SuperCollider", -- Give your target a name

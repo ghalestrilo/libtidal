@@ -1,0 +1,78 @@
+
+data Instrument = Instrument
+  { id  :: Sound.Tidal.ID.ID -- = "mm"
+  , params :: ControlPattern -- = s "mm" # midichan 15 # orbit 0
+  } deriving (Show)
+
+Instrument { id = "mm", params = s "mm" # midichan 15 # orbit 0 }
+
+instance Instrument 
+
+newtype Instrument = Instrument
+    { id  :: Sound.Tidal.ID.ID -- = "mm"
+    , params :: ControlPattern -- = s "mm" # midichan 15 # orbit 0
+    } deriving (Show)
+
+data Arrangement = Arrangement
+  { transition :: Int -> Sound.Tidal.ID.ID -> ControlPattern
+  , patternList :: [(Int, ControlPattern)]
+  }
+
+type Instrument = Arrangement -> IO ()
+
+instance Instrument inst -> Arrangement a -> IO () where
+    inst a = a.transition $ snd $ tail patternList
+
+mm :: Instrument
+mm = Instrument { id = "mm", params = s "mm" # midichan 15 # orbit 0 }
+
+data InstrumentDef = InstrumentDef
+  { id  :: Sound.Tidal.ID.ID -- = "mm"
+  , params :: ControlPattern -- = s "mm" # midichan 15 # orbit 0
+  } deriving (Show)
+
+
+type Instrument = Arrangement -> IO ()
+
+mm :: Instrument
+mm = Instrument { id = "mm", params = s "mm" # midichan 15 # orbit 0 }
+
+data Arrangement = Arrangement
+  { transition = jumpMod
+  , patternList = [(0, "1")]
+  }
+
+-- instance Pattern Arrangement
+-- default transition = jumpMod (fst $ tail $ patternList)
+
+
+
+
+-- ArrangementPart
+newtype Instrument a = P (a -> a)  -- function object
+mkInstrument :: Num a => [a] -> Instrument a  -- constructor
+let (P p) = mkPolynomial [1, 2, 3]
+
+let mkinst name n pat = jumpMod "mm" n $ pat # s "mm" # midichan 15 # orbit 0
+    mm' n = mkinst "mm" n
+    mm  = mm' 1 
+in mm $ nok 0 ("0*4" |+ irand 4)
+
+  $ intro 1 (nok 0 "[-3 0 2 6]*2" + note "0 12" # sus 0.05)
+  $ nok 0 "0 ~@4 0 ~@2"
+  # octave 4
+
+
+
+
+
+
+
+-- years later... proper tonality
+let applyModality pat = pat # note (root +| scale mode notOrig) # 
+                        where root = floor $ get "root" pat
+                              mode = floor $ get "note" pat
+                              noteOrig = floor $ get "note" pat
+    mm pat = p "mm" 
+    key = grp [cI "root", cS "mode"]
+in mm

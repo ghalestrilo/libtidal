@@ -1,4 +1,4 @@
-import Data.Map as M (lookup, delete)
+import Data.Map as M (lookup, delete, fromList)
 toID strr = Sound.Tidal.ID.ID strr
 setF "mididelay" 0
 
@@ -59,10 +59,9 @@ let putTRCC array idx decaypat pat = stack [pat, pat |> ccv decaypat # ccn (arra
 -- (loopback2?) where the ccs are stored as notes. In order to get daw to play, we have to send notes as #note,
 -- which TR8S does not support
 
-setF "trtuneoff" (-0.02)
+setF "trtuneoff" 0
 
 :{
-
 let ctrl = modw
     _trCleanPat = fmap (M.delete "note" . M.delete "octave")
     _translateEventsToMIDICC' modifier array name valueGetter idx pat = ccv (modifier (fmap valueGetter $ filterJust $ M.lookup name <$> pat)) # ccn (array!!idx)
@@ -78,12 +77,14 @@ let ctrl = modw
               playbacktarget = s "tr" # midichan 9 # midinote chan
               cctarget = s "tr" # midichan 9 # midinote chan
               rectarget = s "trloopback1" # midichan (pure $ fromIntegral idx) # midinote chan -- actual recording
+              -- vistarget = s "trloopback2" # midichan 0 # midinote chan -- actual recording
               channelname = toID $ "tr8s" ++ show (tr8sToneCCArray!!idx)
-              addtroffset idx = (|+ cN0 ("tr8snoteoffset" ++ show idx))
+              addtroffset idx pat = (|+ cN0 ("tr8snoteoffset" ++ show idx))
               noteCC = (cT0 "trtuneoff") ~> _noteToTR8STuneCC idx pat
               decayCC = _susToTR8SDecayCC idx pat
               ctrlCC = _modwToTR8SCtrlCC idx pat
               ccs = _trCleanPat $ (stack $ [noteCC, decayCC, ctrlCC]) # stack [cctarget, rectarget]
+              -- notes = pat # stack [playbacktarget, rectarget, vistarget]
               notes = pat # stack [playbacktarget, rectarget]
               finalcmd = stack [ccs, notes]
     trbank num = asap $ progNum num # s "tr"
@@ -100,6 +101,7 @@ let trcps = (# cps ((cF_ "tr_tempo") |/ 1200))
     byshuf = sometimesBy trshuf
     byacc = sometimesBy tracc
     trall fn = all $ trcps . fn
+    accselect list = select tracc $ list ++ [last list]
 :}
 
 -- TRGroups - groups of tr8s channels by functional closeness
@@ -233,4 +235,133 @@ let s1 = dawSynthChannel 0
     s2 = dawSynthChannel 1
     s3 = dawSynthChannel 2
     s4 = dawSynthChannel 3
+:}
+
+-- Randomness
+    -- pinvnorm mean dev x = (fmap atanh (x |* 1.99 |- 0.9999999) |* dev |/ 2 |+ mean) * (1.0 |- dev) + dev * x
+    --                       where err = 0.0001
+:{
+let invnorm mean dev x = (1.0 - dev) * (dev * atanh (1.99 * x - 0.9999999) / 2 + mean) + dev * x
+    gaussselect mean dev = select (invnorm mean dev $ rand)
+    gs = gaussselect
+:}
+
+
+
+
+
+-- Daw chans
+import Sound.Tidal.ID (fromID)
+
+setI "surgeUserPresetsBankNumber" = 67
+setI "divaUserPresetsBankNumber" = 0
+
+:{
+let dawchans = ["bass", "pads", "lead1", "lead2", "keys"]
+    userPresetsBankNumber = cF0 "divaUserPresetsBankNumber"
+    dawchanlookup name fn pat =
+      case M.lookup name $ M.fromList $ zip dawchans (pure <$> [0..]) of
+        Just idx -> do
+                      -- print $ "instrument " ++ (fromID name) ++ " is channel " ++ (show idx)
+                      fn $ pat # s "loopback" # midichan idx
+        Nothing -> do
+                      print $ "couldn't find daw instrument " ++ (fromID name)
+                      once ""
+    dawchan name = dawchanlookup name (p name . (cT 0 "dawlatency" <~))
+    dawbank name bankindex = dawchanlookup name once (progNum bankindex # ccn 0 # ccv userPresetsBankNumber)
+:}
+
+:{
+let bass = dawchan "bass"
+    pads1 = dawchan "pads"
+    pads = pads1
+    lead1 = dawchan "lead1"
+    lead2 = dawchan "lead2"
+    keys = dawchan "keys"
+:}
+
+-- Some useful helpers i been using
+:{
+let fmask mask f = \pat -> sew mask (f pat) pat
+    lock n offset = timeLoop n . (offset <~)
+    cmap f values = zipWith (\val pat -> (# f val) pat) values
+:}
+
+
+:{
+let s2 = slow 2
+    s3 = slow 3
+    s4 = slow 4
+    s6 = slow 6
+    s8 = slow 8
+    s16 = slow 16
+    f2 = fast 2
+    f3 = fast 3
+    f4 = fast 4
+    f6 = fast 6
+    f8 = fast 8
+    f16 = fast 16
+:}
+
+-- This lists out all available presets on the folder. doesn't have to be alphabetical
+:{
+
+let availablePresetFilenames =
+        [ "alastra keys"
+        , "alastra lead1"
+        , "astro_2 keys"
+        , "astro_2 lead1"
+        , "astro_2 pads"
+        , "astro_2 bass"
+        , "chroma bass"
+        , "chroma keys"
+        , "estase pads"
+        , "milagre keys"
+        , "sino keys"
+        ]
+
+:}
+
+-- synthPresetsMap : Map { song: { instrument: patchname } }
+-- loadSynthPrest : receives a songname and a instname and loads the preset stored in the file
+--    whose name is "<songname> <instname>.h2p"
+-- loadbanks : receives a songname and loads all files as above, for each instrument in the instrument list (dawchans)
+import Data.Text (isSuffixOf, pack)
+import System.Directory (getDirectoryContents)
+:{
+
+let withAvailablePresetFiles f =
+      do
+        fileNames <- getDirectoryContents "/Library/Audio/Presets/u-he/Diva/MIDI Programs"
+        f fileNames
+    tuplify2 [x,y] = (x,y)
+    orderAlphabetically = Data.List.sort
+    isPreset filename = (length filename) > 2 && isSuffixOf ".h2p" (pack filename)
+    parseSongInstNames = map (tuplify2 . words . reverse . drop 4  . reverse) . filter isPreset
+    toIndexedSongInstList = zipWith (\index (songname, instname) -> (songname, (instname, index))) [1..]
+    groupBySong = Data.List.groupBy (\(x, _) (y, _) -> x == y)
+    labelSongnames = map (\patches -> ((fst . head) patches, Data.Map.fromList $ map snd patches))
+    buildMap = Data.Map.fromList
+    buildPresetMap = buildMap
+      . labelSongnames
+      . groupBySong
+      . toIndexedSongInstList
+      . parseSongInstNames
+      . orderAlphabetically 
+    printBankLoadMsg songname instname presetNum = print $ "bank load - " ++ instname ++ ":" ++ (show $ presetNum - 1) ++ " (" ++ songname ++ ")"
+    printBankLoadFail songname instname = print $ "bank load failed - " ++ instname ++ ":" ++ songname
+    getSynthPreset songname instname presetlist = 
+      pure presetlist 
+        >>= Data.Map.lookup songname
+        >>= Data.Map.lookup instname
+    loadSynthPreset songname instname = withAvailablePresetFiles (\filenames ->
+        do
+          case getSynthPreset songname instname (buildPresetMap filenames) of
+            (Just idx) -> do
+                printBankLoadMsg songname instname idx
+                dawbank (toID instname) (pure $ idx - 1)
+            Nothing -> printBankLoadFail songname instname
+      )
+    loadbanks songname = mapM_ (loadSynthPreset songname) dawchans
+
 :}

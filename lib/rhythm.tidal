@@ -15,7 +15,7 @@ prrw f rot (blen, vlen) beatPattern valuePattern =
     _slow cycles $ stack $ zipWith
       (\ev v -> ((start $ part ev) `rotR`) $ _fastGap (1 / ((stop $ part ev) - (start $ part ev))) $ pure (f (value ev) v))
       (sortBy ecompare $ queryArc (_fast cycles $ beatPattern) (Arc 0 blen))
-      (drop (rot `mod` length values) $ cycle values)
+      (Prelude.drop (rot `mod` length values) $ cycle values)
 :}
 
 :{
@@ -77,11 +77,11 @@ let elems = indices
 
 
 :{
-let seqchunks chks = seqd . breakpoints (over (sum chks) . drop 1 . scanl (+) 0 $ chks)
-    nok key = note . k key
-    keys ks = zipWith nok ks
+let nok key = note . k key
+    wkeys ks = zipWith nok ks
     nokstack keys = stack . zipWith nok keys
     nokcat keys = cat . zipWith nok keys
     noks = nokstack
     nokc = nokcat
 :}
+    -- seqchunks chks = seqd . breakpoints (over (sum chks) . drop 1 . scanl (+) 0 $ chks)
